@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - 3&7 Training & Recovery Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-navy': '#09104E',
+                        'electric-blue': '#353DFF',
+                        'bright-blue': '#333AFA',
+                    },
+                    height: {
+                        '300': '300px',
+                        '500': '500px',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hover-underline {
+            position: relative;
+        }
+
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+
+        .team-member {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .scroll-container {
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 20px;
+            margin: -20px;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll-box {
+            transition: transform 0.75s ease;
+        }
+        .scroll-box:hover {
+            transform: translateX(10px);
+        }
+    </style>
+</head>
+<body class="font-inter">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-deep-navy/95 z-50 backdrop-blur-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html">
+                    <img src="static/image/Logo Black.png" alt="Logo" class="h-10 brightness-0 invert">
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#who-we-are" class="text-white hover:text-electric-blue transition-colors">Who We Are</a>
+                    <a href="#our-vision" class="text-white hover:text-electric-blue transition-colors">Our Vision</a>
+                    <a href="#meet-people" class="text-white hover:text-electric-blue transition-colors">Meet the People</a>
+                    <a href="#more-about" class="text-white hover:text-electric-blue transition-colors">More About 3&7</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Who We Are Section -->
+    <section id="who-we-are" class="min-h-screen flex items-center pt-20" 
+             style="background: linear-gradient(rgba(9, 16, 78, 0.7), rgba(9, 16, 78, 0.7)), url('static/image/who we are sec.png') center/cover no-repeat;">
+        <div class="container mx-auto px-6 py-24">
+            <div class="max-w-4xl mx-auto text-center fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-8">Who We Are</h1>
+                <p class="text-lg md:text-xl text-white mb-6">
+                    Founded in 2024, we represent a strategic advancement in how athletes, coaches, and key stakeholders—including sporting bodies and recovery centers—engage with each other.
+                </p>
+                <p class="text-lg md:text-xl text-white mb-6">
+                    By harnessing the power of machine learning, our system delivers precise training protocols, comprehensive mental wellness support, and safeguards against misinformation and unprofessional conduct.
+                </p>
+                <p class="text-lg md:text-xl text-white">
+                    We are committed to fostering an environment where integrity, data-driven insights, and professional standards converge to drive the nation's sporting success.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Vision Section -->
+    <section id="our-vision" class="min-h-screen flex items-center" 
+             style="background: linear-gradient(rgba(53, 61, 255, 0.5), rgba(53, 61, 255, 0.5)), url('static/image/Our Vision sec.png') center/cover no-repeat;">
+        <div class="container mx-auto px-6 py-24">
+            <div class="max-w-3xl pl-9">
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Our Vision</h2>
+                    <div class="space-y-6">
+                        <p class="text-xl text-white hover-underline inline-block">
+                            Create sustainability in sporting industry, from creating champions eversince to influence a healthier life.
+                        </p>
+                        <p class="text-xl text-white hover-underline inline-block">
+                            Raise quality of competition
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the People Section -->
+    <section id="meet-people" class="min-h-screen flex items-center bg-cover bg-center bg-no-repeat" 
+             style="background: linear-gradient(rgba(9, 16, 78, 0.5), rgba(9, 16, 78, 0.5)), url('static/image/Who We Are.png');">
+        <div class="container mx-auto px-6 py-24">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-16 text-center">Meet the People</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-9 max-w-6xl mx-auto">
+                <!-- Team Member 1 -->
+                <div class="team-member w-[250px] h-[300px] mx-auto bg-gradient-to-br from-electric-blue to-deep-navy rounded-xl overflow-hidden">
+                    <div class="h-full flex flex-col items-center justify-end p-6 text-center">
+                        <h3 class="text-xl font-bold text-white mb-2">Benedictus Nathaniel Davin</h3>
+                        <p class="text-white/80">Co-Founder, CEO</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member w-[250px] h-[300px] mx-auto bg-gradient-to-br from-electric-blue to-deep-navy rounded-xl overflow-hidden">
+                    <div class="h-full flex flex-col items-center justify-end p-6 text-center">
+                        <h3 class="text-xl font-bold text-white mb-2">Muhammad Awatarino</h3>
+                        <p class="text-white/80">Co-Founder, CFO</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member w-[250px] h-[300px] mx-auto bg-gradient-to-br from-electric-blue to-deep-navy rounded-xl overflow-hidden">
+                    <div class="h-full flex flex-col items-center justify-end p-6 text-center">
+                        <h3 class="text-xl font-bold text-white mb-2">Nuroji Lukman</h3>
+                        <p class="text-white/80">Co-Founder, Advisory</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-member w-[250px] h-[300px] mx-auto bg-gradient-to-br from-electric-blue to-deep-navy rounded-xl overflow-hidden">
+                    <div class="h-full flex flex-col items-center justify-end p-6 text-center">
+                        <h3 class="text-xl font-bold text-white mb-2">Abi Hasbullah</h3>
+                        <p class="text-white/80">Head Advisory, Head Coach of 3&7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More About 3&7 Section -->
+    <section id="more-about" class="min-h-screen bg-bright-blue flex items-center">
+        <div class="container mx-auto px-6 py-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12 text-center">More About 3&7</h2>
+            
+            <div class="scroll-container overflow-x-auto pb-8">
+                <div class="flex gap-4 snap-x snap-mandatory">
+                    <!-- Box 1 -->
+                    <div class="scroll-box flex-none w-[200px] h-[120px] rounded-lg shadow-sm snap-center transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 bg-gradient-to-br from-deep-navy to-electric-blue">
+                        <div class="w-full h-full flex items-end p-6">
+                            <h3 class="text-xs font-normal font-poppins text-white">Our Mission</h3>
+                        </div>
+                    </div>
+
+                    <!-- Box 2 -->
+                    <div class="scroll-box flex-none w-[200px] h-[120px] rounded-lg shadow-sm snap-center transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 bg-gradient-to-br from-deep-navy to-electric-blue">
+                        <div class="w-full h-full flex items-end p-6">
+                            <h3 class="text-xs font-normal font-poppins text-white">Our Values</h3>
+                        </div>
+                    </div>
+
+                    <!-- Box 3 -->
+                    <div class="scroll-box flex-none w-[200px] h-[120px] rounded-lg shadow-sm snap-center transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 bg-gradient-to-br from-deep-navy to-electric-blue">
+                        <div class="w-full h-full flex items-end p-6">
+                            <h3 class="text-xs font-normal font-poppins text-white">Our Journey</h3>
+                        </div>
+                    </div>
+
+                    <!-- Box 4 -->
+                    <div class="scroll-box flex-none w-[200px] h-[120px] rounded-lg shadow-sm snap-center transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 bg-gradient-to-br from-deep-navy to-electric-blue">
+                        <div class="w-full h-full flex items-end p-6">
+                            <h3 class="text-xs font-normal font-poppins text-white">Our Technology</h3>
+                        </div>
+                    </div>
+
+                    <!-- Box 5 -->
+                    <div class="scroll-box flex-none w-[200px] h-[120px] rounded-lg shadow-sm snap-center transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 bg-gradient-to-br from-deep-navy to-electric-blue">
+                        <div class="w-full h-full flex items-end p-6">
+                            <h3 class="text-xs font-normal font-poppins text-white">Our Impact</h3>
+                        </div>
+                    </div>
+
+                    <!-- Box 6 -->
+                    <div class="scroll-box flex-none w-[200px] h-[120px] rounded-lg shadow-sm snap-center transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 bg-gradient-to-br from-deep-navy to-electric-blue">
+                        <div class="w-full h-full flex items-end p-6">
+                            <h3 class="text-xs font-normal font-poppins text-white">Future Plans</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Home Button -->
+            <div class="text-center mt-8">
+                <a href="index.html" class="inline-block px-6 py-2 bg-deep-navy text-white rounded-lg hover:bg-opacity-80 transition-colors text-base font-medium">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-deep-navy border-t border-white/10">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">About Us</h3>
+                    <p class="text-white/70">Empowering athletes through technology and community.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+                    <nav class="space-y-2">
+                        <a href="#who-we-are" class="block text-white/70 hover:text-white">Who We Are</a>
+                        <a href="#our-vision" class="block text-white/70 hover:text-white">Our Vision</a>
+                        <a href="#meet-people" class="block text-white/70 hover:text-white">Meet the People</a>
+                    </nav>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Contact</h3>
+                    <p class="text-white/70">Email: info@example.com</p>
+                    <p class="text-white/70">Phone: (555) 123-4567</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Follow Us</h3>
+                    <div class="flex gap-4">
+                        <a href="#facebook" class="text-white/70 hover:text-white">Facebook</a>
+                        <a href="#twitter" class="text-white/70 hover:text-white">Twitter</a>
+                        <a href="https://www.instagram.com/3n7media/" target="_blank" rel="noopener noreferrer" class="text-white/70 hover:text-white">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html> 

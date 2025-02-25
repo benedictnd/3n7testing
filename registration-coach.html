@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Registration - 3&7 Training & Recovery Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-navy': '#09104E',
+                        'electric-blue': '#353DFF',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .info-icon {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-left: 8px;
+            font-size: 12px;
+        }
+
+        .tippy-box {
+            background-color: rgba(9, 16, 78, 0.95) !important;
+            color: white !important;
+            border-radius: 8px !important;
+            font-size: 14px !important;
+            max-width: 300px !important;
+            padding: 8px !important;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: #09104E;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: auto;
+            position: relative;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        select option {
+            background-color: white !important;
+            color: black !important;
+        }
+
+        .selected-sport {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 9999px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .selected-sport button {
+            margin-left: 6px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .selected-sport button:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-poppins bg-[#09104E]">
+    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 relative"
+         style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('static/image/Background img.png') center/cover no-repeat fixed;">
+        
+        <!-- Logo -->
+        <div class="absolute top-6 left-6">
+            <a href="index.html">
+                <img src="static/image/Logo Black.png" alt="Logo" class="h-10 w-auto object-contain brightness-0 invert">
+            </a>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-2">Coach Registration</h2>
+                <p class="text-gray-300">Join our community of coaches</p>
+            </div>
+
+            <!-- Registration Form -->
+            <form action="welcome-animation.html?role=coach" class="space-y-8 bg-[#09104E] p-8 rounded-xl border border-white/10">
+                <!-- Personal Information -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-semibold text-white">Personal Information</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Full Name -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Full Name
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" required
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                        </div>
+
+                        <!-- Birthday -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Birthday
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <input type="date" required
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                        </div>
+
+                        <!-- Nationality -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Nationality
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <select required id="nationality"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                                <option value="" disabled selected class="bg-white text-black">Select nationality</option>
+                                <option value="Afghanistan" class="bg-white text-black">Afghanistan</option>
+                                <option value="Albania" class="bg-white text-black">Albania</option>
+                                <option value="Algeria" class="bg-white text-black">Algeria</option>
+                                <option value="Andorra" class="bg-white text-black">Andorra</option>
+                                <option value="Angola" class="bg-white text-black">Angola</option>
+                                <option value="Antigua and Barbuda" class="bg-white text-black">Antigua and Barbuda</option>
+                                <option value="Argentina" class="bg-white text-black">Argentina</option>
+                                <option value="Armenia" class="bg-white text-black">Armenia</option>
+                                <option value="Australia" class="bg-white text-black">Australia</option>
+                                <option value="Austria" class="bg-white text-black">Austria</option>
+                                <option value="Azerbaijan" class="bg-white text-black">Azerbaijan</option>
+                                <option value="Bahamas" class="bg-white text-black">Bahamas</option>
+                                <option value="Bahrain" class="bg-white text-black">Bahrain</option>
+                                <option value="Bangladesh" class="bg-white text-black">Bangladesh</option>
+                                <option value="Barbados" class="bg-white text-black">Barbados</option>
+                                <option value="Belarus" class="bg-white text-black">Belarus</option>
+                                <option value="Belgium" class="bg-white text-black">Belgium</option>
+                                <option value="Belize" class="bg-white text-black">Belize</option>
+                                <option value="Benin" class="bg-white text-black">Benin</option>
+                                <option value="Bhutan" class="bg-white text-black">Bhutan</option>
+                                <option value="Bolivia" class="bg-white text-black">Bolivia</option>
+                                <option value="Bosnia and Herzegovina" class="bg-white text-black">Bosnia and Herzegovina</option>
+                                <option value="Botswana" class="bg-white text-black">Botswana</option>
+                                <option value="Brazil" class="bg-white text-black">Brazil</option>
+                                <option value="Brunei" class="bg-white text-black">Brunei</option>
+                                <option value="Bulgaria" class="bg-white text-black">Bulgaria</option>
+                                <option value="Burkina Faso" class="bg-white text-black">Burkina Faso</option>
+                                <option value="Burundi" class="bg-white text-black">Burundi</option>
+                                <option value="Cabo Verde" class="bg-white text-black">Cabo Verde</option>
+                                <option value="Cambodia" class="bg-white text-black">Cambodia</option>
+                                <option value="Cameroon" class="bg-white text-black">Cameroon</option>
+                                <option value="Canada" class="bg-white text-black">Canada</option>
+                                <option value="Central African Republic" class="bg-white text-black">Central African Republic</option>
+                                <option value="Chad" class="bg-white text-black">Chad</option>
+                                <option value="Chile" class="bg-white text-black">Chile</option>
+                                <option value="China" class="bg-white text-black">China</option>
+                                <option value="Chinese Taipei / Taiwan" class="bg-white text-black">Chinese Taipei / Taiwan</option>
+                                <option value="Colombia" class="bg-white text-black">Colombia</option>
+                                <option value="Comoros" class="bg-white text-black">Comoros</option>
+                                <option value="Congo (Democratic Republic)" class="bg-white text-black">Congo (Democratic Republic)</option>
+                                <option value="Congo (Republic)" class="bg-white text-black">Congo (Republic)</option>
+                                <option value="Costa Rica" class="bg-white text-black">Costa Rica</option>
+                                <option value="Côte d'Ivoire" class="bg-white text-black">Côte d'Ivoire</option>
+                                <option value="Croatia" class="bg-white text-black">Croatia</option>
+                                <option value="Cuba" class="bg-white text-black">Cuba</option>
+                                <option value="Cyprus" class="bg-white text-black">Cyprus</option>
+                                <option value="Czech Republic" class="bg-white text-black">Czech Republic</option>
+                                <option value="Denmark" class="bg-white text-black">Denmark</option>
+                                <option value="Djibouti" class="bg-white text-black">Djibouti</option>
+                                <option value="Dominica" class="bg-white text-black">Dominica</option>
+                                <option value="Dominican Republic" class="bg-white text-black">Dominican Republic</option>
+                                <option value="Ecuador" class="bg-white text-black">Ecuador</option>
+                                <option value="Egypt" class="bg-white text-black">Egypt</option>
+                                <option value="El Salvador" class="bg-white text-black">El Salvador</option>
+                                <option value="Equatorial Guinea" class="bg-white text-black">Equatorial Guinea</option>
+                                <option value="Eritrea" class="bg-white text-black">Eritrea</option>
+                                <option value="Estonia" class="bg-white text-black">Estonia</option>
+                                <option value="Eswatini" class="bg-white text-black">Eswatini</option>
+                                <option value="Ethiopia" class="bg-white text-black">Ethiopia</option>
+                                <option value="Fiji" class="bg-white text-black">Fiji</option>
+                                <option value="Finland" class="bg-white text-black">Finland</option>
+                                <option value="France" class="bg-white text-black">France</option>
+                                <option value="Gabon" class="bg-white text-black">Gabon</option>
+                                <option value="Gambia" class="bg-white text-black">Gambia</option>
+                                <option value="Georgia" class="bg-white text-black">Georgia</option>
+                                <option value="Germany" class="bg-white text-black">Germany</option>
+                                <option value="Ghana" class="bg-white text-black">Ghana</option>
+                                <option value="Greece" class="bg-white text-black">Greece</option>
+                                <option value="Grenada" class="bg-white text-black">Grenada</option>
+                                <option value="Guatemala" class="bg-white text-black">Guatemala</option>
+                                <option value="Guinea" class="bg-white text-black">Guinea</option>
+                                <option value="Guinea-Bissau" class="bg-white text-black">Guinea-Bissau</option>
+                                <option value="Guyana" class="bg-white text-black">Guyana</option>
+                                <option value="Haiti" class="bg-white text-black">Haiti</option>
+                                <option value="Honduras" class="bg-white text-black">Honduras</option>
+                                <option value="Hungary" class="bg-white text-black">Hungary</option>
+                                <option value="Iceland" class="bg-white text-black">Iceland</option>
+                                <option value="India" class="bg-white text-black">India</option>
+                                <option value="Indonesia" class="bg-white text-black">Indonesia</option>
+                                <option value="Iran" class="bg-white text-black">Iran</option>
+                                <option value="Iraq" class="bg-white text-black">Iraq</option>
+                                <option value="Ireland" class="bg-white text-black">Ireland</option>
+                                <option value="Israel" class="bg-white text-black">Israel</option>
+                                <option value="Italy" class="bg-white text-black">Italy</option>
+                                <option value="Jamaica" class="bg-white text-black">Jamaica</option>
+                                <option value="Japan" class="bg-white text-black">Japan</option>
+                                <option value="Jordan" class="bg-white text-black">Jordan</option>
+                                <option value="Kazakhstan" class="bg-white text-black">Kazakhstan</option>
+                                <option value="Kenya" class="bg-white text-black">Kenya</option>
+                                <option value="Kiribati" class="bg-white text-black">Kiribati</option>
+                                <option value="Kuwait" class="bg-white text-black">Kuwait</option>
+                                <option value="Kyrgyzstan" class="bg-white text-black">Kyrgyzstan</option>
+                                <option value="Laos" class="bg-white text-black">Laos</option>
+                                <option value="Latvia" class="bg-white text-black">Latvia</option>
+                                <option value="Lebanon" class="bg-white text-black">Lebanon</option>
+                                <option value="Lesotho" class="bg-white text-black">Lesotho</option>
+                                <option value="Liberia" class="bg-white text-black">Liberia</option>
+                                <option value="Libya" class="bg-white text-black">Libya</option>
+                                <option value="Liechtenstein" class="bg-white text-black">Liechtenstein</option>
+                                <option value="Lithuania" class="bg-white text-black">Lithuania</option>
+                                <option value="Luxembourg" class="bg-white text-black">Luxembourg</option>
+                                <option value="Madagascar" class="bg-white text-black">Madagascar</option>
+                                <option value="Malawi" class="bg-white text-black">Malawi</option>
+                                <option value="Malaysia" class="bg-white text-black">Malaysia</option>
+                                <option value="Maldives" class="bg-white text-black">Maldives</option>
+                                <option value="Mali" class="bg-white text-black">Mali</option>
+                                <option value="Malta" class="bg-white text-black">Malta</option>
+                                <option value="Marshall Islands" class="bg-white text-black">Marshall Islands</option>
+                                <option value="Mauritania" class="bg-white text-black">Mauritania</option>
+                                <option value="Mauritius" class="bg-white text-black">Mauritius</option>
+                                <option value="Mexico" class="bg-white text-black">Mexico</option>
+                                <option value="Micronesia" class="bg-white text-black">Micronesia</option>
+                                <option value="Moldova" class="bg-white text-black">Moldova</option>
+                                <option value="Monaco" class="bg-white text-black">Monaco</option>
+                                <option value="Mongolia" class="bg-white text-black">Mongolia</option>
+                                <option value="Montenegro" class="bg-white text-black">Montenegro</option>
+                                <option value="Morocco" class="bg-white text-black">Morocco</option>
+                                <option value="Mozambique" class="bg-white text-black">Mozambique</option>
+                                <option value="Myanmar (Burma)" class="bg-white text-black">Myanmar (Burma)</option>
+                                <option value="Namibia" class="bg-white text-black">Namibia</option>
+                                <option value="Nauru" class="bg-white text-black">Nauru</option>
+                                <option value="Nepal" class="bg-white text-black">Nepal</option>
+                                <option value="Netherlands" class="bg-white text-black">Netherlands</option>
+                                <option value="New Zealand" class="bg-white text-black">New Zealand</option>
+                                <option value="Nicaragua" class="bg-white text-black">Nicaragua</option>
+                                <option value="Niger" class="bg-white text-black">Niger</option>
+                                <option value="Nigeria" class="bg-white text-black">Nigeria</option>
+                                <option value="North Korea" class="bg-white text-black">North Korea</option>
+                                <option value="North Macedonia" class="bg-white text-black">North Macedonia</option>
+                                <option value="Norway" class="bg-white text-black">Norway</option>
+                                <option value="Oman" class="bg-white text-black">Oman</option>
+                                <option value="Pakistan" class="bg-white text-black">Pakistan</option>
+                                <option value="Palau" class="bg-white text-black">Palau</option>
+                                <option value="Palestine" class="bg-white text-black">Palestine</option>
+                                <option value="Panama" class="bg-white text-black">Panama</option>
+                                <option value="Papua New Guinea" class="bg-white text-black">Papua New Guinea</option>
+                                <option value="Paraguay" class="bg-white text-black">Paraguay</option>
+                                <option value="Peru" class="bg-white text-black">Peru</option>
+                                <option value="Philippines" class="bg-white text-black">Philippines</option>
+                                <option value="Poland" class="bg-white text-black">Poland</option>
+                                <option value="Portugal" class="bg-white text-black">Portugal</option>
+                                <option value="Qatar" class="bg-white text-black">Qatar</option>
+                                <option value="Romania" class="bg-white text-black">Romania</option>
+                                <option value="Russia" class="bg-white text-black">Russia</option>
+                                <option value="Rwanda" class="bg-white text-black">Rwanda</option>
+                                <option value="Saint Kitts and Nevis" class="bg-white text-black">Saint Kitts and Nevis</option>
+                                <option value="Saint Lucia" class="bg-white text-black">Saint Lucia</option>
+                                <option value="Saint Vincent and the Grenadines" class="bg-white text-black">Saint Vincent and the Grenadines</option>
+                                <option value="Samoa" class="bg-white text-black">Samoa</option>
+                                <option value="San Marino" class="bg-white text-black">San Marino</option>
+                                <option value="Sao Tome and Principe" class="bg-white text-black">Sao Tome and Principe</option>
+                                <option value="Saudi Arabia" class="bg-white text-black">Saudi Arabia</option>
+                                <option value="Senegal" class="bg-white text-black">Senegal</option>
+                                <option value="Serbia" class="bg-white text-black">Serbia</option>
+                                <option value="Seychelles" class="bg-white text-black">Seychelles</option>
+                                <option value="Sierra Leone" class="bg-white text-black">Sierra Leone</option>
+                                <option value="Singapore" class="bg-white text-black">Singapore</option>
+                                <option value="Slovakia" class="bg-white text-black">Slovakia</option>
+                                <option value="Slovenia" class="bg-white text-black">Slovenia</option>
+                                <option value="Solomon Islands" class="bg-white text-black">Solomon Islands</option>
+                                <option value="Somalia" class="bg-white text-black">Somalia</option>
+                                <option value="South Africa" class="bg-white text-black">South Africa</option>
+                                <option value="South Korea" class="bg-white text-black">South Korea</option>
+                                <option value="South Sudan" class="bg-white text-black">South Sudan</option>
+                                <option value="Spain" class="bg-white text-black">Spain</option>
+                                <option value="Sri Lanka" class="bg-white text-black">Sri Lanka</option>
+                                <option value="Sudan" class="bg-white text-black">Sudan</option>
+                                <option value="Suriname" class="bg-white text-black">Suriname</option>
+                                <option value="Sweden" class="bg-white text-black">Sweden</option>
+                                <option value="Switzerland" class="bg-white text-black">Switzerland</option>
+                                <option value="Syria" class="bg-white text-black">Syria</option>
+                                <option value="Tajikistan" class="bg-white text-black">Tajikistan</option>
+                                <option value="Tanzania" class="bg-white text-black">Tanzania</option>
+                                <option value="Thailand" class="bg-white text-black">Thailand</option>
+                                <option value="Timor-Leste" class="bg-white text-black">Timor-Leste</option>
+                                <option value="Togo" class="bg-white text-black">Togo</option>
+                                <option value="Tonga" class="bg-white text-black">Tonga</option>
+                                <option value="Trinidad and Tobago" class="bg-white text-black">Trinidad and Tobago</option>
+                                <option value="Tunisia" class="bg-white text-black">Tunisia</option>
+                                <option value="Turkey" class="bg-white text-black">Turkey</option>
+                                <option value="Turkmenistan" class="bg-white text-black">Turkmenistan</option>
+                                <option value="Tuvalu" class="bg-white text-black">Tuvalu</option>
+                                <option value="Uganda" class="bg-white text-black">Uganda</option>
+                                <option value="Ukraine" class="bg-white text-black">Ukraine</option>
+                                <option value="United Arab Emirates" class="bg-white text-black">United Arab Emirates</option>
+                                <option value="United Kingdom" class="bg-white text-black">United Kingdom</option>
+                                <option value="United States" class="bg-white text-black">United States</option>
+                                <option value="Uruguay" class="bg-white text-black">Uruguay</option>
+                                <option value="Uzbekistan" class="bg-white text-black">Uzbekistan</option>
+                                <option value="Vanuatu" class="bg-white text-black">Vanuatu</option>
+                                <option value="Vatican City" class="bg-white text-black">Vatican City</option>
+                                <option value="Venezuela" class="bg-white text-black">Venezuela</option>
+                                <option value="Vietnam" class="bg-white text-black">Vietnam</option>
+                                <option value="Yemen" class="bg-white text-black">Yemen</option>
+                                <option value="Zambia" class="bg-white text-black">Zambia</option>
+                                <option value="Zimbabwe" class="bg-white text-black">Zimbabwe</option>
+                            </select>
+                        </div>
+
+                        <!-- Position -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Position in Organisation
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <select required id="position"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                                <option value="" disabled selected class="bg-white text-black">Select position</option>
+                                <option value="club_owner" class="bg-white text-black">Club Owner / Founder</option>
+                                <option value="team_manager" class="bg-white text-black">Team Manager</option>
+                                <option value="head_coach" class="bg-white text-black">Head Coach</option>
+                                <option value="associate" class="bg-white text-black">Associate</option>
+                                <option value="assistant" class="bg-white text-black">Assistant</option>
+                                <option value="pe_teacher" class="bg-white text-black">P.E. Teacher</option>
+                                <option value="personal_trainer" class="bg-white text-black">Personal Trainer</option>
+                                <option value="community_leader" class="bg-white text-black">Community Leader</option>
+                                <option value="retired" class="bg-white text-black">Retired</option>
+                                <option value="other" class="bg-white text-black">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Sports Selection -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Sports (up to 5)
+                                <span class="text-red-400">*</span>
+                                <span class="info-icon" data-tippy-content="Select up to 5 sports.">i</span>
+                            </label>
+                            <button type="button" onclick="openSportModal()"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white text-left">
+                                Select sports...
+                            </button>
+                            <div id="selectedSportsContainer" class="mt-2">
+                                <!-- Selected sports will appear here -->
+                            </div>
+                            <div class="mt-1 text-sm text-white">
+                                <span id="selectedSportsCount">0</span>/5 sports selected
+                            </div>
+                            <input type="hidden" id="selectedSports" name="sports" required>
+                            <div id="otherSportContainer" class="hidden mt-2">
+                                <input type="text" id="otherSport" placeholder="Enter your sport"
+                                    class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization Information -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-semibold text-white">Organization Information</h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Organization Name -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Current Organisation Name
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" required
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                        </div>
+
+                        <!-- Club's Email / Coach's Email -->
+                        <div id="email-container">
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Club's Email / Coach's Email
+                                <span class="text-red-400">*</span>
+                                <span class="info-icon" data-tippy-content="Add up to 5 email addresses">i</span>
+                            </label>
+                            <div class="space-y-2">
+                                <div class="flex gap-2">
+                                    <input type="email" required
+                                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                                    <button type="button" onclick="addEmailField()"
+                                        class="px-4 py-2 bg-electric-blue text-white rounded-lg hover:bg-blue-600">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Organisation Registration -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-sm font-medium text-white">
+                                    Can't find your organisation?
+                                </label>
+                                <button type="button" onclick="openOrgModal()" 
+                                    class="px-4 py-2 bg-electric-blue text-white rounded-lg hover:bg-blue-600 text-sm">
+                                    Register Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Previous organizations -->
+                        <div>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" id="previousOrg" class="form-checkbox text-electric-blue h-5 w-5"
+                                    onchange="togglePreviousOrgFields(this)">
+                                <span class="text-white">Have you ever represented another organisation?</span>
+                            </label>
+                            <div id="previousOrgFields" class="hidden space-y-2 mt-2">
+                                <div id="prevOrgContainer">
+                                    <div class="flex gap-2 mt-2">
+                                        <input type="text" placeholder="Organisation name"
+                                            class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                                        <button type="button" onclick="addPrevOrgField()"
+                                            class="px-4 py-2 bg-electric-blue text-white rounded-lg hover:bg-blue-600">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Regional team -->
+                        <div>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" id="regionalTeam" class="form-checkbox text-electric-blue h-5 w-5"
+                                    onchange="toggleRegionalTeamFields(this)">
+                                <span class="text-white">Are you currently part of a regional team? (e.g., Jakarta Fencing Team)</span>
+                            </label>
+                            <div id="regionalTeamFields" class="hidden space-y-2 mt-2">
+                                <div id="regionalTeamContainer">
+                                    <div class="flex gap-2 mt-2">
+                                        <input type="text" placeholder="Team name"
+                                            class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                                        <button type="button" onclick="addRegionalTeamField()"
+                                            class="px-4 py-2 bg-electric-blue text-white rounded-lg hover:bg-blue-600">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- National team -->
+                        <div>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" id="nationalTeam" class="form-checkbox text-electric-blue h-5 w-5">
+                                <span class="text-white">Are you currently part of a national team?</span>
+                            </label>
+                        </div>
+
+                        <!-- Sporting Bodies -->
+                        <div>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" id="sportingBodies" class="form-checkbox text-electric-blue h-5 w-5"
+                                    onchange="toggleSportingBodiesFields(this)">
+                                <span class="text-white">Are you an active member of the sporting bodies? (regional or national level)</span>
+                            </label>
+                            <div id="sportingBodiesFields" class="hidden space-y-2 mt-2">
+                                <div class="flex gap-2 mt-2">
+                                    <input type="text" placeholder="Organisation name"
+                                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                                </div>
+                                <div class="flex gap-2 mt-2">
+                                    <input type="text" placeholder="Your position"
+                                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Fields -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-semibold text-white">Additional Information</h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Profile Picture -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Profile Picture
+                                <span class="text-gray-400">(PNG/JPEG, max 10MB)</span>
+                            </label>
+                            <input type="file" accept=".jpg,.jpeg,.png" max="10485760"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                    <button type="submit"
+                        class="px-8 py-3 bg-transparent text-white rounded-lg border-2 border-white hover:bg-white hover:text-[#09104E] transition-colors font-medium">
+                        Submit Registration
+                    </button>
+                </div>
+            </form>
+
+            <!-- Back Link -->
+            <div class="text-center mt-8">
+                <a href="role-selection.html" class="text-gray-300 hover:text-white transition-colors">
+                    ← Back to Role Selection
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sport Selection Modal -->
+    <div id="sport-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold text-white">Select Your Sports (max 5)</h3>
+                <button type="button" onclick="closeSportModal()" class="text-white hover:text-gray-300">×</button>
+            </div>
+            <input type="text" id="sportSearch" placeholder="Search sports..."
+                class="w-full px-4 py-2 mb-4 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+            <div id="sportList" class="max-h-[60vh] overflow-y-auto space-y-2">
+                <!-- Sports will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Organisation Registration Modal -->
+    <div id="org-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold text-white">Register New Organisation</h3>
+                <button type="button" onclick="closeOrgModal()" class="text-white hover:text-gray-300">×</button>
+            </div>
+            <div class="space-y-4">
+                <!-- Organisation Name -->
+                <div>
+                    <label class="block text-sm font-medium text-white mb-2">
+                        Organisation Name
+                        <span class="text-red-400">*</span>
+                    </label>
+                    <input type="text" id="orgName" required
+                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                </div>
+
+                <!-- Year of Establishment -->
+                <div>
+                    <label class="block text-sm font-medium text-white mb-2">
+                        Year of Establishment
+                        <span class="text-red-400">*</span>
+                    </label>
+                    <input type="text" id="yearEstablished" required
+                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                </div>
+
+                <!-- Address -->
+                <div>
+                    <label class="block text-sm font-medium text-white mb-2">
+                        Address
+                        <span class="text-red-400">*</span>
+                    </label>
+                    <input type="text" id="orgAddress" required
+                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                </div>
+
+                <!-- Nation -->
+                <div>
+                    <label class="block text-sm font-medium text-white mb-2">
+                        Nation
+                        <span class="text-red-400">*</span>
+                    </label>
+                    <select required id="orgNation"
+                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                        <option value="" disabled selected class="bg-white text-black">Select nation</option>
+                        <!-- Options are the same as nationality dropdown -->
+                        <!-- Shortened for brevity, would include all same countries as the nationality dropdown -->
+                        <option value="Indonesia" class="bg-white text-black">Indonesia</option>
+                        <option value="United States" class="bg-white text-black">United States</option>
+                        <option value="United Kingdom" class="bg-white text-black">United Kingdom</option>
+                    </select>
+                </div>
+
+                <!-- Professional Organisation -->
+                <div>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" id="isProfessional" class="form-checkbox text-electric-blue h-5 w-5">
+                        <span class="text-white">
+                            Is this a professional organisation?
+                            <span class="info-icon" data-tippy-content="Championship team, achievement oriented.">i</span>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Pre-athlete Preparation -->
+                <div>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" id="isPreAthlete" class="form-checkbox text-electric-blue h-5 w-5">
+                        <span class="text-white">
+                            Is this a pre-athlete preparation organisation?
+                            <span class="info-icon" data-tippy-content="For early age, preparation stage before professional career.">i</span>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Government Affiliated -->
+                <div>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" id="isGovernment" class="form-checkbox text-electric-blue h-5 w-5"
+                            onchange="toggleGovernmentFields(this)">
+                        <span class="text-white">
+                            Is this affiliated to government?
+                            <span class="info-icon" data-tippy-content="Regional team and national team.">i</span>
+                        </span>
+                    </label>
+                    <div id="governmentFields" class="hidden mt-2">
+                        <input type="text" placeholder="Complete organisation name (e.g. East Java Basketball Team)" required
+                            class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                    </div>
+                </div>
+
+                <!-- Club Logo -->
+                <div>
+                    <label class="block text-sm font-medium text-white mb-2">
+                        Club's Logo
+                        <span class="text-gray-400">(PNG/JPEG, max 10MB)</span>
+                    </label>
+                    <input type="file" accept=".jpg,.jpeg,.png" max="10485760"
+                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                </div>
+
+                <!-- Register Button -->
+                <div class="flex justify-center mt-6">
+                    <button type="button" onclick="registerOrganisation()"
+                        class="px-8 py-3 bg-electric-blue text-white rounded-lg hover:bg-blue-600 transition-colors font-medium">
+                        Register Organisation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize tooltips
+        document.addEventListener('DOMContentLoaded', function() {
+            tippy('[data-tippy-content]', {
+                placement: 'right',
+                arrow: true,
+                animation: 'scale',
+            });
+        });
+
+        // Email field management
+        let emailCount = 1;
+        
+        function addEmailField() {
+            if (emailCount < 5) {
+                emailCount++;
+                const container = document.getElementById('email-container').querySelector('.space-y-2');
+                const div = document.createElement('div');
+                div.className = 'flex gap-2';
+                div.innerHTML = `
+                    <input type="email" required
+                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                    <button type="button" onclick="removeEmailField(this)"
+                        class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                        -
+                    </button>
+                `;
+                container.appendChild(div);
+            }
+        }
+
+        function removeEmailField(button) {
+            button.parentElement.remove();
+            emailCount--;
+        }
+
+        // Previous organization fields
+        let prevOrgCount = 1;
+        
+        function togglePreviousOrgFields(checkbox) {
+            const fields = document.getElementById('previousOrgFields');
+            fields.classList.toggle('hidden', !checkbox.checked);
+        }
+        
+        function addPrevOrgField() {
+            if (prevOrgCount < 5) {
+                prevOrgCount++;
+                const container = document.getElementById('prevOrgContainer');
+                const div = document.createElement('div');
+                div.className = 'flex gap-2 mt-2';
+                div.innerHTML = `
+                    <input type="text" placeholder="Organisation name"
+                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                    <button type="button" onclick="removePrevOrgField(this)"
+                        class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                        -
+                    </button>
+                `;
+                container.appendChild(div);
+            }
+        }
+        
+        function removePrevOrgField(button) {
+            button.parentElement.remove();
+            prevOrgCount--;
+        }
+
+        // Regional team fields
+        let regionalTeamCount = 1;
+        
+        function toggleRegionalTeamFields(checkbox) {
+            const fields = document.getElementById('regionalTeamFields');
+            fields.classList.toggle('hidden', !checkbox.checked);
+        }
+        
+        function addRegionalTeamField() {
+            if (regionalTeamCount < 5) {
+                regionalTeamCount++;
+                const container = document.getElementById('regionalTeamContainer');
+                const div = document.createElement('div');
+                div.className = 'flex gap-2 mt-2';
+                div.innerHTML = `
+                    <input type="text" placeholder="Team name"
+                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                    <button type="button" onclick="removeRegionalTeamField(this)"
+                        class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                        -
+                    </button>
+                `;
+                container.appendChild(div);
+            }
+        }
+        
+        function removeRegionalTeamField(button) {
+            button.parentElement.remove();
+            regionalTeamCount--;
+        }
+
+        // Sporting Bodies fields
+        function toggleSportingBodiesFields(checkbox) {
+            const fields = document.getElementById('sportingBodiesFields');
+            fields.classList.toggle('hidden', !checkbox.checked);
+        }
+
+        // Government fields
+        function toggleGovernmentFields(checkbox) {
+            const fields = document.getElementById('governmentFields');
+            fields.classList.toggle('hidden', !checkbox.checked);
+        }
+
+        // Sports selection
+        const sports = [
+            "Aikido", "Archery", "Athletics", "Badminton", "Baseball", "Basketball", 
+            "Billiard", "Bowling", "Boxing", "Bridge", "Canoeing", "Climbing", 
+            "Cricket", "Cycling", "Dance", "Diving", "e-Sports", "Equestrian", 
+            "Fencing", "Football", "Futsal", "Golf", "Gymnastics", "Handball", 
+            "High Jump", "Hockey", "Ice Skating", "Jet Ski", "Judo", "Kabaddi", 
+            "Karate", "Kempo", "Kenjutsu", "Marathon", "Mountain Bike", "Muay Thai", 
+            "Multi-Sport", "Pencak Silat", "Paddle Tennis", "P.E. Lesson", "Rafting", "Rugby", 
+            "Sailing", "Sepak Takraw", "Shooting", "Softball", "Squash", "Surfing", 
+            "Swimming", "Synchronized Swimming", "Table Tennis", "Tarung Derajat", 
+            "Tennis", "Triathlon", "Volleyball", "Water Polo", "Water Ski", 
+            "Weightlifting", "Wrestling", "Wushu", "Other"
+        ];
+
+        // Sport Modal Functions
+        let selectedSports = [];
+        const MAX_SPORTS = 5;
+
+        function openSportModal() {
+            document.getElementById('sport-modal').classList.add('active');
+            populateSportList();
+        }
+
+        function closeSportModal() {
+            document.getElementById('sport-modal').classList.remove('active');
+        }
+
+        function populateSportList() {
+            const sportList = document.getElementById('sportList');
+            sportList.innerHTML = '';
+            
+            sports.forEach(sport => {
+                const alreadySelected = selectedSports.includes(sport);
+                const div = document.createElement('div');
+                div.className = 'p-2 text-white hover:bg-white/10 rounded cursor-pointer';
+                if (alreadySelected) {
+                    div.classList.add('bg-white/20');
+                }
+                div.textContent = sport;
+                div.onclick = () => selectSport(sport);
+                sportList.appendChild(div);
+            });
+        }
+
+        function selectSport(sport) {
+            if (sport === 'Other') {
+                if (!selectedSports.includes(sport)) {
+                    if (selectedSports.length < MAX_SPORTS) {
+                        selectedSports.push(sport);
+                        updateSelectedSportsDisplay();
+                        document.getElementById('otherSportContainer').classList.remove('hidden');
+                    } else {
+                        alert(`You can only select up to ${MAX_SPORTS} sports.`);
+                    }
+                }
+            } else {
+                const index = selectedSports.indexOf(sport);
+                if (index === -1) {
+                    if (selectedSports.length < MAX_SPORTS) {
+                        selectedSports.push(sport);
+                    } else {
+                        alert(`You can only select up to ${MAX_SPORTS} sports.`);
+                    }
+                } else {
+                    selectedSports.splice(index, 1);
+                }
+                updateSelectedSportsDisplay();
+                populateSportList(); // Refresh the list to show selected status
+            }
+        }
+
+        function updateSelectedSportsDisplay() {
+            const container = document.getElementById('selectedSportsContainer');
+            const countElement = document.getElementById('selectedSportsCount');
+            const hiddenInput = document.getElementById('selectedSports');
+            
+            container.innerHTML = '';
+            countElement.textContent = selectedSports.length.toString();
+            
+            if (selectedSports.includes('Other')) {
+                document.getElementById('otherSportContainer').classList.remove('hidden');
+            } else {
+                document.getElementById('otherSportContainer').classList.add('hidden');
+            }
+            
+            selectedSports.forEach(sport => {
+                const span = document.createElement('span');
+                span.className = 'selected-sport';
+                span.innerHTML = `${sport} <button type="button" onclick="removeSport('${sport}')">&times;</button>`;
+                container.appendChild(span);
+            });
+            
+            hiddenInput.value = selectedSports.join(',');
+        }
+
+        function removeSport(sport) {
+            const index = selectedSports.indexOf(sport);
+            if (index !== -1) {
+                selectedSports.splice(index, 1);
+                updateSelectedSportsDisplay();
+            }
+        }
+
+        // Organisation Modal Functions
+        function openOrgModal() {
+            document.getElementById('org-modal').classList.add('active');
+        }
+
+        function closeOrgModal() {
+            document.getElementById('org-modal').classList.remove('active');
+        }
+
+        function registerOrganisation() {
+            // Process organisation registration
+            // This would typically involve validation and sending data to the server
+            alert('Organisation registered successfully!');
+            closeOrgModal();
+        }
+
+        // Search functionality
+        document.getElementById('sportSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const options = document.querySelectorAll('#sportList > div');
+            
+            options.forEach(option => {
+                if (option.textContent) {
+                    const text = option.textContent.toLowerCase();
+                    option.style.display = text.includes(searchTerm) ? '' : 'none';
+                }
+            });
+        });
+
+        // Initialize 'Other' sport input handler
+        document.getElementById('otherSport').addEventListener('input', function(e) {
+            const otherSportValue = e.target.value;
+            // Update the hidden input value when 'Other' is selected
+            if (selectedSports.includes('Other')) {
+                const sportsWithoutOther = selectedSports.filter(s => s !== 'Other');
+                document.getElementById('selectedSports').value = [...sportsWithoutOther, `Other: ${otherSportValue}`].join(',');
+            }
+        });
+    </script>
+</body>
+</html> 

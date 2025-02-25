@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Role - 3&7 Training & Recovery Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'athlete': '#09104E',
+                        'coach': '#2746FC',
+                        'stakeholder': '#353BFD',
+                        'support': '#5257FA',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-poppins">
+    <div class="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative"
+         style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('static/image/Background img.png') center/cover no-repeat;">
+        
+        <!-- Logo -->
+        <div class="absolute top-6 left-6">
+            <a href="index.html">
+                <img src="static/image/Logo Black.png" alt="Logo" class="h-10 w-auto object-contain brightness-0 invert">
+            </a>
+        </div>
+
+        <div class="max-w-4xl w-full">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-2">Choose Your Role</h2>
+                <p class="text-gray-300">Select the option that best describes you</p>
+            </div>
+
+            <!-- Role Selection Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Athlete Box -->
+                <a href="athlete-registration.html" class="group">
+                    <div class="bg-athlete p-8 rounded-xl hover:opacity-90 transition-all duration-300 h-full">
+                        <h3 class="text-xl font-semibold text-white mb-1">Athlete</h3>
+                        <p class="text-sm font-normal text-gray-300 mb-3">Registration Form</p>
+                        <p class="text-gray-300 text-sm">Professional, Enthusiast, & Healthy User</p>
+                        <div class="mt-4 text-white group-hover:translate-x-2 transition-transform">→</div>
+                    </div>
+                </a>
+
+                <!-- Coach Box -->
+                <a href="coach-registration.html" class="group">
+                    <div class="bg-coach p-8 rounded-xl hover:opacity-90 transition-all duration-300 h-full">
+                        <h3 class="text-xl font-semibold text-white mb-1">Coach</h3>
+                        <p class="text-sm font-normal text-gray-300 mb-3">Registration Form</p>
+                        <p class="text-gray-300 text-sm">Coaching, Teacher, & Talent Scout</p>
+                        <div class="mt-4 text-white group-hover:translate-x-2 transition-transform">→</div>
+                    </div>
+                </a>
+
+                <!-- Stakeholder Box -->
+                <a href="stakeholder-registration.html" class="group">
+                    <div class="bg-stakeholder p-8 rounded-xl hover:opacity-90 transition-all duration-300 h-full">
+                        <h3 class="text-xl font-semibold text-white mb-1">Stakeholder</h3>
+                        <p class="text-sm font-normal text-gray-300 mb-3">Registration Form</p>
+                        <p class="text-gray-300 text-sm">Club Owner, Decision Maker, & Parents</p>
+                        <div class="mt-4 text-white group-hover:translate-x-2 transition-transform">→</div>
+                    </div>
+                </a>
+
+                <!-- Support Box -->
+                <a href="support-registration.html" class="group">
+                    <div class="bg-support p-8 rounded-xl hover:opacity-90 transition-all duration-300 h-full">
+                        <h3 class="text-xl font-semibold text-white mb-1">Support</h3>
+                        <p class="text-sm font-normal text-gray-300 mb-3">Registration Form</p>
+                        <p class="text-gray-300 text-sm">Medical, Mental, & Recovery</p>
+                        <div class="mt-4 text-white group-hover:translate-x-2 transition-transform">→</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Back Link -->
+            <div class="text-center mt-8">
+                <a href="index.html" class="text-gray-300 hover:text-white transition-colors">
+                    ← Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

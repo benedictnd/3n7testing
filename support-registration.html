@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Registration - 3&7 Training & Recovery Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-navy': '#09104E',
+                        'electric-blue': '#353DFF',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .info-icon {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-left: 8px;
+            font-size: 12px;
+        }
+
+        .tippy-box {
+            background-color: rgba(9, 16, 78, 0.95) !important;
+            color: white !important;
+            border-radius: 8px !important;
+            font-size: 14px !important;
+            max-width: 300px !important;
+            padding: 8px !important;
+        }
+
+        .conditional-section {
+            display: none;
+        }
+
+        .conditional-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #09104E;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .search-dropdown {
+            display: none;
+            position: absolute;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #09104E;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            margin-top: 4px;
+            z-index: 10;
+        }
+
+        .search-dropdown.active {
+            display: block;
+        }
+
+        .search-option {
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .search-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="font-poppins bg-[#09104E]">
+    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 relative"
+         style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('static/image/Background img.png') center/cover no-repeat fixed;">
+        
+        <!-- Logo -->
+        <div class="absolute top-6 left-6">
+            <a href="index.html">
+                <img src="static/image/Logo Black.png" alt="Logo" class="h-10 w-auto object-contain brightness-0 invert">
+            </a>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-2">Support Registration</h2>
+                <p class="text-gray-300">Join our community of support professionals</p>
+            </div>
+
+            <!-- Registration Form -->
+            <form action="welcome-animation.html?role=support" class="space-y-8 bg-white/10 backdrop-blur-md p-8 rounded-xl">
+                <!-- Personal Information -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-semibold text-white">Personal Information</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Full Name -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Full Name
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" required
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                        </div>
+
+                        <!-- Birthday -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Birthday
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <input type="date" required
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                        </div>
+
+                        <!-- Gender -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Gender
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <select required
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                                <option value="" disabled selected class="bg-deep-navy">Select gender</option>
+                                <option value="male" class="bg-deep-navy">Male</option>
+                                <option value="female" class="bg-deep-navy">Female</option>
+                            </select>
+                        </div>
+
+                        <!-- Sport Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Select Your Sport
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <button type="button" onclick="openSportModal()"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white text-left">
+                                <span id="selectedSportText">Select sport...</span>
+                            </button>
+                            <input type="hidden" id="selectedSport" name="sport" required>
+                        </div>
+
+                        <!-- Nationality Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Select Nationality
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <button type="button" onclick="openNationalityModal()"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white text-left">
+                                <span id="selectedNationalityText">Select nationality...</span>
+                            </button>
+                            <input type="hidden" id="selectedNationality" name="nationality" required>
+                        </div>
+
+                        <!-- Position -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Position in the Organization
+                                <span class="text-red-400">*</span>
+                                <span class="info-icon" data-tippy-content="Select your current level or status in your organization">i</span>
+                            </label>
+                            <select required id="position"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                                <option value="" disabled selected class="bg-deep-navy">Select position</option>
+                                <option value="doctor" class="bg-deep-navy">Doctor</option>
+                                <option value="physiotherapist" class="bg-deep-navy">Physiotherapist</option>
+                                <option value="nutritionist" class="bg-deep-navy">Nutritionist</option>
+                                <option value="psychologist" class="bg-deep-navy">Psychologist</option>
+                                <option value="masseur" class="bg-deep-navy">Masseur</option>
+                                <option value="other" class="bg-deep-navy">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Nationality -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Nationality
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <select required
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                                <option value="" disabled selected class="bg-deep-navy">Select country</option>
+                                <!-- Countries will be populated via JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Information -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-semibold text-white">Professional Information</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Sector -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Select Your Sector
+                                <span class="text-red-400">*</span>
+                                <span class="info-icon" data-tippy-content="Choose your primary area of expertise">i</span>
+                            </label>
+                            <select required
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                                <option value="" disabled selected class="bg-deep-navy">Select sector</option>
+                                <option value="medicine" class="bg-deep-navy">Medicine</option>
+                                <option value="massage" class="bg-deep-navy">Massage</option>
+                                <option value="mental_health" class="bg-deep-navy">Mental Health</option>
+                                <option value="nutrition" class="bg-deep-navy">Nutrition</option>
+                                <option value="consultant" class="bg-deep-navy">Consultant</option>
+                                <option value="other" class="bg-deep-navy">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Organization Name -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Name of Your Current Organization
+                                <span class="text-red-400">*</span>
+                                <span class="info-icon" data-tippy-content="Enter your current clinic, practice, or organization name">i</span>
+                            </label>
+                            <input type="text" required
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                        </div>
+
+                        <!-- Organization Emails -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Organization's Email
+                                <span class="text-red-400">*</span>
+                                <span class="info-icon" data-tippy-content="Add up to 5 email addresses">i</span>
+                            </label>
+                            <div class="space-y-2" id="email-container">
+                                <div class="flex gap-2">
+                                    <input type="email" required
+                                        class="flex-1 px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400"
+                                        placeholder="Enter email">
+                                    <button type="button" onclick="addEmailField()"
+                                        class="px-4 py-2 bg-electric-blue text-white rounded-lg hover:bg-blue-600">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Organization Registration -->
+                <div id="organizationRegistrationSection" class="conditional-section space-y-6">
+                    <h3 class="text-xl font-semibold text-white">New Organization Registration</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Organization Name -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Organization Name
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                        </div>
+
+                        <!-- Organization's Address -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Organization's Address
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <textarea
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400"
+                                rows="3"></textarea>
+                        </div>
+
+                        <!-- Year of Establishment -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Year of Establishment
+                                <span class="text-red-400">*</span>
+                            </label>
+                            <input type="number" min="1900" max="2024"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                        </div>
+
+                        <!-- Organization Type Questions -->
+                        <div class="space-y-4 md:col-span-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="org_type" value="professional"
+                                    class="form-checkbox h-4 w-4 text-electric-blue rounded border-gray-300/30 bg-white/10">
+                                <span class="ml-2 text-white">Is this a professional independent organization?</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="org_type" value="sports_team"
+                                    class="form-checkbox h-4 w-4 text-electric-blue rounded border-gray-300/30 bg-white/10">
+                                <span class="ml-2 text-white">Is this part of a sporting team?</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="org_type" value="regional"
+                                    class="form-checkbox h-4 w-4 text-electric-blue rounded border-gray-300/30 bg-white/10">
+                                <span class="ml-2 text-white">Is this a regional team?</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="org_type" value="national"
+                                    class="form-checkbox h-4 w-4 text-electric-blue rounded border-gray-300/30 bg-white/10">
+                                <span class="ml-2 text-white">Is this a national team?</span>
+                            </label>
+                        </div>
+
+                        <!-- Organization's Email -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Organization's Email
+                            </label>
+                            <input type="email"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                        </div>
+
+                        <!-- Organization Logo -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Organization's Logo
+                                <span class="info-icon" data-tippy-content="Upload JPG/PNG file, max 10MB">i</span>
+                            </label>
+                            <input type="file" accept=".jpg,.png"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Registration -->
+                <div class="bg-[#353DFF] border border-white rounded-lg p-6">
+                    <div class="flex justify-center">
+                        <button type="button" onclick="openTeamRegistration()"
+                            class="px-8 py-3 bg-transparent text-white rounded-lg border-2 border-white hover:bg-white hover:text-[#353DFF] transition-colors">
+                            Register New Team
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Team Participation -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-semibold text-white">Team Participation</h3>
+                    
+                    <div class="space-y-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" name="team_participation" value="sports_team"
+                                class="form-checkbox h-4 w-4 text-electric-blue rounded border-gray-300/30 bg-white/10">
+                            <span class="ml-2 text-white">Are you part of any sports team?</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="team_participation" value="regional_team"
+                                class="form-checkbox h-4 w-4 text-electric-blue rounded border-gray-300/30 bg-white/10">
+                            <span class="ml-2 text-white">Are you currently part of the regional team?</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="team_participation" value="national_team"
+                                class="form-checkbox h-4 w-4 text-electric-blue rounded border-gray-300/30 bg-white/10">
+                            <span class="ml-2 text-white">Are you part of the national team?</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="team_participation" value="organization_member"
+                                class="form-checkbox h-4 w-4 text-electric-blue rounded border-gray-300/30 bg-white/10">
+                            <span class="ml-2 text-white">Are you an official or member of sporting bodies/organizations?</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Additional Fields -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-semibold text-white">Additional Information</h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Profile Picture -->
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">
+                                Profile Picture
+                                <span class="text-gray-400">(PNG/JPEG, max 10MB)</span>
+                            </label>
+                            <input type="file" accept=".jpg,.jpeg,.png"
+                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                    <button type="submit"
+                        class="px-8 py-3 bg-transparent text-white rounded-lg border-2 border-white hover:bg-white hover:text-[#09104E] transition-colors font-medium">
+                        Submit Registration
+                    </button>
+                </div>
+            </form>
+
+            <!-- Back Link -->
+            <div class="text-center mt-8">
+                <a href="registration.html" class="text-gray-300 hover:text-white transition-colors">
+                    ← Back to Role Selection
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sport Selection Modal -->
+    <div id="sport-modal" class="modal">
+        <div class="modal-content max-w-md">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold text-white">Select Your Sport</h3>
+                <button type="button" onclick="closeSportModal()" class="text-white hover:text-gray-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="flex gap-4">
+                <!-- Sport List -->
+                <div class="flex-1 max-h-[60vh] overflow-y-auto pr-4">
+                    <input type="text" id="sportSearch" placeholder="Search sport..."
+                        class="w-full px-4 py-2 mb-4 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                    <div id="sportList" class="space-y-2">
+                        <!-- Sports will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Alphabet Navigation -->
+                <div class="w-6 flex flex-col text-center text-white text-xs">
+                    <div class="sticky top-0">
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('A')">A</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('B')">B</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('C')">C</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('D')">D</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('E')">E</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('F')">F</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('G')">G</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('H')">H</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('I')">I</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('J')">J</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('K')">K</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('L')">L</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('M')">M</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('N')">N</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('O')">O</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('P')">P</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('Q')">Q</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('R')">R</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('S')">S</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('T')">T</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('U')">U</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('V')">V</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('W')">W</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('X')">X</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('Y')">Y</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('Z')">Z</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nationality Selection Modal -->
+    <div id="nationality-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold text-white">Select Your Nationality</h3>
+                <button type="button" onclick="closeNationalityModal()" class="text-white hover:text-gray-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="flex gap-6">
+                <!-- Country List -->
+                <div class="flex-1 max-h-[60vh] overflow-y-auto pr-4">
+                    <input type="text" id="nationalitySearch" placeholder="Search nationality..."
+                        class="w-full px-4 py-2 mb-4 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400">
+                    <div id="nationalityList" class="space-y-2">
+                        <!-- Countries will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Alphabet Navigation -->
+                <div class="w-8 flex flex-col text-center text-white text-sm">
+                    <div class="sticky top-0">
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('A', 'nationality')">A</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('B', 'nationality')">B</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('C', 'nationality')">C</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('D', 'nationality')">D</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('E', 'nationality')">E</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('F', 'nationality')">F</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('G', 'nationality')">G</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('H', 'nationality')">H</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('I', 'nationality')">I</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('J', 'nationality')">J</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('K', 'nationality')">K</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('L', 'nationality')">L</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('M', 'nationality')">M</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('N', 'nationality')">N</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('O', 'nationality')">O</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('P', 'nationality')">P</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('Q', 'nationality')">Q</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('R', 'nationality')">R</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('S', 'nationality')">S</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('T', 'nationality')">T</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('U', 'nationality')">U</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('V', 'nationality')">V</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('W', 'nationality')">W</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('X', 'nationality')">X</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('Y', 'nationality')">Y</div>
+                        <div class="cursor-pointer hover:text-electric-blue" onclick="scrollToLetter('Z', 'nationality')">Z</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize tooltips
+        tippy('[data-tippy-content]', {
+            placement: 'right',
+            arrow: true,
+            animation: 'scale',
+        });
+
+        // Add email field functionality
+        let emailCount = 1;
+        function addEmailField() {
+            if (emailCount < 5) {
+                emailCount++;
+                const container = document.getElementById('email-container');
+                const div = document.createElement('div');
+                div.className = 'flex gap-2';
+                div.innerHTML = `
+                    <input type="email" required
+                        class="flex-1 px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400"
+                        placeholder="Enter email">
+                    <button type="button" onclick="removeEmailField(this)"
+                        class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                        -
+                    </button>
+                `;
+                container.querySelector('.space-y-2').appendChild(div);
+            }
+        }
+
+        function removeEmailField(button) {
+            button.parentElement.remove();
+            emailCount--;
+        }
+
+        // Team name field toggling
+        function toggleTeamNameField(checkbox, fieldId) {
+            const field = document.getElementById(fieldId);
+            field.classList.toggle('hidden', !checkbox.checked);
+            if (checkbox.checked) {
+                field.required = true;
+            } else {
+                field.required = false;
+                field.value = '';
+            }
+        }
+
+        // Modal management
+        function openTeamRegistration() {
+            document.getElementById('team-registration-modal').classList.add('active');
+        }
+
+        function closeTeamRegistration() {
+            document.getElementById('team-registration-modal').classList.remove('active');
+        }
+
+        // Professional team fields toggling
+        function toggleProfessionalTeamFields(checkbox) {
+            const fields = document.getElementById('professional-team-fields');
+            fields.classList.toggle('hidden', !checkbox.checked);
+        }
+
+        function toggleRegionalTeamName(checkbox) {
+            const field = document.getElementById('modal-regional-team-name');
+            field.classList.toggle('hidden', !checkbox.checked);
+            if (checkbox.checked) {
+                field.required = true;
+            } else {
+                field.required = false;
+                field.value = '';
+            }
+        }
+
+        // Parent role handling
+        document.getElementById('position').addEventListener('change', function() {
+            const selectedOptions = Array.from(this.selectedOptions).map(option => option.value);
+            const kidsEmailSection = document.getElementById('kids-email-section');
+            kidsEmailSection.classList.toggle('hidden', !selectedOptions.includes('parent'));
+        });
+
+        // Form submission
+        document.getElementById('team-registration-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            closeTeamRegistration();
+            // Add logic to handle the team registration data
+        });
+
+        // Sport Modal Functions
+        function openSportModal() {
+            document.getElementById('sport-modal').classList.add('active');
+            populateSportList();
+        }
+
+        function closeSportModal() {
+            document.getElementById('sport-modal').classList.remove('active');
+        }
+
+        // Define sports list
+        const sports = [
+            'Aikido',
+            'Archery',
+            'Athletics',
+            'Badminton',
+            'Baseball',
+            'Basketball',
+            'Billiard',
+            'Bowling',
+            'Boxing',
+            'Bridge',
+            'Canoeing',
+            'Climbing',
+            'Cricket',
+            'Cycling',
+            'Dance',
+            'Diving',
+            'e-Sports',
+            'Equestrian',
+            'Fencing',
+            'Football',
+            'Futsal',
+            'Golf',
+            'Gymnastics',
+            'Handball',
+            'High Jump',
+            'Hockey',
+            'Ice Skating',
+            'Jet Ski',
+            'Judo',
+            'Kabaddi',
+            'Karate',
+            'Kempo',
+            'Kenjutsu',
+            'Marathon',
+            'Mountain Bike',
+            'Muay Thai',
+            'Multi-Sport',
+            'Other',
+            'Pencak Silat',
+            'Paddle Tennis',
+            'Rafting',
+            'Rugby',
+            'Sailing',
+            'Sepak Takraw',
+            'Shooting',
+            'Softball',
+            'Squash',
+            'Surfing',
+            'Swimming',
+            'Synchronized Swimming',
+            'Table Tennis',
+            'Tarung Derajat',
+            'Tennis',
+            'Triathlon',
+            'Volleyball',
+            'Water Polo',
+            'Water Ski',
+            'Weightlifting',
+            'Wrestling',
+            'Wushu'
+        ];
+
+        function populateSportList() {
+            const sportList = document.getElementById('sportList');
+            sportList.innerHTML = '';
+            let currentLetter = '';
+
+            // Add all sports except 'Other'
+            sports.forEach(sport => {
+                if (sport !== 'Other') {
+                    const firstLetter = sport.charAt(0).toUpperCase();
+                    if (firstLetter !== currentLetter) {
+                        currentLetter = firstLetter;
+                        const letterHeader = document.createElement('div');
+                        letterHeader.id = `sport-${currentLetter}`;
+                        letterHeader.className = 'text-lg font-semibold text-white mt-4 mb-2';
+                        letterHeader.textContent = currentLetter;
+                        sportList.appendChild(letterHeader);
+                    }
+
+                    const option = document.createElement('div');
+                    option.className = 'sport-option p-2 text-white hover:bg-white/10 rounded cursor-pointer';
+                    option.textContent = sport;
+                    option.onclick = () => {
+                        document.getElementById('selectedSport').value = sport;
+                        document.getElementById('selectedSportText').textContent = sport;
+                        document.getElementById('otherSportInput').classList.add('hidden');
+                        closeSportModal();
+                    };
+                    sportList.appendChild(option);
+                }
+            });
+
+            // Add "other: type in your sport" option at the end
+            const otherOption = document.createElement('div');
+            otherOption.className = 'sport-option p-2 text-white hover:bg-white/10 rounded cursor-pointer mt-4';
+            otherOption.textContent = 'other: type in your sport';
+            otherOption.onclick = () => {
+                document.getElementById('selectedSport').value = '';
+                document.getElementById('selectedSportText').textContent = 'Other';
+                document.getElementById('otherSportInput').classList.remove('hidden');
+                closeSportModal();
+            };
+            sportList.appendChild(otherOption);
+        }
+
+        // Add this to the HTML where the sport selection is
+        const otherSportInput = document.createElement('input');
+        otherSportInput.type = 'text';
+        otherSportInput.id = 'otherSportInput';
+        otherSportInput.placeholder = 'Type your sport...';
+        otherSportInput.className = 'hidden mt-2 w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white placeholder-gray-400';
+        otherSportInput.addEventListener('input', function(e) {
+            document.getElementById('selectedSport').value = e.target.value;
+        });
+
+        // Insert the input field after the sport selection button
+        document.querySelector('[onclick="openSportModal()"]').parentNode.appendChild(otherSportInput);
+
+        // Search functionality
+        document.getElementById('sportSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const options = document.querySelectorAll('.sport-option');
+            const headers = document.querySelectorAll('[id^="sport-"]');
+            
+            // Hide all headers initially
+            headers.forEach(header => header.style.display = 'none');
+            
+            options.forEach(option => {
+                const text = option.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    option.style.display = '';
+                    // Show the corresponding header
+                    const firstLetter = option.textContent.charAt(0).toUpperCase();
+                    const header = document.getElementById(`sport-${firstLetter}`);
+                    if (header) header.style.display = '';
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+        });
+
+        // Alphabet navigation
+        function scrollToLetter(letter) {
+            const element = document.getElementById(`sport-${letter}`);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Nationality Modal Functions
+        function openNationalityModal() {
+            document.getElementById('nationality-modal').classList.add('active');
+            populateNationalityList();
+        }
+
+        function closeNationalityModal() {
+            document.getElementById('nationality-modal').classList.remove('active');
+        }
+
+        // Define countries list
+        const countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Chinese Taipei","Colombia","Comoros","Congo (Democratic Republic)","Congo (Republic)","Costa Rica","Côte d'Ivoire","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar (Burma)","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
+
+        function populateNationalityList() {
+            const nationalityList = document.getElementById('nationalityList');
+            nationalityList.innerHTML = '';
+            let currentLetter = '';
+
+            countries.forEach(country => {
+                const firstLetter = country.charAt(0).toUpperCase();
+                if (firstLetter !== currentLetter) {
+                    currentLetter = firstLetter;
+                    const letterHeader = document.createElement('div');
+                    letterHeader.id = `nationality-${currentLetter}`;
+                    letterHeader.className = 'text-lg font-semibold text-white mt-4 mb-2';
+                    letterHeader.textContent = currentLetter;
+                    nationalityList.appendChild(letterHeader);
+                }
+
+                const option = document.createElement('div');
+                option.className = 'nationality-option p-2 text-white hover:bg-white/10 rounded cursor-pointer';
+                option.textContent = country;
+                option.onclick = () => {
+                    document.getElementById('selectedNationality').value = country;
+                    document.getElementById('selectedNationalityText').textContent = country;
+                    closeNationalityModal();
+                };
+                nationalityList.appendChild(option);
+            });
+        }
+
+        // Search functionality
+        document.getElementById('nationalitySearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const options = document.querySelectorAll('.nationality-option');
+            
+            options.forEach(option => {
+                const text = option.textContent.toLowerCase();
+                option.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // Alphabet navigation
+        function scrollToLetter(letter, type = 'sport') {
+            const element = document.getElementById(`${type}-${letter}`);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html> 
