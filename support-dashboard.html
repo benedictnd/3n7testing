@@ -66,6 +66,386 @@
     <!-- Include other sections from index.html -->
     <!-- ... -->
 
+    <!-- Profile Section -->
+    <section id="profile" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <!-- Profile Header with Tabs -->
+                <div class="bg-white rounded-t-xl shadow-md overflow-hidden profile-header border-t-4 border-blue-600">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Profile Management</h2>
+                        <nav class="profile-nav flex border-b border-gray-200">
+                            <button class="px-6 py-3 border-b-2 border-blue-600 text-blue-600 font-medium active" data-section="edit-profile">Edit Profile</button>
+                            <button class="px-6 py-3 border-b-2 border-transparent text-gray-600 hover:text-blue-600 font-medium" data-section="team-management">Team Management</button>
+                            <button class="px-6 py-3 border-b-2 border-transparent text-gray-600 hover:text-blue-600 font-medium" data-section="connections">Connections</button>
+                        </nav>
+                    </div>
+                </div>
+                
+                <!-- Edit Profile Section -->
+                <div id="edit-profile" class="profile-content active bg-white rounded-b-xl shadow-md mb-8">
+                    <div class="p-6">
+                        <div class="md:flex">
+                            <div class="md:flex-shrink-0 bg-blue-600 md:w-48 flex items-center justify-center p-8 rounded-xl mx-auto md:mx-0 mb-6 md:mb-0">
+                                <div class="text-center">
+                                    <div class="w-32 h-32 rounded-full bg-white mx-auto mb-4 overflow-hidden">
+                                        <img id="profileImage" src="static/image/default-avatar.png" alt="Profile Image" class="w-full h-full object-cover">
+                                    </div>
+                                    <button id="changePhotoBtn" class="mt-2 px-4 py-2 bg-white text-blue-600 rounded-lg text-sm font-medium">Change Photo</button>
+                                    <input type="file" id="photoInput" accept="image/*" class="hidden">
+                                </div>
+                            </div>
+                            <div class="md:pl-8 w-full">
+                                <form id="profileForm" class="space-y-6">
+                                    <!-- Personal Information -->
+                                    <div class="space-y-4">
+                                        <h3 class="text-xl font-semibold text-gray-800">Personal Information</h3>
+                                        <div class="grid md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Full Name <span class="text-red-500">*</span></label>
+                                                <input type="text" id="fullName" class="w-full p-3 border rounded-lg" value="Emily Lee" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
+                                                <input type="email" id="email" class="w-full p-3 border rounded-lg" value="emily.lee@example.com" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Phone</label>
+                                                <input type="tel" id="phone" class="w-full p-3 border rounded-lg" value="+1 234 567 8905">
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Birthday <span class="text-red-500">*</span></label>
+                                                <input type="date" id="birthday" class="w-full p-3 border rounded-lg" value="1989-04-23" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Nationality <span class="text-red-500">*</span></label>
+                                                <select id="nationality" class="w-full p-3 border rounded-lg" required>
+                                                    <option value="United States" selected>United States</option>
+                                                    <option value="United Kingdom">United Kingdom</option>
+                                                    <option value="Canada">Canada</option>
+                                                    <option value="Australia">Australia</option>
+                                                    <option value="Germany">Germany</option>
+                                                    <option value="France">France</option>
+                                                    <option value="Japan">Japan</option>
+                                                    <!-- More countries would be listed here -->
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Gender</label>
+                                                <select id="gender" class="w-full p-3 border rounded-lg">
+                                                    <option value="Female" selected>Female</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Other">Other</option>
+                                                    <option value="Prefer not to say">Prefer not to say</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Professional Information -->
+                                    <div class="space-y-4 pt-4">
+                                        <h3 class="text-xl font-semibold text-gray-800">Professional Information</h3>
+                                        <div class="grid md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Role</label>
+                                                <input type="text" id="role" class="w-full p-3 border rounded-lg" value="Support Staff" readonly>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Department <span class="text-red-500">*</span></label>
+                                                <input type="text" id="department" class="w-full p-3 border rounded-lg" value="Athlete Support" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Specialty <span class="text-red-500">*</span></label>
+                                                <input type="text" id="specialty" class="w-full p-3 border rounded-lg" value="Physical Therapy" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Experience (years) <span class="text-red-500">*</span></label>
+                                                <input type="number" id="experience" class="w-full p-3 border rounded-lg" value="7" min="0" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Certification <span class="text-red-500">*</span></label>
+                                                <input type="text" id="certification" class="w-full p-3 border rounded-lg" value="Licensed Physical Therapist" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">License Number</label>
+                                                <input type="text" id="licenseNumber" class="w-full p-3 border rounded-lg" value="PT-12345-US">
+                                            </div>
+                                            <div class="md:col-span-2">
+                                                <label class="block text-gray-700 mb-2">Bio</label>
+                                                <textarea id="bio" class="w-full p-3 border rounded-lg" rows="3">Licensed physical therapist with 7 years of experience working with athletes. Specializes in sports injury rehabilitation and injury prevention techniques.</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pt-4">
+                                        <button type="submit" class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Management Section -->
+                <div id="team-management" class="profile-content bg-white rounded-b-xl shadow-md mb-8 hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800">Team Management</h3>
+                            <div class="space-x-2">
+                                <button class="btn-change-team px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50">Change Team</button>
+                                <button class="btn-add-team px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Add New Team</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Current Team Details -->
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="font-medium text-lg mb-4">Current Teams</h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="border rounded-lg p-4 bg-white">
+                                    <h5 class="font-medium text-lg text-blue-600">Warriors</h5>
+                                    <div class="mt-2 space-y-2">
+                                        <p><span class="font-medium">Team ID:</span> WAR-2023-01</p>
+                                        <p><span class="font-medium">Sport:</span> Track & Field</p>
+                                        <p><span class="font-medium">Your Role:</span> Physical Therapist</p>
+                                        <p><span class="font-medium">Joined:</span> Jan 20, 2023</p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="border rounded-lg p-4 bg-white">
+                                    <h5 class="font-medium text-lg text-blue-600">Eagles</h5>
+                                    <div class="mt-2 space-y-2">
+                                        <p><span class="font-medium">Team ID:</span> EAG-2023-02</p>
+                                        <p><span class="font-medium">Sport:</span> Swimming</p>
+                                        <p><span class="font-medium">Your Role:</span> Physical Therapist</p>
+                                        <p><span class="font-medium">Joined:</span> Mar 10, 2023</p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Support Schedule -->
+                        <div class="mt-8 border-t pt-6">
+                            <h4 class="font-medium text-lg mb-4">Support Schedule</h4>
+                            <p class="text-gray-600 mb-4">Your scheduled support sessions for the upcoming week.</p>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Activity</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">Warriors</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500">Jul 15, 2023</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500">09:00 - 11:00</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">Pre-training Assessment</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Confirmed
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">Eagles</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500">Jul 17, 2023</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500">14:00 - 16:00</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">Recovery Session</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    Pending
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connections Section -->
+                <div id="connections" class="profile-content bg-white rounded-b-xl shadow-md mb-8 hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800">Connections</h3>
+                            <div class="connection-search flex gap-2">
+                                <input type="text" placeholder="Search connections..." class="px-4 py-2 border rounded-lg w-64">
+                                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Search</button>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-list space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-lg mb-4">Coaches</h4>
+                                <div class="grid md:grid-cols-3 gap-3">
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-green-700">JD</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">John Doe</p>
+                                            <p class="text-sm text-gray-600">Head Coach</p>
+                                        </div>
+                                    </div>
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-green-700">SM</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Sarah Miller</p>
+                                            <p class="text-sm text-gray-600">Assistant Coach</p>
+                                        </div>
+                                    </div>
+                                    <!-- More coaches would be listed here -->
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-lg mb-4">Athletes</h4>
+                                <div class="grid md:grid-cols-3 gap-3">
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-blue-700">AS</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Alex Smith</p>
+                                            <p class="text-sm text-gray-600">Sprinter</p>
+                                        </div>
+                                    </div>
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-blue-700">MJ</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Mike Johnson</p>
+                                            <p class="text-sm text-gray-600">Sprinter</p>
+                                        </div>
+                                    </div>
+                                    <!-- More athletes would be listed here -->
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-lg mb-4">Support Staff</h4>
+                                <div class="grid md:grid-cols-3 gap-3">
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-yellow-700">RJ</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Robert Johnson</p>
+                                            <p class="text-sm text-gray-600">Nutritionist</p>
+                                        </div>
+                                    </div>
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-yellow-700">LT</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Laura Thomas</p>
+                                            <p class="text-sm text-gray-600">Sports Psychologist</p>
+                                        </div>
+                                    </div>
+                                    <!-- More support staff would be listed here -->
+                                </div>
+                            </div>
+                            
+                            <div class="text-center pt-4">
+                                <button class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                                    Load More Connections
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script src="static/js/main.js"></script>
+    <script>
+        // Profile photo handling
+        const changePhotoBtn = document.getElementById('changePhotoBtn');
+        const photoInput = document.getElementById('photoInput');
+        const profileImage = document.getElementById('profileImage');
+
+        changePhotoBtn.addEventListener('click', () => {
+            photoInput.click();
+        });
+
+        photoInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    profileImage.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Profile form handling
+        const profileForm = document.getElementById('profileForm');
+        profileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Profile updated successfully!');
+        });
+
+        // Tab navigation
+        const tabButtons = document.querySelectorAll('.profile-nav button');
+        const contentSections = document.querySelectorAll('.profile-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active', 'border-blue-600', 'text-blue-600');
+                    btn.classList.add('border-transparent', 'text-gray-600');
+                });
+                contentSections.forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active', 'border-blue-600', 'text-blue-600');
+                button.classList.remove('border-transparent', 'text-gray-600');
+                
+                // Show corresponding content
+                const targetSection = button.getAttribute('data-section');
+                document.getElementById(targetSection).classList.remove('hidden');
+            });
+        });
+    </script>
 </body>
 </html> 

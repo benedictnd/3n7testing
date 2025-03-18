@@ -156,7 +156,7 @@ The project use turbo repo. To run everything, use the `turbo dev` script from t
 - Use proper HTTP status codes
 - Return structured error responses
 - Handle edge cases appropriately
-- Use the logger from the package @repo/logger 
+- Use the logger from the package @repo/logger, i.e `logger.error` instead of `console.error`
 
 ### Authentication & Authorization
 - Use Clerk middleware for authentication
@@ -261,6 +261,6 @@ export async function createPost(params: InferRequestType<typeof $createPost>["j
   return response.json();
 }
 ```
+
+Please note, on the frontend, do not need to generate response interfaces. The rpc client will handle safely types responses.
 </example_api_workflow>
-
-

@@ -246,28 +246,35 @@
                             <label class="block text-sm font-medium text-white mb-2">
                                 Current Organisation Name
                                 <span class="text-red-400">*</span>
+                                <span class="info-icon" data-tippy-content="If you don't have or aren't related to any club, type 'N/A'">i</span>
                             </label>
-                            <input type="text" required
-                                class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                            <div class="relative">
+                                <input type="text" id="organization-name" required
+                                    class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white"
+                                    placeholder="Enter organization name or N/A">
+                                <div id="club-search-results" class="absolute z-10 w-full mt-1 bg-[#09104E] border border-gray-300/30 rounded-lg max-h-40 overflow-y-auto hidden"></div>
+                            </div>
                         </div>
 
                         <!-- Club's Email / Coach's Email -->
                         <div id="email-container">
                             <label class="block text-sm font-medium text-white mb-2">
                                 Club's Email / Coach's Email
-                                <span class="text-red-400">*</span>
-                                <span class="info-icon" data-tippy-content="Add up to 5 email addresses">i</span>
+                                <span id="email-required-indicator" class="text-red-400">*</span>
+                                <span class="info-icon" data-tippy-content="Add up to 5 email addresses. Required for professional athletes, optional for recreational athletes. Type 'N/A' if not applicable.">i</span>
                             </label>
                             <div class="space-y-2">
                                 <div class="flex gap-2">
-                                    <input type="email" required
-                                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                                    <input type="email" id="coach-email-1" name="coach-email-1"
+                                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white"
+                                        placeholder="Enter email or N/A">
                                     <button type="button" onclick="addEmailField()"
                                         class="px-4 py-2 bg-electric-blue text-white rounded-lg hover:bg-blue-600">
                                         +
                                     </button>
                                 </div>
                             </div>
+                            <p id="email-optional-text" class="text-sm text-gray-400 mt-1 hidden">Optional for non-professional athletes. You can type "N/A" if not applicable.</p>
                         </div>
 
                         <!-- Previous organizations -->
@@ -341,7 +348,7 @@
 
                 <!-- Submit Button -->
                 <div class="flex justify-center">
-                    <button type="submit"
+                    <button type="submit" id="submit-button"
                         class="px-8 py-3 bg-transparent text-white rounded-lg border-2 border-white hover:bg-white hover:text-[#09104E] transition-colors font-medium">
                         Submit Registration
                     </button>
@@ -350,7 +357,7 @@
 
             <!-- Back Link -->
             <div class="text-center mt-8">
-                <a href="registration.html" class="text-gray-300 hover:text-white transition-colors">
+                <a href="role-selection.html" class="text-gray-300 hover:text-white transition-colors">
                     ← Back to Role Selection
                 </a>
             </div>
@@ -395,6 +402,166 @@
             animation: 'scale',
         });
 
+        // Form validation for N/A inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            
+            form.addEventListener('submit', function(e) {
+                // Validate organization name
+                const organizationName = document.getElementById('organization-name').value.trim();
+                if (organizationName.toLowerCase() === 'n/a') {
+                    // N/A is acceptable, continue
+                }
+                
+                // Validate email fields
+                const position = document.getElementById('position').value;
+                const nonProfessionalPositions = ['recreational', 'student', 'retired', 'other'];
+                const isProfessional = !nonProfessionalPositions.includes(position);
+                
+                // Get all email inputs
+                const emailInputs = document.querySelectorAll('[id^="coach-email-"]');
+                
+                // For professional athletes, at least one valid email is required
+                if (isProfessional) {
+                    let hasValidEmail = false;
+                    
+                    emailInputs.forEach(input => {
+                        const value = input.value.trim();
+                        if (value && value.toLowerCase() !== 'n/a' && validateEmail(value)) {
+                            hasValidEmail = true;
+                        }
+                    });
+                    
+                    if (!hasValidEmail) {
+                        e.preventDefault();
+                        alert('Professional athletes must provide at least one valid coach or club email.');
+                        return false;
+                    }
+                } else {
+                    // For non-professionals, N/A is acceptable in all email fields
+                    emailInputs.forEach(input => {
+                        const value = input.value.trim();
+                        if (value && value.toLowerCase() !== 'n/a' && !validateEmail(value)) {
+                            e.preventDefault();
+                            alert('Please enter a valid email address or "N/A".');
+                            return false;
+                        }
+                    });
+                }
+            });
+            
+            // Email validation helper function
+            function validateEmail(email) {
+                const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return re.test(email);
+            }
+        });
+
+        // Club search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const organizationInput = document.getElementById('organization-name');
+            const searchResults = document.getElementById('club-search-results');
+            
+            // Mock data for registered clubs - in a real app, this would come from an API
+            const registeredClubs = [
+                { name: 'Jakarta Football Club', email: 'info@jakartafc.com' },
+                { name: 'Bali United FC', email: 'contact@baliutd.co.id' },
+                { name: 'Indonesia Swimming Club', email: 'admin@indoswim.org' },
+                { name: 'Bandung Basketball Association', email: 'bba@basketball.id' },
+                { name: 'Surabaya Tennis Center', email: 'info@surabayatennis.com' },
+                { name: 'Jakarta Badminton Academy', email: 'admin@jba.id' },
+                { name: 'Indonesia Athletics Federation', email: 'contact@iaf.or.id' },
+                { name: 'National Karate Club', email: 'info@karate.id' },
+                { name: 'Jakarta Aquatics Club', email: 'contact@jakartaaquatics.com' },
+                { name: 'Yogyakarta Volleyball Academy', email: 'admin@yogyavolley.id' }
+            ];
+            
+            // Add input event listener to organization name field
+            organizationInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                
+                // Clear previous results
+                searchResults.innerHTML = '';
+                
+                // Hide results if query is too short or empty
+                if (query.length < 3 || query === 'n/a') {
+                    searchResults.classList.add('hidden');
+                    return;
+                }
+                
+                // Filter clubs based on query
+                const filteredClubs = registeredClubs.filter(club => 
+                    club.name.toLowerCase().includes(query)
+                );
+                
+                // Display results if any matches found
+                if (filteredClubs.length > 0) {
+                    searchResults.classList.remove('hidden');
+                    
+                    filteredClubs.forEach(club => {
+                        const div = document.createElement('div');
+                        div.className = 'p-2 text-white hover:bg-white/20 cursor-pointer';
+                        div.textContent = club.name;
+                        div.addEventListener('click', function() {
+                            organizationInput.value = club.name;
+                            
+                            // Auto-fill first email field if it's empty
+                            const emailField = document.getElementById('coach-email-1');
+                            if (!emailField.value || emailField.value === 'N/A') {
+                                emailField.value = club.email;
+                            }
+                            
+                            searchResults.classList.add('hidden');
+                        });
+                        searchResults.appendChild(div);
+                    });
+                } else {
+                    searchResults.classList.add('hidden');
+                }
+            });
+            
+            // Close search results when clicking outside
+            document.addEventListener('click', function(e) {
+                if (e.target !== organizationInput && e.target !== searchResults) {
+                    searchResults.classList.add('hidden');
+                }
+            });
+        });
+
+        // Position selection to control email requirements
+        document.addEventListener('DOMContentLoaded', function() {
+            const positionSelect = document.getElementById('position');
+            positionSelect.addEventListener('change', updateEmailRequirements);
+            
+            // Run once on page load to set initial state
+            updateEmailRequirements();
+        });
+        
+        function updateEmailRequirements() {
+            const position = document.getElementById('position').value;
+            const emailField = document.getElementById('coach-email-1');
+            const requiredIndicator = document.getElementById('email-required-indicator');
+            const optionalText = document.getElementById('email-optional-text');
+            
+            // Check if the position is non-professional
+            const nonProfessionalPositions = ['recreational', 'student', 'retired', 'other'];
+            const isProfessional = !nonProfessionalPositions.includes(position);
+            
+            // Update the required attribute and UI
+            if (isProfessional) {
+                emailField.setAttribute('required', '');
+                emailField.setAttribute('pattern', '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$');
+                requiredIndicator.classList.remove('hidden');
+                optionalText.classList.add('hidden');
+            } else {
+                emailField.removeAttribute('required');
+                // Allow N/A for non-professional athletes by using a pattern that accepts either email or N/A
+                emailField.setAttribute('pattern', '([a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$)|(n/a)|(N/A)');
+                requiredIndicator.classList.add('hidden');
+                optionalText.classList.remove('hidden');
+            }
+        }
+
         // Email field management
         let emailCount = 1;
         
@@ -404,9 +571,19 @@
                 const container = document.getElementById('email-container').querySelector('.space-y-2');
                 const div = document.createElement('div');
                 div.className = 'flex gap-2';
+                
+                // Check if email should be required
+                const position = document.getElementById('position').value;
+                const nonProfessionalPositions = ['recreational', 'student', 'retired', 'other'];
+                const required = !nonProfessionalPositions.includes(position);
+                const pattern = required 
+                    ? '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$' 
+                    : '([a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$)|(n/a)|(N/A)';
+                
                 div.innerHTML = `
-                    <input type="email" required
-                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white">
+                    <input type="email" id="coach-email-${emailCount}" name="coach-email-${emailCount}" ${required ? 'required' : ''} pattern="${pattern}"
+                        class="w-full px-4 py-2 bg-white/10 border border-gray-300/30 rounded-lg focus:ring-2 focus:ring-electric-blue focus:border-transparent text-white"
+                        placeholder="Enter email or N/A">
                     <button type="button" onclick="removeEmailField(this)"
                         class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
                         -

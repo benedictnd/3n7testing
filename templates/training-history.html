@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training History - 3&7 Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body class="bg-gray-50 font-poppins">
+    <header class="bg-white shadow-sm fixed top-0 w-full z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <img src="/static/image/Logo Black.png" alt="3&7 Logo" class="h-10">
+            <nav class="hidden md:flex space-x-6">
+                <a href="/dashboard" class="text-gray-600 hover:text-blue-600">Dashboard</a>
+                <a href="/training" class="text-gray-600 hover:text-blue-600">Training</a>
+                <a href="/history" class="text-blue-600 font-medium">History</a>
+                <a href="/profile" class="text-gray-600 hover:text-blue-600">Profile</a>
+            </nav>
+            <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-3">
+                <nav class="flex flex-col space-y-3">
+                    <a href="/dashboard" class="text-gray-600 hover:text-blue-600 py-2">Dashboard</a>
+                    <a href="/training" class="text-gray-600 hover:text-blue-600 py-2">Training</a>
+                    <a href="/history" class="text-blue-600 font-medium py-2">History</a>
+                    <a href="/profile" class="text-gray-600 hover:text-blue-600 py-2">Profile</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-semibold text-gray-800">Training History</h1>
+            <div class="flex space-x-4">
+                <button id="viewToggleCalendar" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Calendar View</button>
+                <button id="viewToggleList" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg">List View</button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-gray-600 mb-2 text-sm">Date Range</label>
+                    <select id="dateRangeFilter" class="w-full p-2 border rounded-lg">
+                        <option value="week">This Week</option>
+                        <option value="month" selected>This Month</option>
+                        <option value="quarter">Last 3 Months</option>
+                        <option value="year">This Year</option>
+                        <option value="custom">Custom Range</option>
+                    </select>
+                </div>
+                <div id="customDateContainer" class="hidden">
+                    <label class="block text-gray-600 mb-2 text-sm">Custom Dates</label>
+                    <div class="flex space-x-2">
+                        <input type="text" id="dateStart" placeholder="Start" class="w-full p-2 border rounded-lg">
+                        <input type="text" id="dateEnd" placeholder="End" class="w-full p-2 border rounded-lg">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-600 mb-2 text-sm">Training Type</label>
+                    <select id="typeFilter" class="w-full p-2 border rounded-lg">
+                        <option value="all" selected>All Types</option>
+                        <option value="core">Core Training</option>
+                        <option value="endurance">Endurance Training</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-600 mb-2 text-sm">Coach</label>
+                    <select id="coachFilter" class="w-full p-2 border rounded-lg">
+                        <option value="all" selected>All Coaches</option>
+                        <!-- Coach options will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="md:col-span-1 flex items-end">
+                    <button id="applyFilters" class="bg-blue-600 text-white px-4 py-2 rounded-lg w-full">Apply Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar View -->
+        <div id="calendarView" class="mb-8">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <button id="prevMonth" class="text-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <h2 id="currentMonthYear" class="text-xl font-medium text-gray-700">September 2023</h2>
+                    <button id="nextMonth" class="text-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mb-4 flex flex-wrap gap-2">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-blue-500 rounded-sm mr-1"></div>
+                        <span class="text-sm text-gray-600">Core Training</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-green-500 rounded-sm mr-1"></div>
+                        <span class="text-sm text-gray-600">Endurance Training</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-gray-300 rounded-sm mr-1"></div>
+                        <span class="text-sm text-gray-600">No Session</span>
+                    </div>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div>
+                    <div class="grid grid-cols-7 mb-2">
+                        <div class="text-center font-medium text-gray-500">Sun</div>
+                        <div class="text-center font-medium text-gray-500">Mon</div>
+                        <div class="text-center font-medium text-gray-500">Tue</div>
+                        <div class="text-center font-medium text-gray-500">Wed</div>
+                        <div class="text-center font-medium text-gray-500">Thu</div>
+                        <div class="text-center font-medium text-gray-500">Fri</div>
+                        <div class="text-center font-medium text-gray-500">Sat</div>
+                    </div>
+                    <div id="calendarGrid" class="grid grid-cols-7 gap-1">
+                        <!-- Calendar cells will be generated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Charts -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-medium text-gray-700 mb-4">Training Quality</h2>
+                <div class="h-64">
+                    <canvas id="qualityChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-medium text-gray-700 mb-4">Training Intensity</h2>
+                <div class="h-64">
+                    <canvas id="intensityChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-medium text-gray-700 mb-4">Body Condition</h2>
+                <div class="h-48">
+                    <canvas id="conditionChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-medium text-gray-700 mb-4">Attendance Rate</h2>
+                <div class="h-48">
+                    <canvas id="attendanceChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-medium text-gray-700 mb-4">Session Distribution</h2>
+                <div class="h-48">
+                    <canvas id="distributionChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- List View (initially hidden) -->
+        <div id="listView" class="hidden">
+            <div id="sessionsContainer" class="space-y-4">
+                <!-- Session items will be loaded dynamically -->
+                <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800">Core Training</h3>
+                            <p class="text-gray-600">Monday, September 15, 2023</p>
+                            <p class="text-gray-500 text-sm">9:00 AM - 10:30 AM</p>
+                            <p class="text-gray-500 text-sm">Coach: John Smith</p>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <div class="flex space-x-1 mb-2">
+                                <span class="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Core</span>
+                                <span class="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Completed</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <a href="/reports/session/1" class="text-sm text-blue-600 hover:underline">View Report</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div>
+                            <p class="text-gray-500 text-sm">Quality Rating</p>
+                            <p class="font-medium">4.5/5</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Intensity</p>
+                            <p class="font-medium">8/10</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Body Condition</p>
+                            <p class="font-medium">7/10</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Attendance</p>
+                            <p class="font-medium">14 athletes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="mt-6 flex justify-center">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <button id="prevPage" class="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-l-md hover:bg-gray-50">Previous</button>
+                    <div id="paginationNumbers" class="flex">
+                        <!-- Page numbers will be generated dynamically -->
+                        <button class="px-4 py-2 border-t border-b border-gray-300 bg-blue-600 text-white">1</button>
+                        <button class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">2</button>
+                        <button class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">3</button>
+                    </div>
+                    <button id="nextPage" class="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-r-md hover:bg-gray-50">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle mobile menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // View toggle
+            const viewToggleCalendar = document.getElementById('viewToggleCalendar');
+            const viewToggleList = document.getElementById('viewToggleList');
+            const calendarView = document.getElementById('calendarView');
+            const listView = document.getElementById('listView');
+
+            viewToggleCalendar.addEventListener('click', function() {
+                calendarView.classList.remove('hidden');
+                listView.classList.add('hidden');
+                viewToggleCalendar.classList.add('bg-blue-600', 'text-white');
+                viewToggleCalendar.classList.remove('bg-gray-200', 'text-gray-800');
+                viewToggleList.classList.add('bg-gray-200', 'text-gray-800');
+                viewToggleList.classList.remove('bg-blue-600', 'text-white');
+            });
+
+            viewToggleList.addEventListener('click', function() {
+                calendarView.classList.add('hidden');
+                listView.classList.remove('hidden');
+                viewToggleList.classList.add('bg-blue-600', 'text-white');
+                viewToggleList.classList.remove('bg-gray-200', 'text-gray-800');
+                viewToggleCalendar.classList.add('bg-gray-200', 'text-gray-800');
+                viewToggleCalendar.classList.remove('bg-blue-600', 'text-white');
+            });
+
+            // Date range filter
+            const dateRangeFilter = document.getElementById('dateRangeFilter');
+            const customDateContainer = document.getElementById('customDateContainer');
+
+            dateRangeFilter.addEventListener('change', function() {
+                if (this.value === 'custom') {
+                    customDateContainer.classList.remove('hidden');
+                } else {
+                    customDateContainer.classList.add('hidden');
+                }
+            });
+
+            // Initialize Flatpickr for date inputs
+            if (typeof flatpickr !== 'undefined') {
+                flatpickr("#dateStart", {
+                    dateFormat: "Y-m-d"
+                });
+                flatpickr("#dateEnd", {
+                    dateFormat: "Y-m-d"
+                });
+            }
+
+            // Calendar Navigation
+            let currentDate = new Date();
+            updateCalendar(currentDate);
+
+            document.getElementById('prevMonth').addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                updateCalendar(currentDate);
+            });
+
+            document.getElementById('nextMonth').addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                updateCalendar(currentDate);
+            });
+
+            // Initialize charts
+            initializeCharts();
+
+            // Load training sessions data
+            loadTrainingSessions();
+        });
+
+        // Function to update calendar
+        function updateCalendar(date) {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const monthYear = document.getElementById('currentMonthYear');
+            
+            // Format month and year
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            monthYear.textContent = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+            
+            // Clear previous calendar
+            calendarGrid.innerHTML = '';
+            
+            // Get first day of month and number of days
+            const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+            const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            const startingDay = firstDay.getDay(); // 0 = Sunday, 1 = Monday, etc.
+            
+            // Create empty cells for days before the first day of the month
+            for (let i = 0; i < startingDay; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'h-24 bg-gray-100 rounded-lg';
+                calendarGrid.appendChild(emptyCell);
+            }
+            
+            // Create cells for each day in the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const cell = document.createElement('div');
+                cell.className = 'h-24 bg-white border rounded-lg p-1 overflow-hidden relative';
+                
+                // Date number
+                const dateNumber = document.createElement('div');
+                dateNumber.className = 'text-sm font-medium mb-1';
+                dateNumber.textContent = day;
+                cell.appendChild(dateNumber);
+                
+                // Check if there are training sessions for this day (this would be replaced with actual API data)
+                const currentDayDate = new Date(date.getFullYear(), date.getMonth(), day);
+                
+                // Example sessions (these would come from the API)
+                if (day % 3 === 0) {
+                    const session = document.createElement('div');
+                    session.className = 'text-xs p-1 mb-1 rounded bg-blue-500 text-white truncate';
+                    session.textContent = 'Core Training 9:00 AM';
+                    session.setAttribute('data-session-id', '123'); // Example session ID
+                    session.addEventListener('click', function() {
+                        window.location.href = `/reports/session/${this.getAttribute('data-session-id')}`;
+                    });
+                    cell.appendChild(session);
+                } else if (day % 5 === 0) {
+                    const session = document.createElement('div');
+                    session.className = 'text-xs p-1 mb-1 rounded bg-green-500 text-white truncate';
+                    session.textContent = 'Endurance Training 2:00 PM';
+                    session.setAttribute('data-session-id', '456'); // Example session ID
+                    session.addEventListener('click', function() {
+                        window.location.href = `/reports/session/${this.getAttribute('data-session-id')}`;
+                    });
+                    cell.appendChild(session);
+                }
+                
+                calendarGrid.appendChild(cell);
+            }
+            
+            // Get training sessions for this month
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1; // JavaScript months are 0-indexed
+            fetchTrainingSessionsByMonth(year, month);
+        }
+
+        // Function to fetch training sessions for a specific month
+        async function fetchTrainingSessionsByMonth(year, month) {
+            try {
+                const response = await fetch(`/api/training/history?year=${year}&month=${month}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch training sessions');
+                }
+                
+                const data = await response.json();
+                updateCalendarWithSessions(data);
+            } catch (error) {
+                console.error('Error fetching training sessions:', error);
+            }
+        }
+
+        // Function to update calendar with fetched sessions
+        function updateCalendarWithSessions(sessions) {
+            // This function would populate the calendar with the actual sessions from the API
+            console.log('Sessions data:', sessions);
+            
+            // Clear existing sessions and repopulate the calendar
+            // This is a simplified example - actual implementation would map sessions to calendar days
+        }
+
+        // Function to initialize charts
+        function initializeCharts() {
+            // Training Quality Chart
+            const qualityCtx = document.getElementById('qualityChart').getContext('2d');
+            const qualityChart = new Chart(qualityCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Training Quality (1-5)',
+                        data: [4.2, 3.8, 4.5, 4.7],
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 2,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 5
+                        }
+                    }
+                }
+            });
+
+            // Training Intensity Chart
+            const intensityCtx = document.getElementById('intensityChart').getContext('2d');
+            const intensityChart = new Chart(intensityCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Training Intensity (1-10)',
+                        data: [7.5, 8.2, 6.9, 8.7],
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        borderWidth: 2,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+
+            // Body Condition Chart
+            const conditionCtx = document.getElementById('conditionChart').getContext('2d');
+            const conditionChart = new Chart(conditionCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Body Condition (1-10)',
+                        data: [6.8, 7.2, 7.5, 8.1],
+                        backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                        borderColor: 'rgba(245, 158, 11, 1)',
+                        borderWidth: 2,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+
+            // Attendance Rate Chart
+            const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+            const attendanceChart = new Chart(attendanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Attendance Rate (%)',
+                        data: [85, 92, 88, 95],
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Session Distribution Chart
+            const distributionCtx = document.getElementById('distributionChart').getContext('2d');
+            const distributionChart = new Chart(distributionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Core Training', 'Endurance Training'],
+                    datasets: [{
+                        label: 'Session Types',
+                        data: [65, 35],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(16, 185, 129, 0.7)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        // Function to load training sessions (list view)
+        async function loadTrainingSessions(page = 1) {
+            try {
+                const response = await fetch(`/api/training/sessions?page=${page}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch training sessions');
+                }
+                
+                const data = await response.json();
+                renderTrainingSessions(data);
+            } catch (error) {
+                console.error('Error fetching training sessions:', error);
+            }
+        }
+
+        // Function to render training sessions in list view
+        function renderTrainingSessions(data) {
+            // This is a placeholder. In a real implementation, this would render the sessions from the API.
+            console.log('Sessions data for list view:', data);
+            
+            // Example of updating pagination
+            updatePagination(data.currentPage, data.totalPages);
+        }
+
+        // Function to update pagination
+        function updatePagination(currentPage, totalPages) {
+            const paginationNumbers = document.getElementById('paginationNumbers');
+            paginationNumbers.innerHTML = '';
+            
+            // Add page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.className = i === currentPage ? 
+                    'px-4 py-2 border-t border-b border-gray-300 bg-blue-600 text-white' : 
+                    'px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50';
+                button.addEventListener('click', function() {
+                    loadTrainingSessions(i);
+                });
+                paginationNumbers.appendChild(button);
+            }
+            
+            // Update prev/next buttons
+            document.getElementById('prevPage').disabled = currentPage === 1;
+            document.getElementById('nextPage').disabled = currentPage === totalPages;
+            
+            document.getElementById('prevPage').addEventListener('click', function() {
+                if (currentPage > 1) {
+                    loadTrainingSessions(currentPage - 1);
+                }
+            });
+            
+            document.getElementById('nextPage').addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    loadTrainingSessions(currentPage + 1);
+                }
+            });
+        }
+
+        // Apply filters
+        document.getElementById('applyFilters').addEventListener('click', function() {
+            const dateRange = document.getElementById('dateRangeFilter').value;
+            const type = document.getElementById('typeFilter').value;
+            const coach = document.getElementById('coachFilter').value;
+            
+            let startDate = '';
+            let endDate = '';
+            
+            if (dateRange === 'custom') {
+                startDate = document.getElementById('dateStart').value;
+                endDate = document.getElementById('dateEnd').value;
+            }
+            
+            // Fetch filtered data
+            fetchFilteredTrainingSessions(dateRange, startDate, endDate, type, coach);
+        });
+
+        // Function to fetch filtered training sessions
+        async function fetchFilteredTrainingSessions(dateRange, startDate, endDate, type, coach) {
+            try {
+                let url = '/api/training/history?';
+                
+                if (dateRange !== 'custom') {
+                    url += `range=${dateRange}`;
+                } else {
+                    url += `start=${startDate}&end=${endDate}`;
+                }
+                
+                if (type !== 'all') {
+                    url += `&type=${type}`;
+                }
+                
+                if (coach !== 'all') {
+                    url += `&coach=${coach}`;
+                }
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch filtered training sessions');
+                }
+                
+                const data = await response.json();
+                
+                // Update both views with filtered data
+                updateCalendarWithSessions(data);
+                renderTrainingSessions(data);
+            } catch (error) {
+                console.error('Error fetching filtered training sessions:', error);
+            }
+        }
+    </script>
+</body>
+</html> 

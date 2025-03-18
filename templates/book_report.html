@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Training Report - {{ .Month }} {{ .Year }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        .page {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .chart-container {
+            height: 250px;
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .bg-morning { background-color: #4C8BF1; }
+        .bg-afternoon { background-color: #353BDF; }
+        .bg-night { background-color: #09104E; }
+        .text-morning { color: #4C8BF1; }
+        .text-afternoon { color: #353BDF; }
+        .text-night { color: #09104E; }
+        .border-morning { border-color: #4C8BF1; }
+        .border-afternoon { border-color: #353BDF; }
+        .border-night { border-color: #09104E; }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <!-- Print Controls -->
+    <div class="no-print fixed top-4 right-4 z-50 flex space-x-2">
+        <button onclick="window.print()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+            Print Report
+        </button>
+        <button onclick="window.history.back()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300">
+            Back
+        </button>
+    </div>
+
+    <!-- Cover Page -->
+    <div class="page mx-auto max-w-4xl p-8 md:p-16 rounded-lg mb-8">
+        <div class="flex flex-col items-center justify-center min-h-[70vh]">
+            <img src="/static/image/Logo Black.png" alt="3&7 Logo" class="h-24 mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-center mb-6">Monthly Training Report</h1>
+            <p class="text-2xl md:text-3xl font-medium text-gray-600 mb-8">{{ .Month }} {{ .Year }}</p>
+            <div class="w-20 h-1 bg-blue-600 mb-8"></div>
+            <p class="text-xl text-gray-500">Prepared for: {{ .Team }}</p>
+            <p class="text-lg text-gray-400 mt-2">Generated on {{ .GeneratedDate }}</p>
+        </div>
+    </div>
+
+    <!-- Executive Summary -->
+    <div class="page mx-auto max-w-4xl p-8 md:p-12 rounded-lg mb-8">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-8 pb-2 border-b-2 border-gray-200">Executive Summary</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="flex flex-col items-center">
+                <div class="relative w-32 h-32 mb-4">
+                    <svg width="100%" height="100%" viewBox="0 0 120 120">
+                        <circle class="text-gray-200" stroke-width="12" stroke="currentColor" fill="transparent" r="50" cx="60" cy="60"/>
+                        <circle class="text-blue-600 progress-ring" stroke-width="12" stroke="currentColor" fill="transparent" r="50" cx="60" cy="60" 
+                        stroke-dasharray="314" stroke-dashoffset="{{ calc 314 (mul (sub 100 .Stats.CompletionRate) 314) }}"/>
+                    </svg>
+                    <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                        <span class="text-2xl font-bold">{{ .Stats.CompletionRate }}%</span>
+                    </div>
+                </div>
+                <p class="text-center text-gray-600">Training Completion</p>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="mb-3 text-5xl font-bold text-blue-600">{{ .Stats.TotalSessions }}</div>
+                <p class="text-center text-gray-600">Total Sessions</p>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-morning">{{ .Stats.MorningSessions }}</span>
+                        <span class="text-sm text-gray-500">Morning</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-afternoon">{{ .Stats.AfternoonSessions }}</span>
+                        <span class="text-sm text-gray-500">Afternoon</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-night">{{ .Stats.NightSessions }}</span>
+                        <span class="text-sm text-gray-500">Night</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="mb-3 text-5xl font-bold text-blue-600">{{ .Stats.AverageAttendance }}%</div>
+                <p class="text-center text-gray-600">Average Attendance</p>
+                <div class="mt-4 text-center">
+                    <span class="text-sm text-gray-500">Monthly change</span>
+                    <span class="ml-2 {{ if ge .Stats.AttendanceChange 0 }}text-green-500{{ else }}text-red-500{{ end }}">
+                        {{ if ge .Stats.AttendanceChange 0 }}+{{ end }}{{ .Stats.AttendanceChange }}%
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-medium mb-4">Monthly Progress</h3>
+            <div class="chart-container">
+                <canvas id="progressChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-medium mb-4">Key Highlights</h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li>Completed {{ .Stats.TotalSessions }} training sessions ({{ .Stats.CompletionRate }}% of planned sessions)</li>
+                <li>Average session duration: {{ .Stats.AvgDuration }} minutes</li>
+                <li>Most attended session: {{ .Stats.MostAttendedSession.Type }} on {{ .Stats.MostAttendedSession.Date }}</li>
+                <li>{{ .Stats.NotablePerformance }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Calendar View Page -->
+    <div class="page mx-auto max-w-4xl p-8 md:p-12 rounded-lg mb-8 page-break">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-8 pb-2 border-b-2 border-gray-200">Monthly Calendar</h2>
+        
+        <div class="mb-6 flex items-center justify-between">
+            <h3 class="text-xl font-medium">{{ .Month }} {{ .Year }}</h3>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-morning rounded-sm mr-2"></div>
+                    <span class="text-sm text-gray-600">Morning</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-afternoon rounded-sm mr-2"></div>
+                    <span class="text-sm text-gray-600">Afternoon</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-night rounded-sm mr-2"></div>
+                    <span class="text-sm text-gray-600">Night</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <div class="min-w-[768px]">
+                <!-- Calendar header -->
+                <div class="grid grid-cols-7 text-center font-medium text-gray-700 border-b-2 border-gray-200 pb-2 mb-3">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                
+                <!-- Calendar grid - will be populated by JavaScript -->
+                <div id="calendarGrid" class="grid grid-cols-7"></div>
+            </div>
+        </div>
+        
+        <div class="mt-8">
+            <h3 class="text-xl font-medium mb-4">Weekly Session Distribution</h3>
+            <div class="chart-container">
+                <canvas id="weeklyDistributionChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance & Performance Page -->
+    <div class="page mx-auto max-w-4xl p-8 md:p-12 rounded-lg mb-8 page-break">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-8 pb-2 border-b-2 border-gray-200">Attendance & Performance</h2>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-medium mb-4">Attendance by Athlete</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Athlete</th>
+                            <th class="py-3 px-4 text-center">Sessions Attended</th>
+                            <th class="py-3 px-4 text-center">Attendance Rate</th>
+                            <th class="py-3 px-4 text-center">vs. Last Month</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        {{ range .Attendance }}
+                        <tr>
+                            <td class="py-3 px-4">{{ .Name }}</td>
+                            <td class="py-3 px-4 text-center">{{ .SessionsAttended }}/{{ $.Stats.TotalSessions }}</td>
+                            <td class="py-3 px-4 text-center">{{ .AttendanceRate }}%</td>
+                            <td class="py-3 px-4 text-center {{ if ge .Change 0 }}text-green-500{{ else }}text-red-500{{ end }}">
+                                {{ if ge .Change 0 }}+{{ end }}{{ .Change }}%
+                            </td>
+                        </tr>
+                        {{ end }}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="mt-12">
+            <h3 class="text-xl font-medium mb-4">Performance Records</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Athlete</th>
+                            <th class="py-3 px-4 text-center">Best Time</th>
+                            <th class="py-3 px-4 text-center">Max Reps</th>
+                            <th class="py-3 px-4 text-center">Max Weight</th>
+                            <th class="py-3 px-4 text-center">Improvement</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        {{ range .Performance }}
+                        <tr>
+                            <td class="py-3 px-4">{{ .Name }}</td>
+                            <td class="py-3 px-4 text-center">{{ .BestTime }}</td>
+                            <td class="py-3 px-4 text-center">{{ .MaxReps }}</td>
+                            <td class="py-3 px-4 text-center">{{ .MaxWeight }} kg</td>
+                            <td class="py-3 px-4 text-center {{ if ge .Improvement 0 }}text-green-500{{ else }}text-red-500{{ end }}">
+                                {{ if ge .Improvement 0 }}+{{ end }}{{ .Improvement }}%
+                            </td>
+                        </tr>
+                        {{ end }}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback & Analysis Page -->
+    <div class="page mx-auto max-w-4xl p-8 md:p-12 rounded-lg mb-8 page-break">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-8 pb-2 border-b-2 border-gray-200">Feedback & Analysis</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div>
+                <h3 class="text-xl font-medium mb-4">Average Ratings</h3>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-700">Training Quality</span>
+                            <span class="font-medium">{{ .Feedback.AvgTrainingQuality }}/5</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ mul (div .Feedback.AvgTrainingQuality 5) 100 }}%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-700">Met Expectations</span>
+                            <span class="font-medium">{{ .Feedback.AvgExpectations }}/5</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ mul (div .Feedback.AvgExpectations 5) 100 }}%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-700">Body Condition</span>
+                            <span class="font-medium">{{ .Feedback.AvgBodyCondition }}/10</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ mul (div .Feedback.AvgBodyCondition 10) 100 }}%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-700">Training Intensity</span>
+                            <span class="font-medium">{{ .Feedback.AvgIntensity }}/10</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ mul (div .Feedback.AvgIntensity 10) 100 }}%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-xl font-medium mb-4">Monthly Trends</h3>
+                <div class="chart-container">
+                    <canvas id="feedbackTrendsChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-medium mb-4">Common Feedback Themes</h3>
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <ul class="list-disc list-inside space-y-3 text-gray-700">
+                    {{ range .Feedback.Themes }}
+                    <li>{{ . }}</li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+        
+        <div>
+            <h3 class="text-xl font-medium mb-4">Recommendations</h3>
+            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <ul class="list-disc list-inside space-y-3 text-gray-700">
+                    {{ range .Recommendations }}
+                    <li>{{ . }}</li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Calendar Generation
+            generateCalendar();
+            
+            // Charts Generation
+            createProgressChart();
+            createWeeklyDistributionChart();
+            createFeedbackTrendsChart();
+        });
+        
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            
+            // Get date information from the server-rendered data
+            const year = {{ .Year }};
+            const month = {{ .NumericMonth }} - 1; // JavaScript months are 0-indexed
+            
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            
+            const startingDayOfWeek = firstDay.getDay();
+            const totalDays = lastDay.getDate();
+            
+            // Calendar data from the server
+            const calendarData = {{ .CalendarData }};
+            
+            let calendarHTML = '';
+            
+            // Previous month placeholder days
+            for (let i = 0; i < startingDayOfWeek; i++) {
+                calendarHTML += `<div class="p-2 border min-h-[80px] bg-gray-100"></div>`;
+            }
+            
+            // Current month days
+            for (let day = 1; day <= totalDays; day++) {
+                // Format date as YYYY-MM-DD
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                let sessionBoxes = '';
+                if (calendarData[dateStr]) {
+                    if (calendarData[dateStr].morning) {
+                        sessionBoxes += `<div class="bg-morning w-full h-4 rounded-sm mb-1"></div>`;
+                    }
+                    if (calendarData[dateStr].afternoon) {
+                        sessionBoxes += `<div class="bg-afternoon w-full h-4 rounded-sm mb-1"></div>`;
+                    }
+                    if (calendarData[dateStr].night) {
+                        sessionBoxes += `<div class="bg-night w-full h-4 rounded-sm mb-1"></div>`;
+                    }
+                }
+                
+                calendarHTML += `
+                    <div class="p-2 border min-h-[80px] relative">
+                        <span class="block mb-2">${day}</span>
+                        <div class="space-y-1">
+                            ${sessionBoxes}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Next month placeholder days
+            const totalCells = Math.ceil((startingDayOfWeek + totalDays) / 7) * 7;
+            const remainingCells = totalCells - (startingDayOfWeek + totalDays);
+            
+            for (let i = 0; i < remainingCells; i++) {
+                calendarHTML += `<div class="p-2 border min-h-[80px] bg-gray-100"></div>`;
+            }
+            
+            calendarGrid.innerHTML = calendarHTML;
+        }
+        
+        function createProgressChart() {
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            
+            // Sample data - this would come from the server in a real implementation
+            const progressData = {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
+                datasets: [
+                    {
+                        label: 'This Month',
+                        data: [{{ range .WeeklyProgress }}{{ . }}, {{ end }}],
+                        borderColor: '#4F46E5',
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Last Month',
+                        data: [{{ range .LastMonthWeeklyProgress }}{{ . }}, {{ end }}],
+                        borderColor: '#9CA3AF',
+                        backgroundColor: 'transparent',
+                        borderDash: [5, 5],
+                        tension: 0.3,
+                        fill: false
+                    }
+                ]
+            };
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: progressData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Sessions'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createWeeklyDistributionChart() {
+            const ctx = document.getElementById('weeklyDistributionChart').getContext('2d');
+            
+            // Weekly data from server
+            const chartData = {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
+                datasets: [
+                    {
+                        label: 'Morning',
+                        data: [{{ range .WeeklyMorning }}{{ . }}, {{ end }}],
+                        backgroundColor: '#4C8BF1'
+                    },
+                    {
+                        label: 'Afternoon',
+                        data: [{{ range .WeeklyAfternoon }}{{ . }}, {{ end }}],
+                        backgroundColor: '#353BDF'
+                    },
+                    {
+                        label: 'Night',
+                        data: [{{ range .WeeklyNight }}{{ . }}, {{ end }}],
+                        backgroundColor: '#09104E'
+                    }
+                ]
+            };
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Sessions'
+                            },
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createFeedbackTrendsChart() {
+            const ctx = document.getElementById('feedbackTrendsChart').getContext('2d');
+            
+            // Feedback trends from server
+            const chartData = {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
+                datasets: [
+                    {
+                        label: 'Training Quality',
+                        data: [{{ range .FeedbackTrends.TrainingQuality }}{{ . }}, {{ end }}],
+                        borderColor: '#4F46E5',
+                        backgroundColor: 'transparent',
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Body Condition',
+                        data: [{{ range .FeedbackTrends.BodyCondition }}{{ . }}, {{ end }}],
+                        borderColor: '#10B981',
+                        backgroundColor: 'transparent',
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Intensity',
+                        data: [{{ range .FeedbackTrends.Intensity }}{{ . }}, {{ end }}],
+                        borderColor: '#F59E0B',
+                        backgroundColor: 'transparent',
+                        tension: 0.3
+                    }
+                ]
+            };
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            title: {
+                                display: true,
+                                text: 'Rating (1-10)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html> 

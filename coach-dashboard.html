@@ -7,6 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="static/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- QR Code library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 </head>
 <body class="font-inter">
     <header class="header fixed top-0 w-full bg-white/95 z-50">
@@ -57,15 +59,751 @@
                 <div class="content-text fade-up">
                     <h2 class="text-4xl md:text-5xl font-bold mb-6">Integrated Training System</h2>
                     <p class="text-lg md:text-xl mb-8">Advanced tracking and analytics for optimal performance.</p>
-                    <a href="#learn-more" class="inline-block px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition-colors">Learn More</a>
+                    <div class="flex gap-4">
+                        <a href="integrated-training.html" class="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">Train Now</a>
+                        <a href="#learn-more" class="inline-block px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition-colors">Learn More</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Include other sections from index.html -->
-    <!-- ... -->
+    <!-- Profile Section -->
+    <section id="profile" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <!-- Profile Header with Tabs -->
+                <div class="bg-white rounded-t-xl shadow-md overflow-hidden profile-header border-t-4 border-blue-600 coach-dashboard">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Profile Management</h2>
+                        <nav class="profile-nav flex border-b border-gray-200">
+                            <button class="px-6 py-3 border-b-2 border-blue-600 text-blue-600 font-medium active" data-section="edit-profile">Edit Profile</button>
+                            <button class="px-6 py-3 border-b-2 border-transparent text-gray-600 hover:text-blue-600 font-medium" data-section="team-management">Team Management</button>
+                            <button class="px-6 py-3 border-b-2 border-transparent text-gray-600 hover:text-blue-600 font-medium" data-section="connections">Connections</button>
+                        </nav>
+                    </div>
+                </div>
+                
+                <!-- Edit Profile Section -->
+                <div id="edit-profile" class="profile-content active bg-white rounded-b-xl shadow-md mb-8">
+                    <div class="p-6">
+                        <div class="md:flex">
+                            <div class="md:flex-shrink-0 bg-blue-600 md:w-48 flex items-center justify-center p-8 rounded-xl mx-auto md:mx-0 mb-6 md:mb-0">
+                                <div class="text-center">
+                                    <div class="w-32 h-32 rounded-full bg-white mx-auto mb-4 overflow-hidden">
+                                        <img id="profileImage" src="static/image/default-avatar.png" alt="Profile Image" class="w-full h-full object-cover">
+                                    </div>
+                                    <button id="changePhotoBtn" class="mt-2 px-4 py-2 bg-white text-blue-600 rounded-lg text-sm font-medium">Change Photo</button>
+                                    <input type="file" id="photoInput" accept="image/*" class="hidden">
+                                </div>
+                            </div>
+                            <div class="md:pl-8 w-full">
+                                <form id="profileForm" class="space-y-6">
+                                    <!-- Personal Information -->
+                                    <div class="space-y-4">
+                                        <h3 class="text-xl font-semibold text-gray-800">Personal Information</h3>
+                                        <div class="grid md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Full Name <span class="text-red-500">*</span></label>
+                                                <input type="text" id="fullName" class="w-full p-3 border rounded-lg" value="John Doe" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
+                                                <input type="email" id="email" class="w-full p-3 border rounded-lg" value="john.doe@example.com" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Phone</label>
+                                                <input type="tel" id="phone" class="w-full p-3 border rounded-lg" value="+1 234 567 8901">
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Birthday <span class="text-red-500">*</span></label>
+                                                <input type="date" id="birthday" class="w-full p-3 border rounded-lg" value="1985-05-15" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Nationality <span class="text-red-500">*</span></label>
+                                                <select id="nationality" class="w-full p-3 border rounded-lg" required>
+                                                    <option value="United States">United States</option>
+                                                    <option value="United Kingdom">United Kingdom</option>
+                                                    <option value="Canada">Canada</option>
+                                                    <option value="Australia">Australia</option>
+                                                    <option value="Germany">Germany</option>
+                                                    <option value="France">France</option>
+                                                    <option value="Japan">Japan</option>
+                                                    <!-- More countries would be listed here -->
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Gender</label>
+                                                <select id="gender" class="w-full p-3 border rounded-lg">
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                    <option value="Prefer not to say">Prefer not to say</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Professional Information -->
+                                    <div class="space-y-4 pt-4">
+                                        <h3 class="text-xl font-semibold text-gray-800">Professional Information</h3>
+                                        <div class="grid md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Role</label>
+                                                <input type="text" id="role" class="w-full p-3 border rounded-lg" value="Head Coach" readonly>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Specialization</label>
+                                                <input type="text" id="specialization" class="w-full p-3 border rounded-lg" value="Track & Field">
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Certification Level <span class="text-red-500">*</span></label>
+                                                <select id="certificationLevel" class="w-full p-3 border rounded-lg" required>
+                                                    <option value="Level 1">Level 1</option>
+                                                    <option value="Level 2">Level 2</option>
+                                                    <option value="Level 3" selected>Level 3</option>
+                                                    <option value="Level 4">Level 4</option>
+                                                    <option value="Level 5">Level 5</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-gray-700 mb-2">Years of Experience <span class="text-red-500">*</span></label>
+                                                <input type="number" id="experience" class="w-full p-3 border rounded-lg" value="8" min="0" required>
+                                            </div>
+                                            <div class="md:col-span-2">
+                                                <label class="block text-gray-700 mb-2">Achievements & Credentials</label>
+                                                <textarea id="achievements" class="w-full p-3 border rounded-lg" rows="3">Olympic Team Assistant Coach (2016-2020), National Championships Head Coach (2015-present), Published research on sprint biomechanics.</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pt-4">
+                                        <button type="submit" class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Management Section -->
+                <div id="team-management" class="profile-content bg-white rounded-b-xl shadow-md mb-8 hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800">Team Management</h3>
+                            <div class="space-x-2">
+                                <button class="btn-change-team px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50">Change Team</button>
+                                <button class="btn-add-team px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Add New Team</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Current Team Details -->
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="font-medium text-lg mb-4">Current Team: Warriors</h4>
+                            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                                <div>
+                                    <p class="text-gray-600 font-medium">Team ID</p>
+                                    <p class="text-gray-900">WAR-2023-01</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 font-medium">Established</p>
+                                    <p class="text-gray-900">January 15, 2023</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 font-medium">Primary Sport</p>
+                                    <p class="text-gray-900">Track & Field</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 font-medium">Members</p>
+                                    <p class="text-gray-900">18 (2 coaches, 16 athletes)</p>
+                                </div>
+                            </div>
+                            
+                            <!-- QR Code for Team -->
+                            <div class="flex flex-col md:flex-row items-center gap-6 mt-6">
+                                <div>
+                                    <p class="text-gray-600 mb-3">Team QR Code</p>
+                                    <div id="teamManagementQRCode" class="w-48 h-48 bg-gray-100 flex items-center justify-center">
+                                        <!-- QR code will be generated here -->
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <p class="text-gray-600">Share this QR code with new athletes to join your team.</p>
+                                    <div class="flex gap-2">
+                                        <button id="downloadManagementQRBtn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
+                                            Download
+                                        </button>
+                                        <button id="regenerateManagementQRBtn" class="px-4 py-2 bg-white text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 text-sm">
+                                            Regenerate
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connections Section -->
+                <div id="connections" class="profile-content bg-white rounded-b-xl shadow-md mb-8 hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800">Connections</h3>
+                            <div class="connection-search flex gap-2">
+                                <input type="text" placeholder="Search connections..." class="px-4 py-2 border rounded-lg w-64">
+                                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Search</button>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-list space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-lg mb-4">Athletes</h4>
+                                <div class="grid md:grid-cols-3 gap-3">
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-blue-700">MJ</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Mike Johnson</p>
+                                            <p class="text-sm text-gray-600">Sprinter</p>
+                                        </div>
+                                    </div>
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-blue-700">LW</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Lisa Wilson</p>
+                                            <p class="text-sm text-gray-600">Middle Distance</p>
+                                        </div>
+                                    </div>
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-blue-700">RB</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Robert Brown</p>
+                                            <p class="text-sm text-gray-600">Sprinter</p>
+                                        </div>
+                                    </div>
+                                    <!-- More athletes would be listed here -->
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-lg mb-4">Other Coaches</h4>
+                                <div class="grid md:grid-cols-3 gap-3">
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-green-700">SM</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Sarah Miller</p>
+                                            <p class="text-sm text-gray-600">Assistant Coach</p>
+                                        </div>
+                                    </div>
+                                    <div class="border rounded-lg p-3 flex items-center">
+                                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                            <span class="font-medium text-green-700">DP</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">David Parker</p>
+                                            <p class="text-sm text-gray-600">Coach (Red Team)</p>
+                                        </div>
+                                    </div>
+                                    <!-- More coaches would be listed here -->
+                                </div>
+                            </div>
+                            
+                            <div class="text-center pt-4">
+                                <button class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                                    Load More Connections
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script src="static/js/main.js"></script>
+    <script>
+        // Profile photo handling
+        const changePhotoBtn = document.getElementById('changePhotoBtn');
+        const photoInput = document.getElementById('photoInput');
+        const profileImage = document.getElementById('profileImage');
+
+        changePhotoBtn.addEventListener('click', () => {
+            photoInput.click();
+        });
+
+        photoInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    profileImage.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Profile form handling
+        const profileForm = document.getElementById('profileForm');
+        profileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Profile updated successfully!');
+        });
+
+        // Tab navigation
+        const tabButtons = document.querySelectorAll('.profile-nav button');
+        const contentSections = document.querySelectorAll('.profile-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active', 'border-blue-600', 'text-blue-600');
+                    btn.classList.add('border-transparent', 'text-gray-600');
+                });
+                contentSections.forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active', 'border-blue-600', 'text-blue-600');
+                button.classList.remove('border-transparent', 'text-gray-600');
+                
+                // Show corresponding content
+                const targetSection = button.getAttribute('data-section');
+                document.getElementById(targetSection).classList.remove('hidden');
+            });
+        });
+
+        // Generate Team QR Code Function
+        function generateTeamQR(elementId) {
+            const teamQRCode = document.getElementById(elementId);
+            
+            // Clear previous QR code
+            teamQRCode.innerHTML = '';
+            
+            // Generate QR code with team info
+            const qrData = JSON.stringify({
+                teamId: 'WAR-2023-01',
+                teamName: 'Warriors',
+                organization: 'Track & Field Association',
+                type: 'team-join',
+                timestamp: new Date().toISOString()
+            });
+            
+            QRCode.toCanvas(teamQRCode, qrData, {
+                width: elementId === 'teamQRCode' ? 256 : 192,
+                margin: 1,
+                color: {
+                    dark: '#2563eb',
+                    light: '#ffffff'
+                }
+            }, function(error) {
+                if (error) console.error(error);
+            });
+        }
+
+        // Generate QR codes when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            generateTeamQR('teamQRCode');
+            generateTeamQR('teamManagementQRCode');
+        });
+
+        // Download QR Code buttons
+        document.getElementById('downloadQRBtn').addEventListener('click', () => {
+            downloadQRCode('teamQRCode');
+        });
+        
+        document.getElementById('downloadManagementQRBtn').addEventListener('click', () => {
+            downloadQRCode('teamManagementQRCode');
+        });
+        
+        function downloadQRCode(elementId) {
+            const canvas = document.querySelector(`#${elementId} canvas`);
+            if (canvas) {
+                const link = document.createElement('a');
+                link.download = 'team-qr-code.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
+        }
+
+        // Regenerate QR Code buttons
+        document.getElementById('regenerateQRBtn').addEventListener('click', () => {
+            generateTeamQR('teamQRCode');
+        });
+        
+        document.getElementById('regenerateManagementQRBtn').addEventListener('click', () => {
+            generateTeamQR('teamManagementQRCode');
+        });
+    </script>
+
+    <!-- My Team Footer Section -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold mb-6">My Team</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Current Team Box -->
+                    <div id="currentTeamBox" class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-all cursor-pointer">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold">Current Team</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">View and manage your current team, including athlete profiles and team statistics.</p>
+                        <button class="text-blue-400 hover:text-blue-300 font-medium flex items-center">
+                            View Details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Add New Team Box -->
+                    <div id="addTeamBox" class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-all cursor-pointer">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold">Add New Team</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">Create a new team and add athletes, coaches, and training programs.</p>
+                        <button class="text-green-400 hover:text-green-300 font-medium flex items-center">
+                            Create Team
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Former Team Box -->
+                    <div id="formerTeamBox" class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-all cursor-pointer">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold">Former Teams</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">Access historical team data, achievements, and athlete performance records.</p>
+                        <button class="text-purple-400 hover:text-purple-300 font-medium flex items-center">
+                            View Archive
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-700">
+                <div class="mb-4 md:mb-0">
+                    <img src="static/image/Logo Black.png" alt="3&7 Logo" class="h-10 invert">
+                </div>
+                <div class="text-gray-400 text-sm">
+                    &copy; 2023 3&7 Training & Recovery Platform. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Overlay -->
+    <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <!-- Current Team Modal -->
+        <div id="currentTeamModal" class="bg-white rounded-xl shadow-xl p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Current Team Details</h2>
+                <button class="modal-close text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="space-y-8">
+                <!-- Team Biodata -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Team Biodata</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-gray-600 font-medium">Team Name</p>
+                            <p class="text-gray-900">Warriors</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 font-medium">Established</p>
+                            <p class="text-gray-900">January 15, 2023</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 font-medium">Primary Sport</p>
+                            <p class="text-gray-900">Track & Field</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 font-medium">Location</p>
+                            <p class="text-gray-900">New York, USA</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-600 font-medium">Description</p>
+                        <p class="text-gray-900">Professional track and field team focused on sprints and middle distance events. Competing in national and international championships.</p>
+                    </div>
+                </div>
+
+                <!-- Team Members -->
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Team Members</h3>
+                    <div class="mb-4">
+                        <h4 class="font-medium text-gray-700 mb-2">Coaches</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="flex items-center p-3 border rounded-lg">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                    <span class="font-medium text-blue-600">JD</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium">John Doe</p>
+                                    <p class="text-sm text-gray-600">Head Coach</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 border rounded-lg">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                    <span class="font-medium text-blue-600">SM</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Sarah Miller</p>
+                                    <p class="text-sm text-gray-600">Assistant Coach</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-gray-700 mb-2">Athletes</h4>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="flex items-center p-3 border rounded-lg">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                    <span class="font-medium text-green-600">MJ</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Mike Johnson</p>
+                                    <p class="text-sm text-gray-600">Sprinter</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 border rounded-lg">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                    <span class="font-medium text-green-600">LW</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Lisa Wilson</p>
+                                    <p class="text-sm text-gray-600">Middle Distance</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 border rounded-lg">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                    <span class="font-medium text-green-600">RB</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Robert Brown</p>
+                                    <p class="text-sm text-gray-600">Sprinter</p>
+                                </div>
+                            </div>
+                            <!-- More athletes can be added here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team History -->
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Team History</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-600 pl-4 py-2">
+                            <p class="font-medium">National Championship - 2nd Place</p>
+                            <p class="text-sm text-gray-600">June 15, 2023</p>
+                        </div>
+                        <div class="border-l-4 border-blue-600 pl-4 py-2">
+                            <p class="font-medium">Regional Tournament - 1st Place</p>
+                            <p class="text-sm text-gray-600">April 22, 2023</p>
+                        </div>
+                        <div class="border-l-4 border-blue-600 pl-4 py-2">
+                            <p class="font-medium">Team Formation</p>
+                            <p class="text-sm text-gray-600">January 15, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add New Team Modal -->
+        <div id="addTeamModal" class="bg-white rounded-xl shadow-xl p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Create New Team</h2>
+                <button class="modal-close text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <form id="newTeamForm" class="space-y-6">
+                <div>
+                    <label class="block text-gray-700 mb-2">Team Name *</label>
+                    <input type="text" class="w-full p-3 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Primary Sport *</label>
+                    <select class="w-full p-3 border rounded-lg" required>
+                        <option value="">Select a sport</option>
+                        <option value="track">Track & Field</option>
+                        <option value="swimming">Swimming</option>
+                        <option value="basketball">Basketball</option>
+                        <option value="soccer">Soccer</option>
+                        <option value="volleyball">Volleyball</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Location *</label>
+                    <input type="text" class="w-full p-3 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Team Description</label>
+                    <textarea class="w-full p-3 border rounded-lg" rows="4" placeholder="Describe your team, its goals, and focus areas"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Team Logo</label>
+                    <input type="file" accept="image/*" class="w-full p-3 border rounded-lg">
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" class="modal-close px-4 py-2 bg-gray-200 text-gray-800 rounded-lg mr-2 hover:bg-gray-300">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Create Team</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Former Teams Modal -->
+        <div id="formerTeamModal" class="bg-white rounded-xl shadow-xl p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Former Teams Archive</h2>
+                <button class="modal-close text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Former Team 1 -->
+                    <div class="border rounded-lg overflow-hidden">
+                        <div class="bg-gray-100 p-4 border-b">
+                            <h3 class="font-semibold text-lg">Lightning Runners</h3>
+                            <p class="text-sm text-gray-600">2020 - 2022</p>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <p><span class="font-medium">Sport:</span> Track & Field</p>
+                            <p><span class="font-medium">Members:</span> 12 athletes, 2 coaches</p>
+                            <p><span class="font-medium">Achievements:</span> National Championship 2021</p>
+                            <div class="mt-4">
+                                <button class="text-blue-600 hover:text-blue-700 font-medium text-sm">View Full Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Former Team 2 -->
+                    <div class="border rounded-lg overflow-hidden">
+                        <div class="bg-gray-100 p-4 border-b">
+                            <h3 class="font-semibold text-lg">Blue Eagles</h3>
+                            <p class="text-sm text-gray-600">2018 - 2020</p>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <p><span class="font-medium">Sport:</span> Swimming</p>
+                            <p><span class="font-medium">Members:</span> 8 athletes, 1 coach</p>
+                            <p><span class="font-medium">Achievements:</span> Regional Championships 2019</p>
+                            <div class="mt-4">
+                                <button class="text-blue-600 hover:text-blue-700 font-medium text-sm">View Full Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button class="px-6 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50">Load More Teams</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modalOverlay = document.getElementById('modalOverlay');
+        const currentTeamBox = document.getElementById('currentTeamBox');
+        const addTeamBox = document.getElementById('addTeamBox');
+        const formerTeamBox = document.getElementById('formerTeamBox');
+        const currentTeamModal = document.getElementById('currentTeamModal');
+        const addTeamModal = document.getElementById('addTeamModal');
+        const formerTeamModal = document.getElementById('formerTeamModal');
+        const closeButtons = document.querySelectorAll('.modal-close');
+
+        // Open Current Team Modal
+        currentTeamBox.addEventListener('click', () => {
+            modalOverlay.classList.remove('hidden');
+            currentTeamModal.classList.remove('hidden');
+        });
+
+        // Open Add Team Modal
+        addTeamBox.addEventListener('click', () => {
+            modalOverlay.classList.remove('hidden');
+            addTeamModal.classList.remove('hidden');
+        });
+
+        // Open Former Team Modal
+        formerTeamBox.addEventListener('click', () => {
+            modalOverlay.classList.remove('hidden');
+            formerTeamModal.classList.remove('hidden');
+        });
+
+        // Close Modal Function
+        function closeModal() {
+            modalOverlay.classList.add('hidden');
+            currentTeamModal.classList.add('hidden');
+            addTeamModal.classList.add('hidden');
+            formerTeamModal.classList.add('hidden');
+        }
+
+        // Close on X button click
+        closeButtons.forEach(button => {
+            button.addEventListener('click', closeModal);
+        });
+
+        // Close on overlay click
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Handle New Team Form submission
+        const newTeamForm = document.getElementById('newTeamForm');
+        newTeamForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically send the data to your backend
+            alert('New team created successfully!');
+            closeModal();
+            // In a real application, you would then update the UI to show the new team
+        });
+    </script>
 </body>
 </html> 

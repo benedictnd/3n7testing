@@ -1,0 +1,25 @@
+{
+  "github": {
+    "auto_sync": {
+      "triggers": [
+        {
+          "event": "file_save",
+          "actions": [
+            "git_add .",
+            "git_commit -m 'Auto-update: {timestamp}'",
+            "git_push"
+          ],
+          "filters": {
+            "file_patterns": ["**/*.ts", "**/*.tsx", "**/*.json", "**/*.py", "**/*.html", "**/*.css"],
+            "min_changes": 3
+          }
+        }
+      ]
+    },
+    "security": {
+      "commit_signing": true,
+      "pat_scope": "repo,workflow",
+      "audit_log": "/var/log/cursor_git.log"
+    }
+  }
+} 
