@@ -45,7 +45,7 @@ const SAMPLE_PROGRAMS: TrainingProgram[] = [
 
 const IndependentTraining: React.FC = () => {
   const [programs, setPrograms] = useState<TrainingProgram[]>([]);
-  
+
   useEffect(() => {
     // In a real application, this would fetch from an API
     setPrograms(SAMPLE_PROGRAMS);
@@ -78,8 +78,8 @@ const IndependentTraining: React.FC = () => {
             <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors">
               Log New Session
             </button>
-          </div>
-          
+                </div>
+
           <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4">My Performance Metrics</h2>
             <p className="mb-4">
@@ -88,9 +88,9 @@ const IndependentTraining: React.FC = () => {
             </p>
             <button className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded transition-colors">
               View My Metrics
-            </button>
-          </div>
-        </div>
+                        </button>
+                      </div>
+                    </div>
         
         <div className="mt-8 text-center">
           <p className="mb-4">Join us in transforming traditional training methods into highly efficient, data-driven approaches.</p>
@@ -100,7 +100,7 @@ const IndependentTraining: React.FC = () => {
           >
             Be a part of generational development in sport
           </a>
-        </div>
+          </div>
       </div>
     </Layout>
   );
