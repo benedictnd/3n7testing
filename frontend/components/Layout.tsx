@@ -26,6 +26,9 @@ const Layout: React.FC<LayoutProps> = ({ children, title = '3&7 | Sports Trainin
               3&7
             </Link>
             <nav className="hidden md:flex space-x-6">
+              <Link href="/about" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                About
+              </Link>
               <Link href="/integrated-training" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Integrated Training
               </Link>
