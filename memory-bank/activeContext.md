@@ -8,13 +8,16 @@ The team is currently focused on UI/UX improvements to enhance the user experien
 - **Performance Optimization**: Created optimized image component with loading states
 - **Component System**: Developed reusable UI components like Button, Skeleton, and Toast
 - **Accessibility Improvements**: Enhanced keyboard navigation and screen reader support
-- **Page Development**: Converted the About page from HTML to React/Next.js with responsive design
+- **Page Development**: 
+  - Converted the About page from HTML to React/Next.js with responsive design
+  - Enhanced the Meet the People section with team member profile pictures using OptimizedImage component
 
 ## Active Decisions
 1. Using a custom ThemeProvider for dark mode instead of a third-party library
 2. Building a comprehensive UI component system rather than adopting an existing library
 3. Focusing on progressive enhancement to support all environments
 4. Converting static HTML pages to dynamic React components with proper TypeScript typing
+5. Using the OptimizedImage component for team member profiles to ensure proper loading states and optimized delivery
 
 ## Current Implementation Details
 - The dark mode toggle saves preferences to localStorage
@@ -22,6 +25,7 @@ The team is currently focused on UI/UX improvements to enhance the user experien
 - Toast notifications provide feedback for user actions
 - The Button component supports multiple variants, sizes, and loading states
 - The About page features animations, responsive design, and interactive elements
+- Team member profiles include optimized images with loading placeholders
 
 ## Next Steps
 1. Implement comprehensive form system with validation

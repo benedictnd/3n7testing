@@ -1,7 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import Layout from '../components/Layout';
+import { OptimizedImage } from '../components/ui/optimized-image';
 
 const AboutPage: React.FC = () => {
   // For smooth scrolling functionality
@@ -202,34 +204,78 @@ const AboutPage: React.FC = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-16 text-center">Meet the People</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-9 max-w-6xl mx-auto">
             {/* Team Member 1 */}
-            <div className="team-member w-full md:w-[250px] h-[300px] mx-auto bg-gradient-to-br from-blue-500 to-blue-900 dark:from-blue-600 dark:to-blue-950 rounded-xl overflow-hidden">
-              <div className="h-full flex flex-col items-center justify-end p-6 text-center">
-                <h3 className="text-xl font-bold text-white mb-2">Benedictus Nathaniel Davin</h3>
-                <p className="text-white/80">Co-Founder, CEO</p>
+            <div className="team-member w-full md:w-[250px] h-[350px] mx-auto bg-gradient-to-br from-blue-500 to-blue-900 dark:from-blue-600 dark:to-blue-950 rounded-xl overflow-hidden">
+              <div className="h-full flex flex-col">
+                <div className="relative w-full h-[200px]">
+                  <OptimizedImage
+                    src="/static/image/Benedictus.png"
+                    alt="Benedictus Nathaniel Davin"
+                    width={250}
+                    height={200}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+                  <h3 className="text-xl font-bold text-white mb-2">Benedictus Nathaniel Davin</h3>
+                  <p className="text-white/80">Co-Founder, CEO</p>
+                </div>
               </div>
             </div>
 
             {/* Team Member 2 */}
-            <div className="team-member w-full md:w-[250px] h-[300px] mx-auto bg-gradient-to-br from-blue-500 to-blue-900 dark:from-blue-600 dark:to-blue-950 rounded-xl overflow-hidden">
-              <div className="h-full flex flex-col items-center justify-end p-6 text-center">
-                <h3 className="text-xl font-bold text-white mb-2">Muhammad Awatarino</h3>
-                <p className="text-white/80">Co-Founder, CFO</p>
+            <div className="team-member w-full md:w-[250px] h-[350px] mx-auto bg-gradient-to-br from-blue-500 to-blue-900 dark:from-blue-600 dark:to-blue-950 rounded-xl overflow-hidden">
+              <div className="h-full flex flex-col">
+                <div className="relative w-full h-[200px]">
+                  <OptimizedImage
+                    src="/static/image/Awattarino.png"
+                    alt="Muhammad Awatarino"
+                    width={250}
+                    height={200}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+                  <h3 className="text-xl font-bold text-white mb-2">Muhammad Awatarino</h3>
+                  <p className="text-white/80">Co-Founder, CFO</p>
+                </div>
               </div>
             </div>
 
             {/* Team Member 3 */}
-            <div className="team-member w-full md:w-[250px] h-[300px] mx-auto bg-gradient-to-br from-blue-500 to-blue-900 dark:from-blue-600 dark:to-blue-950 rounded-xl overflow-hidden">
-              <div className="h-full flex flex-col items-center justify-end p-6 text-center">
-                <h3 className="text-xl font-bold text-white mb-2">Nuroji Lukman</h3>
-                <p className="text-white/80">Co-Founder, Advisory</p>
+            <div className="team-member w-full md:w-[250px] h-[350px] mx-auto bg-gradient-to-br from-blue-500 to-blue-900 dark:from-blue-600 dark:to-blue-950 rounded-xl overflow-hidden">
+              <div className="h-full flex flex-col">
+                <div className="relative w-full h-[200px]">
+                  <OptimizedImage
+                    src="/static/image/Nuroji.png"
+                    alt="Nuroji Lukman"
+                    width={250}
+                    height={200}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+                  <h3 className="text-xl font-bold text-white mb-2">Nuroji Lukman</h3>
+                  <p className="text-white/80">Co-Founder, Advisory</p>
+                </div>
               </div>
             </div>
 
             {/* Team Member 4 */}
-            <div className="team-member w-full md:w-[250px] h-[300px] mx-auto bg-gradient-to-br from-blue-500 to-blue-900 dark:from-blue-600 dark:to-blue-950 rounded-xl overflow-hidden">
-              <div className="h-full flex flex-col items-center justify-end p-6 text-center">
-                <h3 className="text-xl font-bold text-white mb-2">Abi Hasbullah</h3>
-                <p className="text-white/80">Head Advisory, Head Coach of 3&7</p>
+            <div className="team-member w-full md:w-[250px] h-[350px] mx-auto bg-gradient-to-br from-blue-500 to-blue-900 dark:from-blue-600 dark:to-blue-950 rounded-xl overflow-hidden">
+              <div className="h-full flex flex-col">
+                <div className="relative w-full h-[200px]">
+                  <OptimizedImage
+                    src="/static/image/Abi.png"
+                    alt="Abi Hasbullah"
+                    width={250}
+                    height={200}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+                  <h3 className="text-xl font-bold text-white mb-2">Abi Hasbullah</h3>
+                  <p className="text-white/80">Head Advisory, Head Coach of 3&7</p>
+                </div>
               </div>
             </div>
           </div>
