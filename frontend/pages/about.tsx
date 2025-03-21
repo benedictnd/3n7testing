@@ -208,7 +208,7 @@ const AboutPage: React.FC = () => {
               <div className="h-full flex flex-col">
                 <div className="relative w-full h-[200px]">
                   <OptimizedImage
-                    src="/static/image/Benedictus.png"
+                    src="/image/Benedictus.png"
                     alt="Benedictus Nathaniel Davin"
                     width={250}
                     height={200}
@@ -227,7 +227,7 @@ const AboutPage: React.FC = () => {
               <div className="h-full flex flex-col">
                 <div className="relative w-full h-[200px]">
                   <OptimizedImage
-                    src="/static/image/Awattarino.png"
+                    src="/image/Awattarino.png"
                     alt="Muhammad Awatarino"
                     width={250}
                     height={200}
@@ -246,7 +246,7 @@ const AboutPage: React.FC = () => {
               <div className="h-full flex flex-col">
                 <div className="relative w-full h-[200px]">
                   <OptimizedImage
-                    src="/static/image/Nuroji.png"
+                    src="/image/Nuroji.png"
                     alt="Nuroji Lukman"
                     width={250}
                     height={200}
@@ -265,7 +265,7 @@ const AboutPage: React.FC = () => {
               <div className="h-full flex flex-col">
                 <div className="relative w-full h-[200px]">
                   <OptimizedImage
-                    src="/static/image/Abi.png"
+                    src="/image/Abi.png"
                     alt="Abi Hasbullah"
                     width={250}
                     height={200}

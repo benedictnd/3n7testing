@@ -11,6 +11,9 @@ The team is currently focused on UI/UX improvements to enhance the user experien
 - **Page Development**: 
   - Converted the About page from HTML to React/Next.js with responsive design
   - Enhanced the Meet the People section with team member profile pictures using OptimizedImage component
+  - Updated About page layout with improved spacing and centered content
+  - Modified the "More About 3&7" section to display four focused categories in a grid layout
+  - Added team member profile pictures with optimized face-centered framing
 
 ## Active Decisions
 1. Using a custom ThemeProvider for dark mode instead of a third-party library
@@ -18,6 +21,7 @@ The team is currently focused on UI/UX improvements to enhance the user experien
 3. Focusing on progressive enhancement to support all environments
 4. Converting static HTML pages to dynamic React components with proper TypeScript typing
 5. Using the OptimizedImage component for team member profiles to ensure proper loading states and optimized delivery
+6. Applying consistent grid layouts for better responsive design and visual hierarchy
 
 ## Current Implementation Details
 - The dark mode toggle saves preferences to localStorage
@@ -25,7 +29,8 @@ The team is currently focused on UI/UX improvements to enhance the user experien
 - Toast notifications provide feedback for user actions
 - The Button component supports multiple variants, sizes, and loading states
 - The About page features animations, responsive design, and interactive elements
-- Team member profiles include optimized images with loading placeholders
+- Team member profiles include centered profile pictures with proper scaling for focus on faces
+- The "More About 3&7" section uses a responsive grid layout with four key categories
 
 ## Next Steps
 1. Implement comprehensive form system with validation
