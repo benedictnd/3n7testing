@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Schedule - 3&7 Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-navy': '#09104E',
+                        'electric-blue': '#353DFF',
+                        'bright-blue': '#333AFA',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .session-morning {
+            background-color: rgba(53, 61, 255, 0.8);
+            color: white;
+        }
+        .session-evening {
+            background-color: rgba(9, 16, 78, 0.8);
+            color: white;
+        }
+        .session-independent {
+            background-color: rgba(16, 185, 129, 0.8);
+            color: white;
+        }
+        .session-poor {
+            border-left: 4px solid #ef4444;
+        }
+        .hero-bg {
+            background-color: #09104E;
+        }
+        @media (max-width: 768px) {
+            .calendar-legend {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .calendar-tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-[Poppins]">
+    <!-- Header / Navigation -->
+    <header class="hero-bg text-white sticky top-0 z-10 shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <a href="/training-completion" class="text-white hover:text-blue-200 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <img src="/static/image/Logo White.png" alt="3&7 Logo" class="h-10">
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="/feedback" class="text-sm text-white hover:text-blue-200">Feedback</a>
+                    <a href="/history" class="text-sm text-white hover:text-blue-200">History</a>
+                    <a href="#" class="text-sm text-white hover:text-blue-200">Profile</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Main Title -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl font-semibold text-gray-800 mb-2">Training Schedule</h1>
+                <p class="text-gray-600">Manage and track all training sessions for your team</p>
+            </div>
+            <div class="flex gap-3 flex-wrap">
+                <a href="/templates/presentation_report.html" class="bg-white border border-electric-blue text-electric-blue px-4 py-2 rounded-lg hover:bg-gray-50 transition-all flex items-center gap-1 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd" />
+                    </svg>
+                    View Monthly Report
+                </a>
+                <a href="/new-training" class="bg-electric-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all flex items-center gap-1 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                    Create Training
+                </a>
+            </div>
+        </div>
+
+        <!-- View Options Tabs -->
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                    <a href="#" class="border-electric-blue text-electric-blue border-b-2 whitespace-nowrap py-2 px-1 font-medium text-sm" id="calendar-view-tab">
+                        Calendar View
+                    </a>
+                    <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 font-medium text-sm border-b-2" id="sessions-view-tab">
+                        All Sessions
+                    </a>
+                    <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 font-medium text-sm border-b-2" id="performance-view-tab">
+                        Team Performance
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Calendar View Content -->
+        <div id="calendar-view-content">
+            <!-- Calendar Navigation -->
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-4 flex flex-col md:flex-row justify-between">
+                <div class="flex gap-2 mb-3 md:mb-0 overflow-x-auto calendar-tabs">
+                    <button class="text-sm px-4 py-2 bg-electric-blue text-white rounded-lg">Week 1</button>
+                    <button class="text-sm px-4 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg">Week 2</button>
+                    <button class="text-sm px-4 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg">Week 3</button>
+                    <button class="text-sm px-4 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg">Week 4</button>
+                    <button class="text-sm px-4 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg">Week 5</button>
+                </div>
+                <div class="flex items-center gap-4 calendar-legend">
+                    <div class="flex items-center gap-1">
+                        <span class="w-3 h-3 bg-electric-blue inline-block rounded-full"></span>
+                        <span class="text-sm text-gray-600">Morning (08:00 - 10:00)</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <span class="w-3 h-3 bg-deep-navy inline-block rounded-full"></span>
+                        <span class="text-sm text-gray-600">Evening (18:00 - 20:00)</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <span class="w-3 h-3 bg-green-600 inline-block rounded-full"></span>
+                        <span class="text-sm text-gray-600">Independent</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Week Calendar -->
+            <div id="week1" class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <h2 class="text-xl font-medium text-gray-700 mb-4">Week 1: January 1-7, 2024</h2>
+                
+                <div class="grid grid-cols-7 gap-4">
+                    <!-- Day Headers -->
+                    <div class="text-center text-gray-600 font-medium">Sunday</div>
+                    <div class="text-center text-gray-600 font-medium">Monday</div>
+                    <div class="text-center text-gray-600 font-medium">Tuesday</div>
+                    <div class="text-center text-gray-600 font-medium">Wednesday</div>
+                    <div class="text-center text-gray-600 font-medium">Thursday</div>
+                    <div class="text-center text-gray-600 font-medium">Friday</div>
+                    <div class="text-center text-gray-600 font-medium">Saturday</div>
+                    
+                    <!-- Day 1 - Sunday (No Training) -->
+                    <div class="bg-gray-50 min-h-[140px] rounded-lg p-2">
+                        <div class="text-right text-gray-600 mb-2">1</div>
+                        <p class="text-gray-500 text-sm text-center mt-10">No Training</p>
+                    </div>
+                    
+                    <!-- Day 2 - Monday -->
+                    <div class="bg-gray-50 min-h-[140px] rounded-lg p-2">
+                        <div class="text-right text-gray-600 mb-2">2</div>
+                        <div class="space-y-2">
+                            <div class="session-morning text-sm p-2 rounded">
+                                <span class="font-medium">Morning</span>
+                                <p>08:00 - 10:00</p>
+                                <p class="text-xs mt-1 text-blue-100">10 athletes</p>
+                            </div>
+                            <div class="session-evening text-sm p-2 rounded">
+                                <span class="font-medium">Evening</span>
+                                <p>18:00 - 20:00</p>
+                                <p class="text-xs mt-1 text-blue-100">8 athletes</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Day 3 - Tuesday -->
+                    <div class="bg-gray-50 min-h-[140px] rounded-lg p-2">
+                        <div class="text-right text-gray-600 mb-2">3</div>
+                        <div class="space-y-2">
+                            <div class="session-morning text-sm p-2 rounded">
+                                <span class="font-medium">Morning</span>
+                                <p>08:00 - 10:00</p>
+                                <p class="text-xs mt-1 text-blue-100">12 athletes</p>
+                            </div>
+                            <div class="session-evening text-sm p-2 rounded">
+                                <span class="font-medium">Evening</span>
+                                <p>18:00 - 20:00</p>
+                                <p class="text-xs mt-1 text-blue-100">10 athletes</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Day 4 - Wednesday -->
+                    <div class="bg-gray-50 min-h-[140px] rounded-lg p-2">
+                        <div class="text-right text-gray-600 mb-2">4</div>
+                        <div class="space-y-2">
+                            <div class="session-morning text-sm p-2 rounded">
+                                <span class="font-medium">Morning</span>
+                                <p>08:00 - 10:00</p>
+                                <p class="text-xs mt-1 text-blue-100">9 athletes</p>
+                            </div>
+                            <div class="session-evening text-sm p-2 rounded">
+                                <span class="font-medium">Evening</span>
+                                <p>18:00 - 20:00</p>
+                                <p class="text-xs mt-1 text-blue-100">7 athletes</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Day 5 - Thursday (No Training) -->
+                    <div class="bg-gray-50 min-h-[140px] rounded-lg p-2">
+                        <div class="text-right text-gray-600 mb-2">5</div>
+                        <p class="text-gray-500 text-sm text-center mt-10">No Training</p>
+                    </div>
+                    
+                    <!-- Day 6 - Friday -->
+                    <div class="bg-gray-50 min-h-[140px] rounded-lg p-2">
+                        <div class="text-right text-gray-600 mb-2">6</div>
+                        <div class="space-y-2">
+                            <div class="session-morning text-sm p-2 rounded">
+                                <span class="font-medium">Morning</span>
+                                <p>08:00 - 10:00</p>
+                                <p class="text-xs mt-1 text-blue-100">11 athletes</p>
+                            </div>
+                            <div class="session-evening text-sm p-2 rounded">
+                                <span class="font-medium">Evening</span>
+                                <p>18:00 - 20:00</p>
+                                <p class="text-xs mt-1 text-blue-100">9 athletes</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Day 7 - Saturday -->
+                    <div class="bg-gray-50 min-h-[140px] rounded-lg p-2">
+                        <div class="text-right text-gray-600 mb-2">7</div>
+                        <div class="space-y-2">
+                            <div class="session-morning text-sm p-2 rounded">
+                                <span class="font-medium">Morning</span>
+                                <p>08:00 - 10:00</p>
+                                <p class="text-xs mt-1 text-blue-100">12 athletes</p>
+                            </div>
+                            <div class="session-independent text-sm p-2 rounded">
+                                <span class="font-medium">Independent</span>
+                                <p>11:00 - 13:00</p>
+                                <p class="text-xs mt-1 text-green-100">1 athlete (James K.)</p>
+                            </div>
+                            <div class="session-evening text-sm p-2 rounded">
+                                <span class="font-medium">Evening</span>
+                                <p>18:00 - 20:00</p>
+                                <p class="text-xs mt-1 text-blue-100">8 athletes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other weeks would be hidden by default -->
+            <div id="week2" class="bg-white rounded-lg shadow-sm p-6 mb-8 hidden">
+                <h2 class="text-xl font-medium text-gray-700 mb-4">Week 2: January 8-14, 2024</h2>
+                <!-- Week 2 content similar to Week 1 -->
+            </div>
+            
+            <!-- Upcoming Individual Sessions -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <h2 class="text-xl font-medium text-gray-700 mb-6">Upcoming Individual Sessions</h2>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="border-b border-gray-200">
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Athlete</th>
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Date & Time</th>
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Session Type</th>
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Status</th>
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                                            <img src="/static/image/athlete1.jpg" alt="James Kevin" class="h-full w-full object-cover">
+                                        </div>
+                                        <span>James Kevin</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">January 7, 2024<br>11:00 - 13:00</td>
+                                <td class="py-3 px-4">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Independent
+                                    </span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Confirmed
+                                    </span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <a href="/session/details/1" class="text-electric-blue hover:underline">Details</a>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                                            <img src="/static/image/athlete1.jpg" alt="James Kevin" class="h-full w-full object-cover">
+                                        </div>
+                                        <span>James Kevin</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">January 11, 2024<br>11:00 - 12:00</td>
+                                <td class="py-3 px-4">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Independent
+                                    </span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                        Pending
+                                    </span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <a href="/session/details/2" class="text-electric-blue hover:underline">Details</a>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                                            <img src="/static/image/athlete2.jpg" alt="Maria Chen" class="h-full w-full object-cover">
+                                        </div>
+                                        <span>Maria Chen</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">January 8, 2024<br>18:00 - 20:00</td>
+                                <td class="py-3 px-4">Evening Training</td>
+                                <td class="py-3 px-4">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                        Pending
+                                    </span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <a href="/session/details/3" class="text-electric-blue hover:underline">Details</a>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                                            <img src="/static/image/athlete3.jpg" alt="Alex Johnson" class="h-full w-full object-cover">
+                                        </div>
+                                        <span>Alex Johnson</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">January 9, 2024<br>08:00 - 10:00</td>
+                                <td class="py-3 px-4">Morning Training</td>
+                                <td class="py-3 px-4">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Confirmed
+                                    </span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <a href="/session/details/4" class="text-electric-blue hover:underline">Details</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <a href="/all-sessions" class="text-electric-blue hover:text-deep-navy transition-colors inline-flex items-center gap-1">
+                        View All Sessions
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Independent Training Programs -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <h2 class="text-xl font-medium text-gray-700 mb-4">Independent Training Programs</h2>
+                <p class="text-gray-600 mb-6">Encourage athletes to commit to additional independent training to supplement their regular schedule.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <h3 class="font-medium text-gray-800 mb-2">Recovery & Flexibility</h3>
+                        <p class="text-gray-600 text-sm mb-3">Light stretching sessions to improve flexibility and aid recovery between main training sessions.</p>
+                        <ul class="text-sm text-gray-600 space-y-1 mb-4">
+                            <li class="flex items-start gap-2">
+                                <svg class="h-5 w-5 text-green-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Recommended duration: 45-60 min</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="h-5 w-5 text-green-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Example: James K. (Wednesdays, 11-12)</span>
+                            </li>
+                        </ul>
+                        <a href="/programs/recovery" class="text-electric-blue text-sm hover:underline">View program details →</a>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <h3 class="font-medium text-gray-800 mb-2">Fundamentals Practice</h3>
+                        <p class="text-gray-600 text-sm mb-3">Practice fundamental skills like stretching, ABC running, and body control exercises.</p>
+                        <ul class="text-sm text-gray-600 space-y-1 mb-4">
+                            <li class="flex items-start gap-2">
+                                <svg class="h-5 w-5 text-green-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Recommended duration: 1.5-2 hours</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg class="h-5 w-5 text-green-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Example: James K. (Saturdays, 11-1)</span>
+                            </li>
+                        </ul>
+                        <a href="/programs/fundamentals" class="text-electric-blue text-sm hover:underline">View program details →</a>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <h3 class="font-medium text-gray-800 mb-2">Create Custom Program</h3>
+                        <p class="text-gray-600 text-sm mb-3">Design a custom independent training program tailored to specific athlete needs.</p>
+                        <div class="flex justify-center my-4">
+                            <button class="bg-electric-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all flex items-center gap-1 text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                                </svg>
+                                Create New Program
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- All Sessions View Content (hidden by default) -->
+        <div id="sessions-view-content" class="hidden">
+            <!-- Filter and Search Bar -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <div class="flex flex-col md:flex-row gap-4 items-end">
+                    <div class="w-full md:w-1/4">
+                        <label for="month-filter" class="block text-sm font-medium text-gray-700 mb-1">Month</label>
+                        <select id="month-filter" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-electric-blue focus:border-electric-blue">
+                            <option value="january" selected>January 2024</option>
+                            <option value="february">February 2024</option>
+                            <option value="march">March 2024</option>
+                        </select>
+                    </div>
+                    
+                    <div class="w-full md:w-1/4">
+                        <label for="type-filter" class="block text-sm font-medium text-gray-700 mb-1">Session Type</label>
+                        <select id="type-filter" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-electric-blue focus:border-electric-blue">
+                            <option value="all" selected>All Types</option>
+                            <option value="morning">Morning</option>
+                            <option value="evening">Evening</option>
+                            <option value="independent">Independent</option>
+                        </select>
+                    </div>
+                    
+                    <div class="w-full md:w-1/4">
+                        <label for="athlete-filter" class="block text-sm font-medium text-gray-700 mb-1">Athlete</label>
+                        <select id="athlete-filter" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-electric-blue focus:border-electric-blue">
+                            <option value="all" selected>All Athletes</option>
+                            <option value="james">James Kevin</option>
+                            <option value="maria">Maria Chen</option>
+                            <option value="alex">Alex Johnson</option>
+                        </select>
+                    </div>
+                    
+                    <div class="w-full md:w-1/4">
+                        <div class="relative rounded-md shadow-sm">
+                            <input type="text" name="search" id="search" class="w-full border-gray-300 rounded-md pl-10 pr-4 py-2 focus:ring-electric-blue focus:border-electric-blue" placeholder="Search sessions">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Simple Excel-like All Sessions Table -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-8">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                    <h2 class="text-xl font-medium text-gray-700">All Training Sessions</h2>
+                    <p class="text-sm text-gray-500 mt-1">Showing all 44 sessions for January 2024</p>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200">
+                                    Name
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200">
+                                    Schedule
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200">
+                                    Training Type
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200">
+                                    Status
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- Session Row 1 -->
+                            <tr class="hover:bg-gray-50 border-b border-gray-100">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">James Kevin</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">Jan 2, 2024 (08:00 - 10:00)</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        Morning
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Completed
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
+                                    <a href="/session/details/101" class="text-electric-blue hover:underline">View</a>
+                                </td>
+                            </tr>
+                            
+                            <!-- Session Row 2 -->
+                            <tr class="hover:bg-gray-50 border-b border-gray-100">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">Maria Chen</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">Jan 2, 2024 (08:00 - 10:00)</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        Morning
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Completed
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
+                                    <a href="/session/details/101" class="text-electric-blue hover:underline">View</a>
+                                </td>
+                            </tr>
+                            
+                            <!-- Session Row 3 -->
+                            <tr class="hover:bg-gray-50 border-b border-gray-100">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">Alex Johnson</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">Jan 2, 2024 (08:00 - 10:00)</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        Morning
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Completed
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
+                                    <a href="/session/details/101" class="text-electric-blue hover:underline">View</a>
+                                </td>
+                            </tr>
+                            
+                            <!-- Session Row 4 -->
+                            <tr class="hover:bg-gray-50 border-b border-gray-100">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">James Kevin</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">Jan 2, 2024 (18:00 - 20:00)</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                        Evening
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Completed
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
+                                    <a href="/session/details/102" class="text-electric-blue hover:underline">View</a>
+                                </td>
+                            </tr>
+                            
+                            <!-- Independent Session -->
+                            <tr class="hover:bg-gray-50 border-b border-gray-100 bg-green-50">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">James Kevin</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">Jan 7, 2024 (11:00 - 13:00)</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Independent
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Confirmed
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
+                                    <a href="/session/details/1" class="text-electric-blue hover:underline">View</a>
+                                </td>
+                            </tr>
+                            
+                            <!-- Poor Feedback Session -->
+                            <tr class="hover:bg-gray-50 border-b border-gray-100 bg-red-50">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">James Kevin</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm text-gray-900 border-r border-gray-200">Jan 22, 2024 (08:00 - 10:00)</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        Morning
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm border-r border-gray-200">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                        Poor Feedback
+                                    </span>
+                                </td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
+                                    <a href="/session/details/143" class="text-electric-blue hover:underline">View</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-sm text-gray-700">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">6</span> of <span class="font-medium">44</span> results
+                            </p>
+                        </div>
+                        <div>
+                            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <span class="sr-only">Previous</span>
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                                <a href="#" aria-current="page" class="z-10 bg-electric-blue border-electric-blue text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                    1
+                                </a>
+                                <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                    2
+                                </a>
+                                <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                    3
+                                </a>
+                                <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                                    ...
+                                </span>
+                                <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                    8
+                                </a>
+                                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <span class="sr-only">Next</span>
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed Feedback Section -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-8">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                    <h2 class="text-xl font-medium text-gray-700">Training Feedback Details</h2>
+                    <p class="text-sm text-gray-500 mt-1">Comprehensive feedback from athletes</p>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <!-- Feedback 1 - Poor Feedback -->
+                    <div class="border border-red-200 rounded-lg p-4 bg-red-50">
+                        <div class="flex flex-col sm:flex-row justify-between mb-4">
+                            <div>
+                                <h3 class="font-medium text-gray-900">James Kevin</h3>
+                                <p class="text-sm text-gray-500">January 22, 2024 (Morning Session)</p>
+                            </div>
+                            <div class="mt-2 sm:mt-0">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                    Poor Feedback
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-700 mb-1">Athlete Comment:</h4>
+                            <div class="bg-white p-3 rounded border border-gray-200">
+                                <p class="text-sm text-gray-700">
+                                    "I felt extremely fatigued during this morning session. My muscles were sore from the previous day's training, and I struggled to complete even the warm-up exercises. I think we need to reassess the training intensity for morning sessions, especially after heavy training days."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-700 mb-1">Coach Response:</h4>
+                            <div class="bg-white p-3 rounded border border-gray-200">
+                                <p class="text-sm text-gray-700">
+                                    "Thank you for the feedback, James. I've noticed this pattern in Week 4 morning sessions. We'll adjust the training intensity and incorporate more recovery exercises. I'll also schedule a one-on-one session to discuss a personalized recovery plan."
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700 mb-1">Metrics:</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Energy Level</p>
+                                    <p class="text-lg font-medium text-red-600">2/10</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Pain Level</p>
+                                    <p class="text-lg font-medium text-red-600">7/10</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Sleep Quality</p>
+                                    <p class="text-lg font-medium text-yellow-600">5/10</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Recovery Score</p>
+                                    <p class="text-lg font-medium text-red-600">3/10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feedback 2 - Good Feedback -->
+                    <div class="border border-green-200 rounded-lg p-4 bg-green-50">
+                        <div class="flex flex-col sm:flex-row justify-between mb-4">
+                            <div>
+                                <h3 class="font-medium text-gray-900">Maria Chen</h3>
+                                <p class="text-sm text-gray-500">January 3, 2024 (Morning Session)</p>
+                            </div>
+                            <div class="mt-2 sm:mt-0">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    Excellent Feedback
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-700 mb-1">Athlete Comment:</h4>
+                            <div class="bg-white p-3 rounded border border-gray-200">
+                                <p class="text-sm text-gray-700">
+                                    "Today's training session was excellent! The new drills we incorporated were challenging but effective. I feel like my conditioning is improving, and I'm seeing progress in my skill development. The balance between technical work and conditioning was perfect."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-700 mb-1">Coach Response:</h4>
+                            <div class="bg-white p-3 rounded border border-gray-200">
+                                <p class="text-sm text-gray-700">
+                                    "Great to hear, Maria! You've been showing consistent improvement in your technical skills. I'm pleased with how you handled the new drills today. We'll continue to build on this in our upcoming sessions, gradually increasing the intensity to match your development."
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700 mb-1">Metrics:</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Energy Level</p>
+                                    <p class="text-lg font-medium text-green-600">9/10</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Pain Level</p>
+                                    <p class="text-lg font-medium text-green-600">1/10</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Sleep Quality</p>
+                                    <p class="text-lg font-medium text-green-600">8/10</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Recovery Score</p>
+                                    <p class="text-lg font-medium text-green-600">9/10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feedback 3 - Average Feedback -->
+                    <div class="border border-yellow-200 rounded-lg p-4 bg-yellow-50">
+                        <div class="flex flex-col sm:flex-row justify-between mb-4">
+                            <div>
+                                <h3 class="font-medium text-gray-900">Alex Johnson</h3>
+                                <p class="text-sm text-gray-500">January 6, 2024 (Evening Session)</p>
+                            </div>
+                            <div class="mt-2 sm:mt-0">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    Average Feedback
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-700 mb-1">Athlete Comment:</h4>
+                            <div class="bg-white p-3 rounded border border-gray-200">
+                                <p class="text-sm text-gray-700">
+                                    "Today's session was okay. I felt a bit distracted and couldn't fully focus on some of the exercises. The team coordination drills were useful, but I think I need more individual technical work. My left-side movements still feel unbalanced compared to my right side."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-700 mb-1">Coach Response:</h4>
+                            <div class="bg-white p-3 rounded border border-gray-200">
+                                <p class="text-sm text-gray-700">
+                                    "Thanks for the honest feedback, Alex. I agree that we need to address the imbalance in your movements. Let's schedule some additional time for technical work focused on left-side development. I'll also prepare some concentration exercises for our next session to help with focus."
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700 mb-1">Metrics:</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Energy Level</p>
+                                    <p class="text-lg font-medium text-yellow-600">6/10</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Pain Level</p>
+                                    <p class="text-lg font-medium text-yellow-600">3/10</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Sleep Quality</p>
+                                    <p class="text-lg font-medium text-yellow-600">6/10</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <p class="text-xs text-gray-500">Recovery Score</p>
+                                    <p class="text-lg font-medium text-yellow-600">7/10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feedback Summary -->
+                <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                    <h3 class="font-medium text-gray-800 mb-2">Feedback Summary</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white p-3 rounded border border-gray-200 flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">Positive Feedback</p>
+                                <p class="text-2xl font-semibold text-gray-800">36</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3 rounded border border-gray-200 flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center text-white mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">Average Feedback</p>
+                                <p class="text-2xl font-semibold text-gray-800">4</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3 rounded border border-gray-200 flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">Poor Feedback</p>
+                                <p class="text-2xl font-semibold text-gray-800">4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Performance View Content (hidden by default) -->
+        <div id="performance-view-content" class="hidden">
+            <!-- Monthly Performance Header -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Team Performance Overview</h2>
+                        <p class="text-gray-600">January 2024 Monthly Statistics</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <select class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg focus:ring-electric-blue focus:border-electric-blue">
+                            <option>January 2024</option>
+                            <option>December 2023</option>
+                            <option>November 2023</option>
+                        </select>
+                        <a href="/templates/presentation_report.html" class="bg-electric-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all flex items-center gap-1 text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd" />
+                            </svg>
+                            View Presentation
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <!-- Total Training Sessions -->
+                    <div class="bg-gradient-to-br from-deep-navy to-electric-blue rounded-lg p-6 text-white">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-white/20 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-blue-100">Total Training Sessions</p>
+                                <div class="flex items-end gap-1">
+                                    <p class="text-3xl font-bold">44</p>
+                                    <p class="text-xs text-blue-200 mb-1">(+4 independent)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="w-full bg-white/20 h-1 rounded-full overflow-hidden">
+                                <div class="bg-white h-full rounded-full" style="width: 90%"></div>
+                            </div>
+                            <p class="text-xs mt-1 text-blue-100">90% of scheduled sessions completed</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Average Attendance -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-500">Average Attendance</p>
+                                <p class="text-3xl font-bold text-gray-800">9.5</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-100 h-1 rounded-full overflow-hidden">
+                                <div class="bg-green-500 h-full rounded-full" style="width: 85%"></div>
+                            </div>
+                            <p class="text-xs mt-1 text-gray-500">85% of team attended regularly</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Feedback Quality -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-500">Positive Feedback</p>
+                                <p class="text-3xl font-bold text-gray-800">82%</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="flex text-xs">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Excellent: 36</span>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded mx-1">Average: 4</span>
+                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded">Poor: 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Training Hours -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-500">Total Training Hours</p>
+                                <div class="flex items-end gap-1">
+                                    <p class="text-3xl font-bold text-gray-800">84</p>
+                                    <p class="text-xs text-gray-500 mb-1">(+6 independent)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-100 h-1 rounded-full overflow-hidden">
+                                <div class="bg-electric-blue h-full rounded-full" style="width: 95%"></div>
+                            </div>
+                            <p class="text-xs mt-1 text-gray-500">95% of planned hours delivered</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Note about independent training -->
+                <div class="mt-6 bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+                    <div class="flex items-start gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                            <p class="font-medium text-yellow-800">Note on Independent Training Sessions</p>
+                            <p class="text-sm text-yellow-700 mt-1">Some statistics do not yet fully include independent training sessions. We're working on integrating this data for a more comprehensive overview. Currently, 4 independent training sessions have been recorded this month.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <!-- Top Athletes by Attendance -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <h3 class="text-xl font-medium text-gray-700 mb-6">Top Athletes by Attendance</h3>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="border-b border-gray-200">
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Rank</th>
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Athlete</th>
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Sessions Attended</th>
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Attendance Rate</th>
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Independent Training</th>
+                                <th class="text-left text-sm font-medium text-gray-600 py-3 px-4">Feedback Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Athlete 1 -->
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center justify-center w-8 h-8 bg-blue-500 text-white rounded-full">1</div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                                            <img src="/static/image/athlete1.jpg" alt="James Kevin" class="h-full w-full object-cover">
+                                        </div>
+                                        <span>James Kevin</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="font-medium">40</span>
+                                    <span class="text-sm text-gray-500">/44</span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-full max-w-xs bg-gray-200 rounded-full h-2.5">
+                                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 91%"></div>
+                                        </div>
+                                        <span>91%</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                        <span>4 sessions</span>
+                            </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center text-sm">
+                                        <span class="font-medium text-gray-900">8.6</span>
+                                        <span class="ml-1 text-gray-500">/10</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- Athlete 2 -->
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center justify-center w-8 h-8 bg-gray-300 text-gray-700 rounded-full">2</div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                                            <img src="/static/image/athlete2.jpg" alt="Maria Chen" class="h-full w-full object-cover">
+                                    </div>
+                                        <span>Maria Chen</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="font-medium">38</span>
+                                    <span class="text-sm text-gray-500">/44</span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-full max-w-xs bg-gray-200 rounded-full h-2.5">
+                                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 86%"></div>
+                                    </div>
+                                        <span>86%</span>
+                                </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span>0 sessions</span>
+                            </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center text-sm">
+                                        <span class="font-medium text-gray-900">9.2</span>
+                                        <span class="ml-1 text-gray-500">/10</span>
+                        </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- Athlete 3 -->
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center justify-center w-8 h-8 bg-gray-300 text-gray-700 rounded-full">3</div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                                            <img src="/static/image/athlete3.jpg" alt="Alex Johnson" class="h-full w-full object-cover">
+                                        </div>
+                                        <span>Alex Johnson</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="font-medium">36</span>
+                                    <span class="text-sm text-gray-500">/44</span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-full max-w-xs bg-gray-200 rounded-full h-2.5">
+                                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 82%"></div>
+                                        </div>
+                                        <span>82%</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                        <span>0 sessions</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center text-sm">
+                                        <span class="font-medium text-gray-900">7.8</span>
+                                        <span class="ml-1 text-gray-500">/10</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- Athlete 4 -->
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center justify-center w-8 h-8 bg-gray-300 text-gray-700 rounded-full">4</div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                                            <img src="/static/image/athlete4.jpg" alt="Sarah Williams" class="h-full w-full object-cover">
+                                        </div>
+                                        <span>Sarah Williams</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="font-medium">34</span>
+                                    <span class="text-sm text-gray-500">/44</span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-full max-w-xs bg-gray-200 rounded-full h-2.5">
+                                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 77%"></div>
+                                        </div>
+                                        <span>77%</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                        <span>2 sessions</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center text-sm">
+                                        <span class="font-medium text-gray-900">8.3</span>
+                                        <span class="ml-1 text-gray-500">/10</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- Athlete 5 (Least Attendance) -->
+                            <tr class="hover:bg-gray-50 bg-red-50">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center justify-center w-8 h-8 bg-red-500 text-white rounded-full">12</div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                                            <img src="/static/image/athlete5.jpg" alt="David Park" class="h-full w-full object-cover">
+                                        </div>
+                                        <span>David Park</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="font-medium">18</span>
+                                    <span class="text-sm text-gray-500">/44</span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-full max-w-xs bg-gray-200 rounded-full h-2.5">
+                                            <div class="bg-red-600 h-2.5 rounded-full" style="width: 41%"></div>
+                                        </div>
+                                        <span>41%</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                        <span>0 sessions</span>
+                        </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center text-sm">
+                                        <span class="font-medium text-gray-900">6.2</span>
+                                        <span class="ml-1 text-gray-500">/10</span>
+                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <button class="text-electric-blue hover:text-deep-navy transition-colors flex items-center gap-1 mx-auto">
+                        View All Athletes
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                            </div>
+            
+            <!-- Feedback Analysis -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <h3 class="text-xl font-medium text-gray-700 mb-4">Feedback Analysis</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Feedback Donut Chart -->
+                    <div class="relative h-64">
+                        <!-- Visualization -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-full max-w-xs" viewBox="0 0 100 100">
+                                <!-- Donut segments -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#E5E7EB" stroke-width="15" />
+                                <!-- Green segment (Good) - 36/44 = 82% -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#10B981" stroke-width="15" stroke-dasharray="251.2 308" stroke-dashoffset="0" transform="rotate(-90 50 50)" />
+                                <!-- Yellow segment (Average) - 4/44 = 9% -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#FBBF24" stroke-width="15" stroke-dasharray="28.3 308" stroke-dashoffset="-251.2" transform="rotate(-90 50 50)" />
+                                <!-- Red segment (Poor) - 4/44 = 9% -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#EF4444" stroke-width="15" stroke-dasharray="28.3 308" stroke-dashoffset="-279.5" transform="rotate(-90 50 50)" />
+                                <!-- Center hole -->
+                                <circle cx="50" cy="50" r="30" fill="white" />
+                                <!-- Center text -->
+                                <text x="50" y="45" text-anchor="middle" font-size="12" font-weight="bold">82%</text>
+                                <text x="50" y="60" text-anchor="middle" font-size="8">Positive</text>
+                            </svg>
+                        </div>
+                        
+                        <!-- Legend -->
+                        <div class="absolute bottom-0 left-0 right-0">
+                            <div class="flex justify-center gap-4 text-sm">
+                                <div class="flex items-center gap-1">
+                                    <span class="inline-block w-3 h-3 bg-green-500 rounded-full"></span>
+                                    <span>Good (36)</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="inline-block w-3 h-3 bg-yellow-400 rounded-full"></span>
+                                    <span>Average (4)</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="inline-block w-3 h-3 bg-red-500 rounded-full"></span>
+                                    <span>Poor (4)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Key Insights -->
+                    <div>
+                        <h4 class="font-medium text-gray-700 mb-3">Key Insights</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-start gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                                <span>All poor feedback (4) occurred in Week 4 morning sessions.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Evening sessions consistently receive better feedback than morning sessions.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                                </svg>
+                                <span>Independent training sessions have 100% positive feedback.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Weekends show highest satisfaction rate, with 95% positive feedback.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Attendance Comparison Chart -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <h3 class="text-xl font-medium text-gray-700 mb-4">Attendance Comparison</h3>
+                
+                <!-- Weekly Attendance Chart -->
+                <div class="h-64 relative">
+                    <!-- SVG Bar Chart -->
+                    <svg class="w-full h-full" viewBox="0 0 340 200">
+                        <!-- X and Y Axes -->
+                        <line x1="40" y1="170" x2="320" y2="170" stroke="#64748b" stroke-width="1" />
+                        <line x1="40" y1="170" x2="40" y2="30" stroke="#64748b" stroke-width="1" />
+                        
+                        <!-- Y-axis Labels -->
+                        <text x="35" y="170" text-anchor="end" font-size="10" fill="#64748b">0</text>
+                        <text x="35" y="130" text-anchor="end" font-size="10" fill="#64748b">5</text>
+                        <text x="35" y="90" text-anchor="end" font-size="10" fill="#64748b">10</text>
+                        <text x="35" y="50" text-anchor="end" font-size="10" fill="#64748b">15</text>
+                        
+                        <!-- Week Labels -->
+                        <text x="70" y="185" text-anchor="middle" font-size="10" fill="#64748b">Week 1</text>
+                        <text x="140" y="185" text-anchor="middle" font-size="10" fill="#64748b">Week 2</text>
+                        <text x="210" y="185" text-anchor="middle" font-size="10" fill="#64748b">Week 3</text>
+                        <text x="280" y="185" text-anchor="middle" font-size="10" fill="#64748b">Week 4</text>
+                        
+                        <!-- Morning Sessions Bars -->
+                        <rect x="55" y="90" width="15" height="80" fill="#3b82f6" rx="2" />
+                        <rect x="125" y="100" width="15" height="70" fill="#3b82f6" rx="2" />
+                        <rect x="195" y="90" width="15" height="80" fill="#3b82f6" rx="2" />
+                        <rect x="265" y="130" width="15" height="40" fill="#3b82f6" rx="2" />
+                        
+                        <!-- Evening Sessions Bars -->
+                        <rect x="75" y="70" width="15" height="100" fill="#60a5fa" rx="2" />
+                        <rect x="145" y="60" width="15" height="110" fill="#60a5fa" rx="2" />
+                        <rect x="215" y="70" width="15" height="100" fill="#60a5fa" rx="2" />
+                        <rect x="285" y="80" width="15" height="90" fill="#60a5fa" rx="2" />
+                        
+                        <!-- Chart Title -->
+                        <text x="40" y="20" font-size="12" font-weight="bold" fill="#1e293b">Average Attendees per Session</text>
+                    </svg>
+                    
+                    <!-- Legend -->
+                    <div class="absolute bottom-0 left-0 right-0">
+                        <div class="flex justify-center gap-4 text-sm">
+                            <div class="flex items-center gap-1">
+                                <span class="inline-block w-3 h-3 bg-blue-600 rounded-sm"></span>
+                                <span>Morning (8:00-10:00)</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="inline-block w-3 h-3 bg-blue-400 rounded-sm"></span>
+                                <span>Evening (18:00-20:00)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Key Insights -->
+                <div class="mt-4">
+                    <h4 class="font-medium text-gray-700 mb-3">Key Insights</h4>
+                    <ul class="space-y-3 text-sm grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <li class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Week 4 morning sessions had lowest attendance (8 athletes).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Evening sessions consistently show 15-20% higher attendance than morning sessions.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Week 2 evening sessions had highest attendance (14 athletes).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                            </svg>
+                            <span>Attendance correlates with feedback quality (higher attendance = better feedback).</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Footer Section -->
+            <div class="bg-white rounded-lg shadow-sm p-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <!-- Notes -->
+                <div>
+                    <h3 class="font-medium text-gray-700">Report Notes</h3>
+                    <p class="text-sm text-gray-600 mt-1">This report is generated automatically based on training data from January 2024. For a detailed breakdown, please view the full presentation report.</p>
+                </div>
+                
+                <!-- Action Button -->
+                <a href="/templates/presentation_report.html" class="bg-electric-blue text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    View Presentation
+                </a>
+            </div>
+        </div>
+        
+        <!-- Actions Footer -->
+        <div class="flex justify-between items-center">
+            <a href="/training-completion" class="text-gray-600 hover:text-electric-blue transition-colors flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+                Back to Training Completion
+            </a>
+            <div class="flex gap-4">
+                <a href="/feedback" class="text-electric-blue hover:text-deep-navy transition-colors">View Feedbacks</a>
+                <a href="/templates/presentation_report.html" class="text-electric-blue hover:text-deep-navy transition-colors">View Monthly Report</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const weekButtons = document.querySelectorAll('button[class*="px-4 py-2"]');
+            const weekContents = document.querySelectorAll('div[id^="week"]');
+            
+            weekButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    // Update button styles
+                    weekButtons.forEach(btn => {
+                        btn.classList.remove('bg-electric-blue', 'text-white');
+                        btn.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                    });
+                    this.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                    this.classList.add('bg-electric-blue', 'text-white');
+                    
+                    // Show corresponding week
+                    weekContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    // Show the selected week's content
+                    const weekNumber = this.textContent.replace('Week ', '');
+                    const selectedWeek = document.getElementById(`week${weekNumber}`);
+                    if (selectedWeek) {
+                        selectedWeek.classList.remove('hidden');
+                    }
+                });
+            });
+            
+            // View switching tabs
+            const calendarViewTab = document.getElementById('calendar-view-tab');
+            const sessionsViewTab = document.getElementById('sessions-view-tab');
+            const calendarViewContent = document.getElementById('calendar-view-content');
+            const sessionsViewContent = document.getElementById('sessions-view-content');
+            
+            calendarViewTab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update tab styles
+                calendarViewTab.classList.add('border-electric-blue', 'text-electric-blue');
+                calendarViewTab.classList.remove('border-transparent', 'text-gray-500');
+                
+                sessionsViewTab.classList.remove('border-electric-blue', 'text-electric-blue');
+                sessionsViewTab.classList.add('border-transparent', 'text-gray-500');
+                
+                // Show/hide content
+                calendarViewContent.classList.remove('hidden');
+                sessionsViewContent.classList.add('hidden');
+            });
+            
+            sessionsViewTab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update tab styles
+                sessionsViewTab.classList.add('border-electric-blue', 'text-electric-blue');
+                sessionsViewTab.classList.remove('border-transparent', 'text-gray-500');
+                
+                calendarViewTab.classList.remove('border-electric-blue', 'text-electric-blue');
+                calendarViewTab.classList.add('border-transparent', 'text-gray-500');
+                
+                // Show/hide content
+                sessionsViewContent.classList.remove('hidden');
+                calendarViewContent.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html> 

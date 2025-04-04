@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Feedback - 3&7 Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-navy': '#09104E',
+                        'electric-blue': '#353DFF',
+                        'bright-blue': '#333AFA',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-color: #09104E;
+        }
+        .feedback-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .feedback-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .star-rating {
+            display: inline-block;
+            unicode-bidi: bidi-override;
+            color: #ddd;
+            font-size: 1.25rem;
+            position: relative;
+        }
+        .star-rating-fill {
+            color: #ffca28;
+            position: absolute;
+            z-index: 1;
+            display: block;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-[Poppins]">
+    <!-- Header / Navigation -->
+    <header class="hero-bg text-white sticky top-0 z-10 shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <a href="/training-completion" class="text-white hover:text-blue-200 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <img src="/static/image/Logo White.png" alt="3&7 Logo" class="h-10">
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="/schedule" class="text-sm text-white hover:text-blue-200">Schedule</a>
+                    <a href="/history" class="text-sm text-white hover:text-blue-200">History</a>
+                    <a href="#" class="text-sm text-white hover:text-blue-200">Profile</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Main Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-semibold text-gray-800">Training Feedback</h1>
+            <p class="text-gray-600 mt-2">View and analyze athlete feedback from training sessions</p>
+        </div>
+        
+        <!-- Feedback Controls -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
+                    <div class="relative">
+                        <select class="bg-gray-50 border border-gray-300 text-gray-700 py-2 pl-3 pr-10 rounded-lg focus:outline-none focus:ring-1 focus:ring-electric-blue focus:border-electric-blue appearance-none">
+                            <option>January 2024</option>
+                            <option>February 2024</option>
+                            <option>March 2024</option>
+                            <option>April 2024</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <select class="bg-gray-50 border border-gray-300 text-gray-700 py-2 pl-3 pr-10 rounded-lg focus:outline-none focus:ring-1 focus:ring-electric-blue focus:border-electric-blue appearance-none">
+                            <option>All Athletes</option>
+                            <option>James Kevin</option>
+                            <option>Maria Chen</option>
+                            <option>Alex Johnson</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <select class="bg-gray-50 border border-gray-300 text-gray-700 py-2 pl-3 pr-10 rounded-lg focus:outline-none focus:ring-1 focus:ring-electric-blue focus:border-electric-blue appearance-none">
+                            <option>All Feedback</option>
+                            <option>Positive Feedback</option>
+                            <option>Negative Feedback</option>
+                            <option>Needs Attention</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex gap-2">
+                    <a href="/reports/feedback" class="bg-white border border-electric-blue text-electric-blue px-4 py-2 rounded-lg hover:bg-gray-50 transition-all flex items-center gap-1 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd" />
+                        </svg>
+                        Download Report
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Summary -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <h2 class="text-xl font-medium text-gray-700 mb-6">Feedback Summary</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Overall Rating</h3>
+                    <div class="flex items-center gap-2">
+                        <div>
+                            <div class="star-rating">★★★★★
+                                <div class="star-rating-fill" style="width: 90%">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-3xl font-semibold text-electric-blue">4.5</p>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-1">From 40 training sessions</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Positive Feedback</h3>
+                    <p class="text-3xl font-semibold text-green-600">36</p>
+                    <p class="text-gray-600 text-sm mt-1">90% of all training sessions</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Areas of Improvement</h3>
+                    <p class="text-3xl font-semibold text-yellow-600">4</p>
+                    <p class="text-gray-600 text-sm mt-1">10% of all training sessions</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Completion Rate</h3>
+                    <p class="text-3xl font-semibold text-electric-blue">100%</p>
+                    <p class="text-gray-600 text-sm mt-1">All 40 sessions completed</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Athlete Feedback -->
+        <div class="mb-8">
+            <h2 class="text-xl font-medium text-gray-700 mb-6">Recent Feedback</h2>
+            
+            <!-- Feedback Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Poor Feedback Card 1 -->
+                <div class="feedback-card bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                            <img src="/static/image/athlete1.jpg" alt="James Kevin" class="h-full w-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-medium">James Kevin</h3>
+                            <p class="text-sm text-gray-600">January 22, 2024 - Morning Session</p>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                Poor
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="star-rating">★★★★★
+                            <div class="star-rating-fill" style="width: 40%">★★★★★</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">Athlete reported fatigue and muscle soreness during the morning training session. Performance was significantly below typical level.</p>
+                    
+                    <div class="border-t border-gray-100 pt-4">
+                        <h4 class="font-medium text-sm mb-2">Coach Notes</h4>
+                        <p class="text-gray-600 text-sm">Potential overtraining. Recommended reduced intensity for next session and recovery monitoring.</p>
+                    </div>
+                </div>
+                
+                <!-- Poor Feedback Card 2 -->
+                <div class="feedback-card bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                            <img src="/static/image/athlete1.jpg" alt="James Kevin" class="h-full w-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-medium">James Kevin</h3>
+                            <p class="text-sm text-gray-600">January 23, 2024 - Morning Session</p>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                Poor
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="star-rating">★★★★★
+                            <div class="star-rating-fill" style="width: 40%">★★★★★</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">Continued fatigue with decreased performance. Athlete struggled with endurance exercises and required multiple rest periods.</p>
+                    
+                    <div class="border-t border-gray-100 pt-4">
+                        <h4 class="font-medium text-sm mb-2">Coach Notes</h4>
+                        <p class="text-gray-600 text-sm">Reduced training load by 30%. Suggested detailed sleep and nutrition tracking for next 72 hours.</p>
+                    </div>
+                </div>
+                
+                <!-- Positive Feedback Card -->
+                <div class="feedback-card bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                            <img src="/static/image/athlete2.jpg" alt="Maria Chen" class="h-full w-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-medium">Maria Chen</h3>
+                            <p class="text-sm text-gray-600">January 27, 2024 - Evening Session</p>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                Excellent
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="star-rating">★★★★★
+                            <div class="star-rating-fill" style="width: 100%">★★★★★</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">Athlete performed exceptionally well during the evening session. Set new personal records in three different drills. Great energy and concentration.</p>
+                    
+                    <div class="border-t border-gray-100 pt-4">
+                        <h4 class="font-medium text-sm mb-2">Coach Notes</h4>
+                        <p class="text-gray-600 text-sm">Excellent progress. Consider advancing to next skill level in February training plan.</p>
+                    </div>
+                </div>
+                
+                <!-- Positive Feedback Card -->
+                <div class="feedback-card bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                            <img src="/static/image/athlete3.jpg" alt="Alex Johnson" class="h-full w-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-medium">Alex Johnson</h3>
+                            <p class="text-sm text-gray-600">January 25, 2024 - Evening Session</p>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                Good
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="star-rating">★★★★★
+                            <div class="star-rating-fill" style="width: 80%">★★★★★</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">Solid performance in both technical drills and team exercises. Good communication and leadership displayed during group activities.</p>
+                    
+                    <div class="border-t border-gray-100 pt-4">
+                        <h4 class="font-medium text-sm mb-2">Coach Notes</h4>
+                        <p class="text-gray-600 text-sm">Consistent improvement in tactical awareness. Will focus on defensive positioning in upcoming sessions.</p>
+                    </div>
+                </div>
+                
+                <!-- Poor Feedback Card 3 -->
+                <div class="feedback-card bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                            <img src="/static/image/athlete1.jpg" alt="James Kevin" class="h-full w-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-medium">James Kevin</h3>
+                            <p class="text-sm text-gray-600">January 24, 2024 - Morning Session</p>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                Poor
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="star-rating">★★★★★
+                            <div class="star-rating-fill" style="width: 40%">★★★★★</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">Persistent fatigue despite reduced evening workload from previous day. Athlete reported difficulty sleeping and continued muscle soreness.</p>
+                    
+                    <div class="border-t border-gray-100 pt-4">
+                        <h4 class="font-medium text-sm mb-2">Coach Notes</h4>
+                        <p class="text-gray-600 text-sm">Considering scheduling medical assessment. Implemented active recovery session replacing standard training.</p>
+                    </div>
+                </div>
+                
+                <!-- Positive Feedback Card -->
+                <div class="feedback-card bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="h-10 w-10 rounded-full bg-gray-200 overflow-hidden">
+                            <img src="/static/image/athlete3.jpg" alt="Alex Johnson" class="h-full w-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-medium">Alex Johnson</h3>
+                            <p class="text-sm text-gray-600">January 20, 2024 - Morning Session</p>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                Good
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="star-rating">★★★★★
+                            <div class="star-rating-fill" style="width: 90%">★★★★★</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">Excellent focus and technique during skill development drills. Showed substantial improvement in shooting accuracy compared to previous week.</p>
+                    
+                    <div class="border-t border-gray-100 pt-4">
+                        <h4 class="font-medium text-sm mb-2">Coach Notes</h4>
+                        <p class="text-gray-600 text-sm">Technique improvements are noticeable. Recommend additional 15 minutes of specialized drills next session.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <a href="/all-feedback" class="bg-white border border-electric-blue text-electric-blue px-6 py-3 rounded-lg hover:bg-gray-50 transition-all inline-flex items-center gap-2">
+                    View All Feedback
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Actions Footer -->
+        <div class="flex justify-between items-center">
+            <a href="/training-completion" class="text-gray-600 hover:text-electric-blue transition-colors flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+                Back to Training Completion
+            </a>
+            <div class="flex gap-4">
+                <a href="/schedule" class="text-electric-blue hover:text-deep-navy transition-colors">Access Schedule</a>
+                <a href="/templates/presentation_report.html" class="text-electric-blue hover:text-deep-navy transition-colors">View Monthly Report</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to feedback cards when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.feedback-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html> 
