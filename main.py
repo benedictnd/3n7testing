@@ -12,9 +12,10 @@ import os
 from typing import Dict, Any
 
 from models.db_models import Base
-from routes import training_sessions, users, reports
+from routes import training_sessions, users, reports, email
 from routes.auth import router as auth_router
 from dependencies.database import get_db, DATABASE_URL
+from middleware.security import add_security_middleware
 
 # Setup logging
 logging.basicConfig(
@@ -85,6 +86,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Add security middlewares
+add_security_middleware(app)
 
 
 # Custom middleware for request timing and logging
@@ -201,6 +205,7 @@ app.include_router(auth_router)
 app.include_router(training_sessions.router)
 app.include_router(users.router)
 app.include_router(reports.router)
+app.include_router(email.router)
 
 
 # Health check endpoint
