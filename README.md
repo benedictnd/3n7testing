@@ -32,33 +32,53 @@ A comprehensive sports training management system designed for Southeast Asia, w
 
 ## Getting Started
 
-1. Clone the repository:
+## Repository
+
+This project is hosted at: [https://github.com/benedictnd/3n7testing](https://github.com/benedictnd/3n7testing)
+
+## Local Deployment (with Docker)
+
+### Prerequisites
+- [Docker](https://www.docker.com/products/docker-desktop) and Docker Compose installed
+
+### Steps
+
+1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-org/3n7-training-platform.git
-   cd 3n7-training-platform
+   git clone https://github.com/benedictnd/3n7testing.git
+   cd 3n7testing
    ```
 
-2. Install frontend dependencies:
+2. **(Optional) Configure environment variables:**
+   - Copy and edit `.env.example` as needed for your local setup.
+
+3. **Build and start all services:**
    ```bash
-   cd frontend
-   npm install
+   docker-compose up --build -d
    ```
+   This will start:
+   - Backend (FastAPI, auto-reloads on code changes)
+   - Frontend (Next.js, auto-reloads on code changes)
+   - PostgreSQL & Redis
+   - Redocly API docs (serving OpenAPI schema)
 
-3. Install backend dependencies:
+4. **Access the app and docs:**
+   - Frontend: [http://localhost:3000](http://localhost:3000)
+   - Backend API: [http://localhost:8000](http://localhost:8000)
+   - Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
+   - Redoc (FastAPI): [http://localhost:8000/redoc](http://localhost:8000/redoc)
+   - Redocly Standalone: [http://localhost:8080](http://localhost:8080)
+
+5. **Update OpenAPI schema after backend changes:**
    ```bash
-   cd ../backend
-   pip install -r requirements.txt
+   docker-compose exec backend python export_openapi.py
    ```
+   This regenerates `backend/openapi.json` for the Redocly docs service.
 
-4. Set up environment variables:
-   ```bash
-   cp .env.example .env.local
-   ```
+---
 
-5. Run development servers:
+For more details, see [`docs/openapi.md`](docs/openapi.md).
 
-   - **Frontend**:
-     ```bash
      npm run dev
      ```
 
