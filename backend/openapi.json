@@ -1,0 +1,2208 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "3&7 Training Platform API",
+    "description": "API for the 3&7 Training and Recovery Platform",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Register",
+        "description": "Register a new user.\n\nArgs:\n    user_data: User registration data\n    db: Database session\n\nReturns:\n    Created user\n\nRaises:\n    HTTPException: If email already registered",
+        "operationId": "register_auth_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/token": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Login",
+        "description": "Authenticate and get access token.\n\nArgs:\n    form_data: OAuth2 form with username (email) and password\n    db: Database session\n\nReturns:\n    Token and user information\n\nRaises:\n    HTTPException: If authentication fails",
+        "operationId": "login_auth_token_post",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_login_auth_token_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/training-sessions/": {
+      "post": {
+        "tags": [
+          "Training Sessions"
+        ],
+        "summary": "Create Training Session",
+        "description": "Create a new training session.\n\nOnly coaches and admins can create training sessions.",
+        "operationId": "create_training_session_training_sessions__post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrainingSessionCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrainingSession"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Training Sessions"
+        ],
+        "summary": "Get Training Sessions",
+        "description": "Get all training sessions",
+        "operationId": "get_training_sessions_training_sessions__get",
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Skip"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/training-sessions/{session_id}": {
+      "get": {
+        "tags": [
+          "Training Sessions"
+        ],
+        "summary": "Get Training Session",
+        "description": "Get a specific training session by ID",
+        "operationId": "get_training_session_training_sessions__session_id__get",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Training Sessions"
+        ],
+        "summary": "Update Training Session",
+        "description": "Update an existing training session.\n\nOnly coaches who created the session and admins can update training sessions.",
+        "operationId": "update_training_session_training_sessions__session_id__put",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrainingSessionCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrainingSession"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Training Sessions"
+        ],
+        "summary": "Delete Training Session",
+        "description": "Delete a training session.\n\nOnly coaches who created the session and admins can delete training sessions.",
+        "operationId": "delete_training_session_training_sessions__session_id__delete",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/training-sessions/{session_id}/attendance": {
+      "post": {
+        "tags": [
+          "Training Sessions"
+        ],
+        "summary": "Mark Attendance",
+        "description": "Mark attendance for multiple athletes.\n\nOnly coaches and admins can mark attendance for other athletes.",
+        "operationId": "mark_attendance_training_sessions__session_id__attendance_post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "title": "Athlete Ids"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Training Sessions"
+        ],
+        "summary": "Get Session Attendance",
+        "description": "Get attendance records for a specific training session.",
+        "operationId": "get_session_attendance_training_sessions__session_id__attendance_get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/training-sessions/{session_id}/self-attendance": {
+      "post": {
+        "tags": [
+          "Training Sessions"
+        ],
+        "summary": "Mark Self Attendance",
+        "description": "Mark attendance for the currently logged-in athlete.\n\nAthletes can only mark their own attendance.",
+        "operationId": "mark_self_attendance_training_sessions__session_id__self_attendance_post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Users",
+        "description": "Get all users",
+        "operationId": "get_users_api_users__get",
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Skip"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{user_id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User",
+        "description": "Get a specific user by ID",
+        "operationId": "get_user_api_users__user_id__get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/training": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Get Training Report",
+        "description": "Generate a training report for the specified date range.\n\nThe report includes:\n- Summary of training sessions\n- List of sessions with details\n- Attendance stats for each session\n- Feedback summary for each session\n\nReturns:\n- JSON data by default\n- PDF or PowerPoint if format is specified",
+        "operationId": "get_training_report_reports_training_get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Start date in format YYYY-MM-DD",
+              "title": "Start Date"
+            },
+            "description": "Start date in format YYYY-MM-DD"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "End date in format YYYY-MM-DD",
+              "title": "End Date"
+            },
+            "description": "End date in format YYYY-MM-DD"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ReportFormat"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Format of the report (json, pdf, ppt)",
+              "default": "json",
+              "title": "Format"
+            },
+            "description": "Format of the report (json, pdf, ppt)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrainingReportResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/attendance": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Get Attendance Report",
+        "description": "Generate an attendance report for the specified date range.\n\nThe report includes:\n- Overall attendance statistics\n- For a team: attendance rate for each athlete\n- For an individual: sessions attended/missed with details\n\nReturns:\n- JSON data by default\n- PDF or PowerPoint if format is specified",
+        "operationId": "get_attendance_report_reports_attendance_get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Start date in format YYYY-MM-DD",
+              "title": "Start Date"
+            },
+            "description": "Start date in format YYYY-MM-DD"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "End date in format YYYY-MM-DD",
+              "title": "End Date"
+            },
+            "description": "End date in format YYYY-MM-DD"
+          },
+          {
+            "name": "athlete_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Get attendance for a specific athlete",
+              "title": "Athlete Id"
+            },
+            "description": "Get attendance for a specific athlete"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ReportFormat"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Format of the report (json, pdf, ppt)",
+              "default": "json",
+              "title": "Format"
+            },
+            "description": "Format of the report (json, pdf, ppt)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttendanceReportResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/feedback": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Get Feedback Report",
+        "description": "Generate a feedback report for the specified date range.\n\nThe report includes:\n- Overall feedback statistics\n- For a date range: feedback summary for each session\n- For a specific session: detailed feedback from each athlete\n\nReturns:\n- JSON data by default\n- PDF or PowerPoint if format is specified",
+        "operationId": "get_feedback_report_reports_feedback_get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Start date in format YYYY-MM-DD",
+              "title": "Start Date"
+            },
+            "description": "Start date in format YYYY-MM-DD"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "End date in format YYYY-MM-DD",
+              "title": "End Date"
+            },
+            "description": "End date in format YYYY-MM-DD"
+          },
+          {
+            "name": "session_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Get feedback for a specific session",
+              "title": "Session Id"
+            },
+            "description": "Get feedback for a specific session"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ReportFormat"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Format of the report (json, pdf, ppt)",
+              "default": "json",
+              "title": "Format"
+            },
+            "description": "Format of the report (json, pdf, ppt)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackReportResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/export": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Export Report",
+        "description": "Export a custom report as PDF or PowerPoint.\n\nAccepts:\n- Custom report data\n- Title for the report\n- Format (PDF or PPT)\n\nReturns:\n- PDF or PowerPoint file",
+        "operationId": "export_report_reports_export_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportExportRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/reports/monthly": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Get Monthly Report",
+        "description": "Generate a monthly report including both training sessions and independent training\n\nThis combines data from both training sessions and independent training sessions\nto provide a comprehensive monthly view for coaches and athletes.",
+        "operationId": "get_monthly_report_reports_monthly_get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Start date in format YYYY-MM-DD",
+              "title": "Start Date"
+            },
+            "description": "Start date in format YYYY-MM-DD"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "End date in format YYYY-MM-DD",
+              "title": "End Date"
+            },
+            "description": "End date in format YYYY-MM-DD"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ReportFormat"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Format of the report (json, pdf, ppt)",
+              "default": "json",
+              "title": "Format"
+            },
+            "description": "Format of the report (json, pdf, ppt)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonthlyReportResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/overview": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Get Overview Report",
+        "description": "Get overview report with statistics",
+        "operationId": "get_overview_report_reports_overview_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Health Check",
+        "description": "Simple health check endpoint to verify the API is running",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Health Check Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Users",
+        "operationId": "get_users_api_users_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "object"
+                  },
+                  "type": "array",
+                  "title": "Response Get Users Api Users Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/training-sessions": {
+      "get": {
+        "tags": [
+          "Training Sessions"
+        ],
+        "summary": "Get Training Sessions",
+        "operationId": "get_training_sessions_api_training_sessions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "object"
+                  },
+                  "type": "array",
+                  "title": "Response Get Training Sessions Api Training Sessions Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/training-sessions/{session_id}": {
+      "get": {
+        "tags": [
+          "Training Sessions"
+        ],
+        "summary": "Get Training Session Details",
+        "operationId": "get_training_session_details_api_training_sessions__session_id__get",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get Training Session Details Api Training Sessions  Session Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/all-data": {
+      "get": {
+        "tags": [
+          "Data Export"
+        ],
+        "summary": "Get All Data",
+        "description": "Get all database data for export",
+        "operationId": "get_all_data_api_all_data_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get All Data Api All Data Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AttendanceRecord": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "athlete_id": {
+            "type": "string",
+            "title": "Athlete Id"
+          },
+          "athlete_name": {
+            "type": "string",
+            "title": "Athlete Name"
+          },
+          "check_in_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Check In Time"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "session_id",
+          "athlete_id",
+          "athlete_name",
+          "check_in_time"
+        ],
+        "title": "AttendanceRecord",
+        "description": "Model for an attendance record"
+      },
+      "AttendanceReportResponse": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "date_range": {
+            "type": "string",
+            "title": "Date Range"
+          },
+          "summary": {
+            "type": "object",
+            "title": "Summary"
+          },
+          "data": {
+            "items": {},
+            "type": "array",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "generated_at",
+          "date_range",
+          "summary",
+          "data"
+        ],
+        "title": "AttendanceReportResponse",
+        "description": "Response model for attendance report"
+      },
+      "Body_login_auth_token_post": {
+        "properties": {
+          "grant_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "password"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grant Type"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "title": "Password"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "default": ""
+          },
+          "client_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Id"
+          },
+          "client_secret": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Secret"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "Body_login_auth_token_post"
+      },
+      "FeedbackReportResponse": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "date_range": {
+            "type": "string",
+            "title": "Date Range"
+          },
+          "summary": {
+            "type": "object",
+            "title": "Summary"
+          },
+          "data": {
+            "items": {},
+            "type": "array",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "generated_at",
+          "date_range",
+          "summary",
+          "data"
+        ],
+        "title": "FeedbackReportResponse",
+        "description": "Response model for feedback report"
+      },
+      "FeedbackSummary": {
+        "properties": {
+          "feedback_count": {
+            "type": "integer",
+            "title": "Feedback Count"
+          },
+          "average_rating": {
+            "type": "number",
+            "title": "Average Rating"
+          },
+          "sentiment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sentiment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "feedback_count",
+          "average_rating"
+        ],
+        "title": "FeedbackSummary",
+        "description": "Summary of feedback for a training session"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "IndependentTrainingSummary": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "start_time": {
+            "type": "string",
+            "title": "Start Time"
+          },
+          "end_time": {
+            "type": "string",
+            "title": "End Time"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location"
+          },
+          "intensity": {
+            "type": "integer",
+            "title": "Intensity"
+          },
+          "body_condition": {
+            "type": "integer",
+            "title": "Body Condition"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "date",
+          "type",
+          "start_time",
+          "end_time",
+          "location",
+          "intensity",
+          "body_condition"
+        ],
+        "title": "IndependentTrainingSummary",
+        "description": "Model for independent training summary in reports"
+      },
+      "MonthlyReportResponse": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "date_range": {
+            "type": "string",
+            "title": "Date Range"
+          },
+          "summary": {
+            "type": "object",
+            "title": "Summary"
+          },
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/TrainingSessionSummary"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "independent_training": {
+            "items": {
+              "$ref": "#/components/schemas/IndependentTrainingSummary"
+            },
+            "type": "array",
+            "title": "Independent Training"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "generated_at",
+          "date_range",
+          "summary",
+          "data",
+          "independent_training"
+        ],
+        "title": "MonthlyReportResponse",
+        "description": "Response model for monthly report"
+      },
+      "ReportExportRequest": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "data": {
+            "type": "object",
+            "title": "Data"
+          },
+          "format": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReportFormat"
+              }
+            ],
+            "default": "pdf"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "data"
+        ],
+        "title": "ReportExportRequest",
+        "description": "Request model for exporting a custom report"
+      },
+      "ReportFormat": {
+        "type": "string",
+        "enum": [
+          "json",
+          "pdf",
+          "ppt"
+        ],
+        "title": "ReportFormat",
+        "description": "Enum for report formats"
+      },
+      "SessionType": {
+        "type": "string",
+        "enum": [
+          "strength",
+          "conditioning",
+          "recovery",
+          "skills",
+          "team_practice",
+          "other"
+        ],
+        "title": "SessionType",
+        "description": "Types of training sessions"
+      },
+      "Token": {
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "title": "Access Token"
+          },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserResponse"
+          }
+        },
+        "type": "object",
+        "required": [
+          "access_token",
+          "token_type",
+          "user"
+        ],
+        "title": "Token",
+        "description": "Token response model"
+      },
+      "TrainingPhase": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "duration_minutes": {
+            "type": "integer",
+            "title": "Duration Minutes"
+          },
+          "exercises": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Exercises"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "duration_minutes",
+          "exercises"
+        ],
+        "title": "TrainingPhase",
+        "description": "Model for a training phase (warm-up, main, cool-down)"
+      },
+      "TrainingReportResponse": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "date_range": {
+            "type": "string",
+            "title": "Date Range"
+          },
+          "summary": {
+            "type": "object",
+            "title": "Summary"
+          },
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/TrainingSessionSummary"
+            },
+            "type": "array",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "generated_at",
+          "date_range",
+          "summary",
+          "data"
+        ],
+        "title": "TrainingReportResponse",
+        "description": "Response model for training report"
+      },
+      "TrainingSession": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SessionType"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start Time"
+          },
+          "end_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "End Time"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "max_participants": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Participants"
+          },
+          "phases": {
+            "items": {
+              "$ref": "#/components/schemas/TrainingPhase"
+            },
+            "type": "array",
+            "title": "Phases"
+          },
+          "equipment_needed": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Equipment Needed"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "coach_id": {
+            "type": "string",
+            "title": "Coach Id"
+          },
+          "coach_name": {
+            "type": "string",
+            "title": "Coach Name"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "type",
+          "date",
+          "start_time",
+          "end_time",
+          "location",
+          "phases",
+          "id",
+          "coach_id",
+          "coach_name",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "TrainingSession",
+        "description": "Model for a training session with ID"
+      },
+      "TrainingSessionCreate": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SessionType"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start Time"
+          },
+          "end_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "End Time"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "max_participants": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Participants"
+          },
+          "phases": {
+            "items": {
+              "$ref": "#/components/schemas/TrainingPhase"
+            },
+            "type": "array",
+            "title": "Phases"
+          },
+          "equipment_needed": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Equipment Needed"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "athlete_group_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Athlete Group Ids"
+          },
+          "individual_athlete_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Individual Athlete Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "type",
+          "date",
+          "start_time",
+          "end_time",
+          "location",
+          "phases"
+        ],
+        "title": "TrainingSessionCreate",
+        "description": "Model for creating a training session"
+      },
+      "TrainingSessionDetail": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SessionType"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start Time"
+          },
+          "end_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "End Time"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "max_participants": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Participants"
+          },
+          "phases": {
+            "items": {
+              "$ref": "#/components/schemas/TrainingPhase"
+            },
+            "type": "array",
+            "title": "Phases"
+          },
+          "equipment_needed": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Equipment Needed"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "coach_id": {
+            "type": "string",
+            "title": "Coach Id"
+          },
+          "coach_name": {
+            "type": "string",
+            "title": "Coach Name"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "attendees": {
+            "items": {
+              "$ref": "#/components/schemas/AttendanceRecord"
+            },
+            "type": "array",
+            "title": "Attendees"
+          },
+          "feedback": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FeedbackSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "type",
+          "date",
+          "start_time",
+          "end_time",
+          "location",
+          "phases",
+          "id",
+          "coach_id",
+          "coach_name",
+          "created_at",
+          "updated_at",
+          "attendees"
+        ],
+        "title": "TrainingSessionDetail",
+        "description": "Detailed model for a training session with attendance and feedback"
+      },
+      "TrainingSessionResponse": {
+        "properties": {
+          "sessions": {
+            "items": {
+              "$ref": "#/components/schemas/TrainingSession"
+            },
+            "type": "array",
+            "title": "Sessions"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "size": {
+            "type": "integer",
+            "title": "Size"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sessions",
+          "total",
+          "page",
+          "size"
+        ],
+        "title": "TrainingSessionResponse",
+        "description": "Response model for listing training sessions with pagination"
+      },
+      "TrainingSessionSummary": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "coach_name": {
+            "type": "string",
+            "title": "Coach Name"
+          },
+          "duration_minutes": {
+            "type": "integer",
+            "title": "Duration Minutes"
+          },
+          "attendees_count": {
+            "type": "integer",
+            "title": "Attendees Count"
+          },
+          "feedback": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Feedback"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "date",
+          "type",
+          "coach_name",
+          "duration_minutes",
+          "attendees_count"
+        ],
+        "title": "TrainingSessionSummary",
+        "description": "Model for training session summary in reports"
+      },
+      "UserCreate": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8,
+            "title": "Password"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "role": {
+            "type": "string",
+            "pattern": "^(athlete|coach|stakeholder|support)$",
+            "title": "Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password",
+          "name",
+          "role"
+        ],
+        "title": "UserCreate",
+        "description": "User registration model"
+      },
+      "UserResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "email",
+          "name",
+          "role"
+        ],
+        "title": "UserResponse",
+        "description": "User response model"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "OAuth2PasswordBearer": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "scopes": {},
+            "tokenUrl": "api/auth/token"
+          }
+        }
+      }
+    }
+  }
+}

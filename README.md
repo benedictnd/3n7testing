@@ -24,11 +24,11 @@ A comprehensive sports training management system designed for Southeast Asia, w
 
 ## Technical Stack
 
-- Frontend: Next.js, TypeScript, TailwindCSS
-- Backend: Python (FastAPI), Go
-- Database: Supabase
-- Authentication: Firebase Auth
-- Deployment: Vercel
+- **Frontend**: Next.js, TypeScript, TailwindCSS  
+- **Backend**: Python (FastAPI)  
+- **Database**: Supabase (PostgreSQL)  
+- **Authentication**: Supabase Auth  
+- **Deployment**: Vercel (frontend), Railway/Fly.io/Render (backend – optional)  
 
 ## Getting Started
 
@@ -38,37 +38,51 @@ A comprehensive sports training management system designed for Southeast Asia, w
    cd 3n7-training-platform
    ```
 
-2. Install dependencies:
+2. Install frontend dependencies:
    ```bash
+   cd frontend
    npm install
+   ```
+
+3. Install backend dependencies:
+   ```bash
+   cd ../backend
    pip install -r requirements.txt
    ```
 
-3. Set up environment variables:
+4. Set up environment variables:
    ```bash
    cp .env.example .env.local
    ```
 
-4. Run development server:
-   ```bash
-   npm run dev
-   ```
+5. Run development servers:
+
+   - **Frontend**:
+     ```bash
+     npm run dev
+     ```
+
+   - **Backend**:
+     ```bash
+     uvicorn main:app --reload
+     ```
 
 ## Development Guidelines
 
-- Follow TypeScript best practices
-- Use functional components with hooks
-- Implement proper error handling
-- Write unit tests for critical components
+- Follow TypeScript and Python best practices
+- Use functional React components with hooks
+- Maintain modular and reusable FastAPI endpoints
+- Implement proper error handling and logging
+- Write unit/integration tests for key features
 - Follow the established code style guide
 
 ## Security
 
-- All commits are signed
-- Regular security audits
-- PDPA compliance
-- Data residency requirements met
-- Regular penetration testing
+- All commits must be signed
+- Regular dependency and codebase audits
+- PDPA & regional data protection compliance
+- Data stored within Southeast Asia via Supabase
+- Periodic penetration testing and monitoring
 
 ## Contributing
 
@@ -80,8 +94,9 @@ A comprehensive sports training management system designed for Southeast Asia, w
 
 ## License
 
-Proprietary - All rights reserved
+Proprietary – All rights reserved
 
 ## Support
 
-For support, please contact the development team or raise an issue in the repository. 
+For support, please contact the development team or raise an issue in the repository.
+

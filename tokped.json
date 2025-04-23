@@ -1,0 +1,1577 @@
+[
+    {
+        "data": {
+            "searchProductV5": {
+                "header": {
+                    "totalData": 320,
+                    "responseCode": 0,
+                    "keywordProcess": "",
+                    "keywordIntention": 0,
+                    "componentID": "",
+                    "isQuerySafe": true,
+                    "additionalParams": "next_offset=8\u0026search_id=202504220702409DC89FA296D75F13DGEU\u0026has_more=true\u0026ads_minus_id=11311388461,16486078647,12961442260,15562749718,12616454170,16487228768\u0026minus_ids=11311388461,16486078647,10871568296,3785180291,12604175517,12961442259,5322689650,16489992407,6971267753,11966179306,16487228763,12886612216,11090870637,9548181150",
+                    "backendFilters": "",
+                    "backendFiltersToggle": "",
+                    "meta": {
+                        "dynamicFields": "{\"request_id\":\"202504220702409DC89FA296D75F13DGEU\",\"search_id\":\"202504220702409DC89FA296D75F13DGEU\",\"device_id\":\"7041413464515116461\",\"log_id\":\"021745305360337fdbddc530021021a00000000000000137c980a\",\"handler\":\"tts\",\"engine_latency_microseconds\":\"499978\",\"search_latency_microseconds\":\"847467\",\"enable_tts_algo_desktop\":\"false\"}",
+                        "__typename": "SearchProductV5Meta"
+                    },
+                    "__typename": "SearchProductV5Header"
+                },
+                "data": {
+                    "totalDataText": "320",
+                    "banner": {
+                        "position": 0,
+                        "text": "",
+                        "applink": "",
+                        "url": "",
+                        "imageURL": "",
+                        "componentID": "",
+                        "trackingOption": 0,
+                        "__typename": "SearchProductV5Banner"
+                    },
+                    "redirection": {
+                        "url": "",
+                        "applink": "",
+                        "__typename": "SearchProductV5Redirection"
+                    },
+                    "related": {
+                        "relatedKeyword": "",
+                        "position": 0,
+                        "trackingOption": 0,
+                        "otherRelated": [],
+                        "__typename": "SearchProductV5Related"
+                    },
+                    "suggestion": {
+                        "currentKeyword": "",
+                        "suggestion": "",
+                        "query": "",
+                        "text": "",
+                        "componentID": "",
+                        "trackingOption": 0,
+                        "__typename": "SearchProductV5Suggestion"
+                    },
+                    "shopWidget": [],
+                    "ticker": {
+                        "id": 0,
+                        "text": "",
+                        "query": "",
+                        "applink": "",
+                        "componentID": "",
+                        "trackingOption": 0,
+                        "__typename": "SearchProductV5Ticker"
+                    },
+                    "violation": {
+                        "headerText": "",
+                        "descriptionText": "",
+                        "imageURL": "",
+                        "ctaURL": "",
+                        "ctaApplink": "",
+                        "buttonText": "",
+                        "buttonType": "",
+                        "__typename": "SearchProductV5Violation"
+                    },
+                    "products": [
+                        {
+                            "oldId": 11311388461,
+                            "id": "11311388461",
+                            "ttsProductID": "1729765820260517386",
+                            "name": "Lenovo ThinkPad X1 Carbon Intel Ultra 7 165U 1TB SSD 32GB 100%sRGB Touch Win11Pro",
+                            "url": "https://www.tokopedia.com/lenovoauthorizedjakbar/lenovo-thinkpad-x1-carbon-gen-11-i7-1365u-1tb-ssd-16gb-win11pro?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/11311388461?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/aphluv/1997/1/1/56d6bbe87a194c28b52ed5727cb92061~.jpeg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/aphluv/1997/1/1/56d6bbe87a194c28b52ed5727cb92061~.jpeg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 14472406,
+                                "id": "14472406",
+                                "ttsSellerID": "7494970495048518154",
+                                "name": "LenovoIndonesia",
+                                "url": "https://www.tokopedia.com/lenovoauthorizedjakbar",
+                                "city": "",
+                                "tier": 2,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1729765827521906186",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 4,
+                                "title": "LenovoIndonesia",
+                                "url": "https://images.tokopedia.net/img/official_store_badge.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp38.999.000",
+                                "number": 38999000,
+                                "range": "",
+                                "original": "",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "2 terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 1401,
+                                    "position": "overlay_3",
+                                    "title": "Bonus",
+                                    "type": "",
+                                    "url": "https://images.tokopedia.net/img/bonus-cashback/bonus-overlay-3rd-slot.png",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/ultrabook",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/ultrabook/laptop/lenovoauthorizedjakbar/lenovo-thinkpad-x1-carbon-gen-11-i7-1365u-1tb-ssd-16gb-win11pro",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "5.0",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "199592174",
+                                "productClickURL": "https://ta.tokopedia.com/promo/v1/clicks/8a-xgVY2gmUEH_jNo_jaH_r7bm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUE6AyOHmFircYpq9z2Qfdi6sJDUMWB89P5rMzwq3ei6sra6_KhHpjFH_JDUMVDgaUEUMW79f-aQfVj9RzWUiFiQSuWyMua9fYM9fVjraUEoiFiQSuWyMua9fVjrOYag9Ji6syDUMoxPVY2gIHi6BDa6_rDHpK7omFp6_K79ZFiQBYsy3Njq3zxPcuwy3zpUstaop1DUMVi9RzBrRei6i-6UiFircYpPVYxQcri6i-srcowrfx5rVYOQSJibm-fg9-pq3YXUstiPsUibm-xgVYpyfYagZUEosK7bsJhopJFH_1foAe7HsjDUSHp9fh5gaUEUMuNZM2jZJ2M33NGPMep_Mh-qMY2_1o-r7BW_sCsQABE3BPc8ujagfBvq1BN_c2sHjN1qpV68BJF_M2SP7YJu9xozVV2_JoGrB2yQAoiH7203Ao6qMUpZMh-qMY2_1H7H7N13_z68Bu2_JoGP3Uao32q17jfZ3O3qJY1qRxqzO-k_VPzHJY1qRz6zJBN_9jFoJOJ1MOHuVud_3O3QJYIuMWgu7Od_Oo-r7BW69BxufzFyMFNqO2yeMgxuOV2_fB-P7B2PfBiH72F3s-DPuKpeSBiHBUh3_oZgMV913Bvq1BRZ3BRq3UpZSCqHMhO3Ao6QfUpeMgxuOV2_fB-P7B2PfBs3VgDyfNDgMzIzMNs81jfZ3NZPcgU8I-jzsB2yf7NqV2AZ9o-QjNkysoGQVKaZSBiHfzE3Bo-ojBke3BHe72E3_UN8u23692qu7gN3_-Sq1Y2Z_V6qBVO_32081OEqpzo8MHF_uzz8JYAZsjibm-sy9zBgfYa8uYpP3PSg9o79fV7PI-2ySu7gZUE3aUp6Ae7UiFioAnF6mUDUsHN6AUibmUp6_K7UiFiHpjd6ZUDUsHN6Ayi9ZFirMuDg9gxQMoB9RosQR-BUstFbsKhoprNosHhHsnf6_jFHAKDUSCaq3oB9f-2gmUE6AyOHmFigfYxQVY2gmUEHiFigMBXy3hwrMuDrMVXqOYxgIosQR-BUsthH_Jabsya6_rpHAefHsjfHZFir9uBrSBwrMuDrMVXqOYpyfYagZUEHmda6_JaoAeFo_URHAeR6AHFomFirfuxrMot9fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUS-Br9uBrRzwq3ei6iUaHAUOHAeaHsnRHAU7HABJepKNzjJa6_gJopucH_oJz7uuUiFigcufq3oB9fBjUstiopn7H_ehHpefoA1ho_JhosefHZ-Y?dv=mobile\u0026page=1\u0026src=search\u0026is_search=1\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Flenovoauthorizedjakbar%2Flenovo-thinkpad-x1-carbon-gen-11-i7-1365u-1tb-ssd-16gb-win11pro%3Fsrc%3Dtopads\u0026ob=23\u0026pub_id=0\u0026management_type=2\u0026t=mobile\u0026pub_unit=0\u0026keywords=laptop\u0026pub_domain=0",
+                                "productViewURL": "https://ta.tokopedia.com/promo/v1/views/8a-2rOYDQfPwgcV7yZUEHZFiy3zwq3ei6sJN6_1NHsJRomFiy3zwPIBFgZUEHZFirfuprfB5QBY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJibm-Orfua9fBjUstioAKFHpnhoAHibm-7q3OBUsthopeOHpnOHpyFbm-Fy9ztUstiq3OxgfupbSz5qfYFg3z2yZNXg9e5q3OSbfoxyfxBbpUFHmOpr9uxrM15y9CtQIufbpJN6_r5HZ4hbp1fgAgiyM1dofJh6_zsHsxio_-BgA1RHsPsysjaHAyhwiNkrcuSUiFircYpq9z2Qfdi6sJDUMWB89P5rMzwq3ei6sra6_KhHpjFH_JDUMVDgaUEUMW79f-aQfVj9RzWUiFiQSuWyMua9fYM9fVjraUEoiFiQSuWyMua9fVjrOYag9Ji6syDUMNwyfVXgcBjy9zB9fVjraUEHsrObm-xyBY7g9o7Usti_iUDUSC5rRzwy3hSUs2QUMoFyOYpqcYF9RuXrZ-Pbm-fg9-pq3YXUstiPsUibm-xgVYpyfYagZUEosK7bsJhopJFH_1foAe7HsjDUSHp9fh5gaUEUMuNZM2jZJ2M33NGPMep_Mh-qMY2_1o-r7BW_sCsQABE3BPc8ujagfBvq1BN_c2sHjN1qpV68BJF_M2SP7YJu9xozVV2_JoGrB2yQAoiH7203Ao6qMUpZMh-qMY2_1H7H7N13_z68Bu2_JoGP3Uao32q17jfZ3O3qJY1qRxqzO-k_VPzHJY1qRz6zJBN_9jFoJOJ1MOHuVud_3O3QJYIuMWgu7Od_Oo-r7BW69BxufzFyMFNqO2yeMgxuOV2_fB-P7B2PfBiH72F3s-DPuKpeSBiHBUh3_oZgMV913Bvq1BRZ3BRq3UpZSCqHMhO3Ao6QfUpeMgxuOV2_fB-P7B2PfBs3VgDyfNDgMzIzMNs81jfZ3NZPcgU8I-jzsB2yf7NqV2AZ9o-QjNkysoGQVKaZSBiHfzE3Bo-ojBke3BHe72E3_UN8u23692qu7gN3_-Sq1Y2Z_V6qBVO_32081OEqpzo8MHF_uzz8JYAZsjibm-sy9zBgfYa8uYpP3PSg9o79fV7PI-2ySu7gZUE3aUp6Ae7UiFioAnF6mUDUsHN6AUibmUp6_K7UiFiHpjd6ZUDUsHN6Ayi9ZFirMuDg9gxQMoB9RosQR-BUstFbsKhoprNosHhHsnf6_jFHAKDUSCaq3oB9f-2gmUE6AyOHmFigfYxQVY2gmUEHiFigMBXy3hwrMuDrMVXqOYxgIosQR-BUsthH_Jabsya6_rpHAefHsjfHZFir9uBrSBwrMuDrMVXqOYpyfYagZUEHmda6_JaoAeFo_URHAeR6AHFomFirfuxrMot9fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUS-Br9uBrRzwq3ei6iUaHAUOHAeaHsnRHAU7HABJepKNzjJa6_gJopucH_oJz7uuUiFigcufq3oB9fBjUstiopn7H_ehHpefoA1ho_JhosefHZ-Y?src=search\u0026is_search=1\u0026keywords=laptop\u0026t=mobile\u0026page=1\u0026pub_domain=0\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026pub_id=0\u0026management_type=2\u0026pub_unit=0\u0026dv=mobile\u0026ob=23",
+                                "productWishlistURL": "https://ta.tokopedia.com/promo/v1/wishlists/8a-xgVY2gmUEH_jNo_jaH_r7bm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUE6AyOHmFircYpq9z2Qfdi6sJDUMWB89P5rMzwq3ei6sra6_KhHpjFH_JDUMVDgaUEUMW79f-aQfVj9RzWUiFiQSuWyMua9fYM9fVjraUEoiFiQSuWyMua9fVjrOYag9Ji6syDUMoxPVY2gIHi6BDa6_rDHpK7omFp6_K79ZFiQBYsy3Njq3zxPcuwy3zpUstaop1DUMVi9RzBrRei6i-6UiFircYpPVYxQcri6i-srcowrfx5rVYOQSJibm-fg9-pq3YXUstiPsUibm-xgVYpyfYagZUEosK7bsJhopJFH_1foAe7HsjDUSHp9fh5gaUEUMuNZM2jZJ2M33NGPMep_Mh-qMY2_1o-r7BW_sCsQABE3BPc8ujagfBvq1BN_c2sHjN1qpV68BJF_M2SP7YJu9xozVV2_JoGrB2yQAoiH7203Ao6qMUpZMh-qMY2_1H7H7N13_z68Bu2_JoGP3Uao32q17jfZ3O3qJY1qRxqzO-k_VPzHJY1qRz6zJBN_9jFoJOJ1MOHuVud_3O3QJYIuMWgu7Od_Oo-r7BW69BxufzFyMFNqO2yeMgxuOV2_fB-P7B2PfBiH72F3s-DPuKpeSBiHBUh3_oZgMV913Bvq1BRZ3BRq3UpZSCqHMhO3Ao6QfUpeMgxuOV2_fB-P7B2PfBs3VgDyfNDgMzIzMNs81jfZ3NZPcgU8I-jzsB2yf7NqV2AZ9o-QjNkysoGQVKaZSBiHfzE3Bo-ojBke3BHe72E3_UN8u23692qu7gN3_-Sq1Y2Z9P-QsnYUiFiyfV7g3P5rSBwrRuSgfupPVYxPIzaq3-OPc1i6BDiHpK7omUDUseFHAKibmUp6_KaUiFiHpjdomUDUsHN6AjibmUp6_KfUB7DUS-BQcufy3NsguYpyfYagZUEHmddH_rR6_ypH_UFosjNHAndbm-FrMBsguYiq3ei6sKfo_nDUMP5y3hwq3ei6sUDUMzBPMBsguY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJiwe?t=mobile\u0026uid=48030143\u0026product_id=11311388461\u0026dv=mobile\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Flenovoauthorizedjakbar%2Flenovo-thinkpad-x1-carbon-gen-11-i7-1365u-1tb-ssd-16gb-win11pro%3Fsrc%3Dtopads\u0026ob=23\u0026keywords=laptop\u0026pub_unit=0\u0026pub_id=0\u0026pub_domain=0\u0026management_type=2\u0026is_search=1\u0026src=search\u0026page=1",
+                                "tag": 206,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 0,
+                                "parentID": "0",
+                                "oldWarehouseID": 14342389,
+                                "warehouseID": "14342389",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 16486078647,
+                            "id": "16486078647",
+                            "ttsProductID": "1731047290959922701",
+                            "name": "DELL INSPIRON 11 3148 2IN1 I3 4030U 8GB RAM 500GB HDD TOUCH CAM MULUS MURAH",
+                            "url": "https://www.tokopedia.com/shoozay/dell-inspiron-11-3148-2in1-i3-4030u-8gb-ram-500gb-hdd-touch-cam-mulus-murah-1731047290959922701?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/16486078647?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/VqbcmM/2025/3/20/c2478030-1593-4bc7-bd0b-0ab8d0b17ac3.jpg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2025/3/20/c2478030-1593-4bc7-bd0b-0ab8d0b17ac3.jpg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 376031,
+                                "id": "376031",
+                                "ttsSellerID": "7495811597789661709",
+                                "name": "Shoozay",
+                                "url": "https://www.tokopedia.com/shoozay",
+                                "city": "Jakarta Selatan",
+                                "tier": 3,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1731047290959988237",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 3,
+                                "title": "Jakarta Selatan",
+                                "url": "https://images.tokopedia.net/img/goldmerchant/pm_activation/badge/PM%20Pro%20Small.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp2.150.000",
+                                "number": 2150000,
+                                "range": "",
+                                "original": "",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/laptop-2-in-1",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/laptop-2-in-1/laptop/shoozay/dell-inspiron-11-3148-2in1-i3-4030u-8gb-ram-500gb-hdd-touch-cam-mulus-murah-1731047290959922701",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "239112991",
+                                "productClickURL": "https://ta.tokopedia.com/promo/v1/clicks/8a-xgVY2gmUEHsHNH_Ja6_jhbm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUEoA1OHmFircYpq9z2Qfdi6sUDUMVDgaUEUSo7QuYDHOYDHBYDHZUDUMNOQ3-BrBY5gBYxgIHi6syDUMNOQ3-BrBYxgIowrMuhUstfbm-sy9zwq3zpUs2QHsjRbAHdoAeDHpjd6u7DUMNwyfVXgcBjy9zB9fVjraUEHsrObm-xyBY7g9o7Usti_iUDUSC5rRzwy3hSUstiyRCs9RotQRCwP3NhUiFiPMuarfB5QiUEUSyaUiFiy3zwrfo5rM1i6sydoZdRHAUFHAyRopnhH_Ufbm-pHOYDQfri6i-B812kgJxGgBBXZSgjH7NDZ325q1OAZ9o-Q1dFyfFN8B29zSBgHMP2_fB-8JO2oAV-q9P2y_-3o3ea69BqzsBE3_UN8u2_Z_g-qjV2_JoGP3Uao32q17jfZ3O3qJY1qRxqzO-k_VPzHJY1qRz6zJBN_9jFoJOJ1MOHuVud_3O3QJYIuMWgu7Od_Oo-r7BW69BxufzFyMFNqO2yeMgxuOV2_fB-P7B2PfBiH72F3s-DPuKpeSBiHBUh3_oZgMV913Bvq1BRZ3BRq3UpZSCqHMhO3Ao6QfUpeMgxuOV2_fB-P7B2PfBs3VgDyfNDgMzIzMNs81jfZ3OR83-I6_oMZIxp__Jd8jY1gpuMZIxp_uPdPMep8AxizJ2M_92SHJNU8AxsHO-7gjxdqBB2Z9o-QjNkysoGQVKaZSBiHfzE3Bo-ojBke3BHe72E3_UN8u23692qu7gN3_-Sq1Y2Z_V6qBuO_Bz0o1NEe9268BVN_7zuHJBXHA7ibm-sQIupPcua9fBj9RyaUst7HAUFoZFiyfV7g3P5rSBwrRuSgfupPVYxPIzaq3-OPc1i6BDiHpK7omUDUseFHAKibmUp6_KaUiFiHpjdomUDUsHN6AjibmUp6_KfUB7DUSCaq3oB9f-2gmUEoA1OHmFigfYxQVY2gmUEHiFigMBXy3hwrMuDrMVXqOYxgIosQR-BUstN6_1X6AKOopUp6AyNosUdHiFir9uBrSBwrMuDrMVXqOYpyfYagZUEHmd7oAyh6_rdoAKFHpnho_eOoZFirfuxrMot9fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUS-Br9uBrRzwq3ei6iUaHAUOHAeaHsnRHAU7HABJepKNzjJa6_gJopucH_oJz7uuUiFigcufq3oB9fBjUstiopn7H_ehHpefoA1ho_JhosefHZ-Y?t=mobile\u0026is_search=1\u0026management_type=2\u0026dv=mobile\u0026ob=23\u0026keywords=laptop\u0026page=1\u0026pub_unit=0\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Fshoozay%2Fdell-inspiron-11-3148-2in1-i3-4030u-8gb-ram-500gb-hdd-touch-cam-mulus-murah-1731047290959922701%3Fsrc%3Dtopads\u0026src=search\u0026pub_id=0\u0026pub_domain=0",
+                                "productViewURL": "https://ta.tokopedia.com/promo/v1/views/8a-2rOYDQfPwgcV7yZUEHZFiy3zwq3ei6sUp6_JhHsjNHZFiy3zwPIBFgZUEHZFirfuprfB5QBY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJibm-Orfua9fBjUstioAKFHpnhoAHibm-7q3OBUsthopeOHpnOHpyFbm-Fy9ztUstiq3OxgfupbSz5qfYFg3z2yZNXg9e5q3OSbfoxyfxBbpUFHmOpr9uxrM15uSViyfOobpUFHs15Ha4aHmYsHseR6AnpHm7ho_jpb_ziyprWyMeFyi7Fy3UdgACiH_PxypHXqSCSUiFircYpq9z2Qfdi6sUDUMoDP9o7g9-wq3zwPsUi6seFHsnObm-xQcri6i-pPcOwQAowQA-wQAJibm-XP3Oig9-wQfgwy3zpUstfbm-XP3Oig9-wy3zp9R-BrZUEoiFiQBYsy3Njq3zxPcuwy3zpUstaop1DUMVi9RzBrRei6i-6UiFircYpPVYxQcri6BDiyRCs9RotQRCwP3NhUB7DUSgBrSo2Qfdi6i-fHiUDUMVj9RosQR-BUstf6A1XopnaHAnfoprFH_JaoiFirpowQcYSUstig9BGqMzUZMggQj2fgAo6QJBkQfBoe7BpZ3O6HcoD692qu7gN3_-Sq1Y2Z9xoq_ehZ3BRq3JausujHsBN3jyN8Bja69Bq17jfZ32Cq1hAZSuiHsuk3Bo-ojBWuMxvucWd3jPZqjh91_CvucW7_jz-81ONHAzozV-W_Vzu8JOWuMhvzOg03uPo8JY_Z9o-Q_BNyuPjrc-D63Wq3J-MyuPzq1Y2Z9P-q9P2ysoGrVtaQIuyH7-Nys-ZHujp1MgxuOV2_fB-P7B2PfBiH72F3s-DPuKp_MYiH7-MyuPzq1Y2Z9P-q9P2yOx3QcoXQcgjz7gXyRB-ojBWPRBizpjpgjxdr77h6I2vucrOgjxdr7O98IgjHRKdyjzGgjOEgpC6ZIKdypoZPcgU8c2gq1BpZ3N6qMUpZMhyHj2Nysoj8B2_Z_g-qjV2_JoG8Bja69BqusBE3BPc8ujagfBvq1jh_M2uP1N1qpu68jVE_S2z81YJu_C-QsnYUiFiyfV7g3P5rSBwrRuSgfupPVYxPIzaq3-OPc1i6BDiHpK7omUDUseFHAKibmUp6_KaUiFiHpjdomUDUsHN6AjibmUp6_KfUB7DUSCaq3oB9f-2gmUEoA1OHmFigfYxQVY2gmUEHiFigMBXy3hwrMuDrMVXqOYxgIosQR-BUstN6_1X6AKOopUp6AyNosUdHiFir9uBrSBwrMuDrMVXqOYpyfYagZUEHmd7oAyh6_rdoAKFHpnho_eOoZFirfuxrMot9fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUS-Br9uBrRzwq3ei6iUaHAUOHAeaHsnRHAU7HABJepKNzjJa6_gJopucH_oJz7uuUiFigcufq3oB9fBjUstiopn7H_ehHpefoA1ho_JhosefHZ-Y?is_search=1\u0026pub_id=0\u0026pub_unit=0\u0026keywords=laptop\u0026management_type=2\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026page=1\u0026ob=23\u0026dv=mobile\u0026pub_domain=0\u0026t=mobile\u0026src=search",
+                                "productWishlistURL": "https://ta.tokopedia.com/promo/v1/wishlists/8a-xgVY2gmUEHsHNH_Ja6_jhbm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUEoA1OHmFircYpq9z2Qfdi6sUDUMVDgaUEUSo7QuYDHOYDHBYDHZUDUMNOQ3-BrBY5gBYxgIHi6syDUMNOQ3-BrBYxgIowrMuhUstfbm-sy9zwq3zpUs2QHsjRbAHdoAeDHpjd6u7DUMNwyfVXgcBjy9zB9fVjraUEHsrObm-xyBY7g9o7Usti_iUDUSC5rRzwy3hSUstiyRCs9RotQRCwP3NhUiFiPMuarfB5QiUEUSyaUiFiy3zwrfo5rM1i6sydoZdRHAUFHAyRopnhH_Ufbm-pHOYDQfri6i-B812kgJxGgBBXZSgjH7NDZ325q1OAZ9o-Q1dFyfFN8B29zSBgHMP2_fB-8JO2oAV-q9P2y_-3o3ea69BqzsBE3_UN8u2_Z_g-qjV2_JoGP3Uao32q17jfZ3O3qJY1qRxqzO-k_VPzHJY1qRz6zJBN_9jFoJOJ1MOHuVud_3O3QJYIuMWgu7Od_Oo-r7BW69BxufzFyMFNqO2yeMgxuOV2_fB-P7B2PfBiH72F3s-DPuKpeSBiHBUh3_oZgMV913Bvq1BRZ3BRq3UpZSCqHMhO3Ao6QfUpeMgxuOV2_fB-P7B2PfBs3VgDyfNDgMzIzMNs81jfZ3OR83-I6_oMZIxp__Jd8jY1gpuMZIxp_uPdPMep8AxizJ2M_92SHJNU8AxsHO-7gjxdqBB2Z9o-QjNkysoGQVKaZSBiHfzE3Bo-ojBke3BHe72E3_UN8u23692qu7gN3_-Sq1Y2Z_V6qBuO_Bz0o1NEe9268BVN_7zuHJBXHA7ibm-sQIupPcua9fBj9RyaUst7HAUFoZFiyfV7g3P5rSBwrRuSgfupPVYxPIzaq3-OPc1i6BDiHpK7omUDUseFHAKibmUp6_KaUiFiHpjdomUDUsHN6AjibmUp6_KfUB7DUSCaq3oB9f-2gmUEoA1OHmFigfYxQVY2gmUEHiFigcufq3oB9fBjUstiopn7H_ehHpefoA1ho_JhosefHZ-Y?is_search=1\u0026ob=23\u0026management_type=2\u0026t=mobile\u0026keywords=laptop\u0026uid=48030143\u0026product_id=16486078647\u0026pub_id=0\u0026src=search\u0026pub_domain=0\u0026page=1\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Fshoozay%2Fdell-inspiron-11-3148-2in1-i3-4030u-8gb-ram-500gb-hdd-touch-cam-mulus-murah-1731047290959922701%3Fsrc%3Dtopads\u0026pub_unit=0\u0026dv=mobile",
+                                "tag": 111,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 0,
+                                "parentID": "0",
+                                "oldWarehouseID": 328576,
+                                "warehouseID": "328576",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 16463870221,
+                            "id": "16463870221",
+                            "ttsProductID": "1729970191212382123",
+                            "name": "Laptop Dell Latitude 7300 Core i7 Gen 8 RAM 16GB SSD 512GB FREE TAS",
+                            "url": "https://www.tokopedia.com/starjayaelectronic/laptop-dell-latitude-7300-core-i7-gen-8-ram-16gb-ssd-512gb-free-tas-1731029447334135723?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/16463870221?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/VqbcmM/2023/7/29/2b35268c-0e20-4a75-b476-3ef02f891da0.jpg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2023/7/29/2b35268c-0e20-4a75-b476-3ef02f891da0.jpg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 1220267,
+                                "id": "1220267",
+                                "ttsSellerID": "7495812982306278315",
+                                "name": "STAR JAYA_ELECTRONIC",
+                                "url": "https://www.tokopedia.com/starjayaelectronic",
+                                "city": "Jakarta Barat",
+                                "tier": 3,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1731029447334135723",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 3,
+                                "title": "Jakarta Barat",
+                                "url": "https://images.tokopedia.net/img/goldmerchant/pm_activation/badge/PM%20Pro%20Small.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp2.300.000",
+                                "number": 2300000,
+                                "range": "",
+                                "original": "",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "250+ terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/laptop-consumer",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/laptop-consumer/laptop/starjayaelectronic/laptop-dell-latitude-7300-core-i7-gen-8-ram-16gb-ssd-512gb-free-tas-1731029447334135723",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "4.7",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "",
+                                "productClickURL": "",
+                                "productViewURL": "",
+                                "productWishlistURL": "",
+                                "tag": 0,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 10871568296,
+                                "parentID": "10871568296",
+                                "oldWarehouseID": 538768,
+                                "warehouseID": "538768",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 12907504102,
+                            "id": "12907504102",
+                            "ttsProductID": "1729970748222244779",
+                            "name": "Laptop Touchscreen Lenovo Thinkpad T470S Core i7 Gen 6 8GB / 256GB",
+                            "url": "https://www.tokopedia.com/starjayaelectronic/laptop-touchscreen-lenovo-thinkpad-t470s-core-i7-gen-6-8gb-256gb-t450-i5-gen-5-8gb-256gb-62ec6?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/12907504102?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/VqbcmM/2022/11/30/2cfdb56a-a3bc-41cb-a8b5-6abac4268e7a.jpg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2022/11/30/2cfdb56a-a3bc-41cb-a8b5-6abac4268e7a.jpg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 1220267,
+                                "id": "1220267",
+                                "ttsSellerID": "7495812982306278315",
+                                "name": "STAR JAYA_ELECTRONIC",
+                                "url": "https://www.tokopedia.com/starjayaelectronic",
+                                "city": "Jakarta Barat",
+                                "tier": 3,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1729970748222703531",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 3,
+                                "title": "Jakarta Barat",
+                                "url": "https://images.tokopedia.net/img/goldmerchant/pm_activation/badge/PM%20Pro%20Small.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp1.900.000",
+                                "number": 1900000,
+                                "range": "",
+                                "original": "",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "500+ terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/ultrabook",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/ultrabook/laptop/starjayaelectronic/laptop-touchscreen-lenovo-thinkpad-t470s-core-i7-gen-6-8gb-256gb-t450-i5-gen-5-8gb-256gb-62ec6",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "4.9",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "",
+                                "productClickURL": "",
+                                "productViewURL": "",
+                                "productWishlistURL": "",
+                                "tag": 0,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 3785180291,
+                                "parentID": "3785180291",
+                                "oldWarehouseID": 538768,
+                                "warehouseID": "538768",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 12604175524,
+                            "id": "12604175524",
+                            "ttsProductID": "1731092563966723439",
+                            "name": "LAPTOP AXIOO HYPE 10 | N4020 8GB 256GB Windows 10 Pro",
+                            "url": "https://www.tokopedia.com/axiooslimbook/laptop-axioo-hype-10-n4020-8gb-256gb-windows-10-pro-normal-dos-11f61?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/12604175524?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/VqbcmM/2024/1/24/17a196b1-0c7c-4f0b-835c-a892cb89cf7f.png",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2024/1/24/17a196b1-0c7c-4f0b-835c-a892cb89cf7f.png",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 12707491,
+                                "id": "12707491",
+                                "ttsSellerID": "7495634414804109679",
+                                "name": "Axioo Official Store ID",
+                                "url": "https://www.tokopedia.com/axiooslimbook",
+                                "city": "",
+                                "tier": 2,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1731092563966920047",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 4,
+                                "title": "Axioo Official Store ID",
+                                "url": "https://images.tokopedia.net/img/official_store_badge.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp2.749.000",
+                                "number": 2749000,
+                                "range": "",
+                                "original": "Rp6.999.000",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "500+ terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 1401,
+                                    "position": "overlay_3",
+                                    "title": "Bonus",
+                                    "type": "",
+                                    "url": "https://images.tokopedia.net/img/bonus-cashback/bonus-overlay-3rd-slot.png",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 501,
+                                    "position": "ri_ribbon",
+                                    "title": "61%",
+                                    "type": "red",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/laptop-consumer",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/laptop-consumer/laptop/axiooslimbook/laptop-axioo-hype-10-n4020-8gb-256gb-windows-10-pro-normal-dos-11f61",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "5.0",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "",
+                                "productClickURL": "",
+                                "productViewURL": "",
+                                "productWishlistURL": "",
+                                "tag": 0,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 12604175517,
+                                "parentID": "12604175517",
+                                "oldWarehouseID": 12632141,
+                                "warehouseID": "12632141",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 12961442260,
+                            "id": "12961442260",
+                            "ttsProductID": "1730815446093628938",
+                            "name": "Lenovo LOQ Gaming i7-13650HX RTX4060 512GB SSD 12GB IPS 144Hz 100%sRGB Win11+OHS",
+                            "url": "https://www.tokopedia.com/lenovoauthorizedjakbar/lenovo-loq-gaming-i7-13650hx-rtx4060-512gb-ssd-12gb-144hz-ips-win11-12gb-standar-tanpa-antigores-0f83c?extParam=ivf%3Dtrue%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/12961442260?extParam=ivf%3Dtrue%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/aphluv/1997/1/1/21a3a612758a48718f8f765e9f0a2553~.jpeg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/aphluv/1997/1/1/21a3a612758a48718f8f765e9f0a2553~.jpeg",
+                                "videoCustom": "https://vod-stream.tokopedia.net/view/ttvideo?source=QeEaKL\u0026ttvid=v10c21g50000cv1t397og65l80ss2n20",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 14472406,
+                                "id": "14472406",
+                                "ttsSellerID": "7494970495048518154",
+                                "name": "LenovoIndonesia",
+                                "url": "https://www.tokopedia.com/lenovoauthorizedjakbar",
+                                "city": "",
+                                "tier": 2,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1731152683293312522",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 4,
+                                "title": "LenovoIndonesia",
+                                "url": "https://images.tokopedia.net/img/official_store_badge.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp17.149.000",
+                                "number": 17149000,
+                                "range": "",
+                                "original": "Rp20.999.000",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "2 terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 1401,
+                                    "position": "overlay_3",
+                                    "title": "Bonus",
+                                    "type": "",
+                                    "url": "https://images.tokopedia.net/img/bonus-cashback/bonus-overlay-3rd-slot.png",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 501,
+                                    "position": "ri_ribbon",
+                                    "title": "18%",
+                                    "type": "red",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/pc-laptop-gaming/laptop-gaming",
+                                "gaKey": "/searchproduct/komputer-laptop/pc-laptop-gaming/laptop-gaming/laptop/lenovoauthorizedjakbar/lenovo-loq-gaming-i7-13650hx-rtx4060-512gb-ssd-12gb-144hz-ips-win11-12gb-standar-tanpa-antigores-0f83c",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "5.0",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "217261455",
+                                "productClickURL": "https://ta.tokopedia.com/promo/v1/clicks/8a-xgVY2gmUEHsJRHsyhoA1Obm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUEoAeOHmFircYpq9z2Qfdi6sHDUMVDgaUEUSo7QuYDHOYDHBYDHZUDUMNOQ3-BrBY5gBYxgIHi6syDUMNOQ3-BrBYxgIowrMuhUstfbm-sy9zwq3zpUs2QHsjRbAHdoArDoAnF6V7DUMNwyfVXgcBjy9zB9fVjraUEHsrObm-xyBY7g9o7Usti_iUDUSC5rRzwy3hSUstiyRCs9RotQRCwP3NhUiFiPMuarfB5QiUEUSyaUiFiy3zwrfo5rM1i6s1fHadFosnfoAeNopKdHsyhbm-pHOYDQfri6i-B812kgJxGgBBXZSgjH7NDZ325q1OAZ9o-Q1dFyfFN8B29zSBgHMP2_fB-81hku_Coqj7p_32SoJO1__V6ucWE_32uq1hAZS-q3cFpysoGqOKp_M2iH72DZ325q1OAZ9o-Q_ufyMO6QJBkQfBqu71O_OzcqO2I_9zqzVJO_OHFHJOkZ92HucPR_jPgPJN1z9BquO173BPZqVBEz_u-q9P2ysoGrVtaQIuyHB-Dy7yNrV2AZ_g-qjV2_JoGPMoWQcNxupuMy7xGPB2UuM2jzsBF3jo-ojBke3BHe72fyfODQMV9o3gsHMxfy7yNrV2AZ_g-qjV2_JoG8cz9uSBBusjF3uPj8jBkQfBizJ2pysoj6cgIPRxizpjpgjxdr77h6ACozJJ7gjxd8MzIH_xMz7N2Z3BRq3Ha_SgsQugM33NGPMep_Mh-qMY2_1o-r7BX_M2iH72D3Ao6QVByZM2xe7jfZ32zHjNAoACo8MWN_M2-P7O1qRPo8MHp_MBG6ZUDUMoDP9o7g9-wq3zwPsUi6sUNosy7bm-sy9zBgfYa8uYpP3PSg9o79fV7PI-2ySu7gZUE3aUp6Ae7UiFioAnF6mUDUsHN6AUibmUp6_K7UiFiHpjd6ZUDUsHN6Ayi9ZFirI-2yfuwyMBjUst7oA1Fbm-SQfVD9fBjUstabm-Mq3NxQVYag3hay3N09fVjrfo5rM1i6srd6ZdNHpUFosnd6_jdHAJDUSVOg9-N9R-BQI-xQMWwrfo5rM1i6snXHpn7op1hHsJf6AJNHAKaoAyDUSoBy9-sqVY2gmUEUsUFHs1FoAUaHArFHseF61zA6ABce_UNojeRo1yhH7zIzu1ibm-ag9VOg9o79fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUMzBPMBsguY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJiwe?t=mobile\u0026src=search\u0026is_search=1\u0026pub_domain=0\u0026pub_id=0\u0026ob=23\u0026management_type=2\u0026page=1\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026dv=mobile\u0026pub_unit=0\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Flenovoauthorizedjakbar%2Flenovo-loq-gaming-i7-13650hx-rtx4060-512gb-ssd-12gb-144hz-ips-win11-12gb-standar-tanpa-antigores-0f83c%3Fsrc%3Dtopads\u0026keywords=laptop",
+                                "productViewURL": "https://ta.tokopedia.com/promo/v1/views/8a-2rOYDQfPwgcV7yZUEHZFiy3zwq3ei6sUhopUfH_eOoZFiy3zwPIBFgZUEHZFirfuprfB5QBY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJibm-Orfua9fBjUstioAKFHpnhoAHibm-7q3OBUsthopeOHpnOHpyFbm-Fy9ztUstiq3OxgfupbSz5qfYFg3z2yZNXg9e5q3OSbfoxyfxBbpUFHmOpr9uxrM15y9CtQIufbpJN6_r5HZ4hbpUhy_oxosJaop1dy_edopJdgsxMopyOg_BMHcJao_1pwiNkrcuSUiFircYpq9z2Qfdi6sHDUMoDP9o7g9-wq3zwPsUi6sUNosy7bm-xQcri6i-pPcOwQAowQA-wQAJibm-XP3Oig9-wQfgwy3zpUstfbm-XP3Oig9-wy3zp9R-BrZUEoiFiQBYsy3Njq3zxPcuwy3zpUstaop1DUMVi9RzBrRei6i-6UiFircYpPVYxQcri6BDiyRCs9RotQRCwP3NhUB7DUSgBrSo2Qfdi6i-fHiUDUMVj9RosQR-BUstOosHXHAyFose76_rd6AUfHZFirpowQcYSUstig9BGqMzUZMggQj2fgAo6QJBkQfBoe7BpZ3O6HcoD692qu7gN3_-Sq1Y2Z9BHqB1F_32oH7OkgpzouJ7h_Bz08jOku3BHe72a3BxDHfUpZMWyH7NkysoGQJBkQfBoe7BpZ37OPM-W_Mh-qMY23BPVo1Y1zMWqz7O73jzzo1Y_HACoqjBE_VzSP7NI39z6uJuN3BPuoV291Mxg8j1OZ3BRq3UpZSCqHMhO3A-ZQcoc69Cqe7jfZ32Cq1hAZSgsQ3hXyurOgMoUZSgqZVgkgJyNrV2AZ_g-qjV2_JoGPMoWQcNxupuMyp-tPMoc69Cqe7jfZ32Cq1hAZSxjuOgNguyNHVB9gI2-qMY2yjzGrfUpgAxMzRPdyjrNHfgU8IooH_KF_1zCocgU8I2jzpJdgjP6q1B2PfBsHjNfyfO3gBBXZSgjH7NDZ325q1OAZ9o-QjNkysoGQVKp_Mhg3J2ky1o-ojBk1_-6epeF_92081NkZ9PoucWR_92sH7N2Zsjibm-sy9zBgfYa8uYpP3PSg9o79fV7PI-2ySu7gZUE3aUp6Ae7UiFioAnF6mUDUsHN6AUibmUp6_K7UiFiHpjd6ZUDUsHN6Ayi9ZFirI-2yfuwyMBjUst7oA1Fbm-SQfVD9fBjUstabm-Mq3NxQVYag3hay3N09fVjrfo5rM1i6srd6ZdNHpUFosnd6_jdHAJDUSVOg9-N9R-BQI-xQMWwrfo5rM1i6snXHpn7op1hHsJf6AJNHAKaoAyDUSoBy9-sqVY2gmUEUsUFHs1FoAUaHArFHseF61zA6ABce_UNojeRo1yhH7zIzu1ibm-ag9VOg9o79fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUMzBPMBsguY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJiwe?ob=23\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026is_search=1\u0026dv=mobile\u0026page=1\u0026pub_unit=0\u0026pub_domain=0\u0026keywords=laptop\u0026t=mobile\u0026src=search\u0026pub_id=0\u0026management_type=2",
+                                "productWishlistURL": "https://ta.tokopedia.com/promo/v1/wishlists/8a-xgVY2gmUEHsJRHsyhoA1Obm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUEoAeOHmFircYpq9z2Qfdi6sHDUMVDgaUEUSo7QuYDHOYDHBYDHZUDUMNOQ3-BrBY5gBYxgIHi6syDUMNOQ3-BrBYxgIowrMuhUstfbm-sy9zwq3zpUs2QHsjRbAHdoArDoAnF6V7DUMNwyfVXgcBjy9zB9fVjraUEHsrObm-xyBY7g9o7Usti_iUDUSC5rRzwy3hSUstiyRCs9RotQRCwP3NhUiFiPMuarfB5QiUEUSyaUiFiy3zwrfo5rM1i6s1fHadFosnfoAeNopKdHsyhbm-pHOYDQfri6i-B812kgJxGgBBXZSgjH7NDZ325q1OAZ9o-Q1dFyfFN8B29zSBgHMP2_fB-81hku_Coqj7p_32SoJO1__V6ucWE_32uq1hAZS-q3cFpysoGqOKp_M2iH72DZ325q1OAZ9o-Q_ufyMO6QJBkQfBqu71O_OzcqO2I_9zqzVJO_OHFHJOkZ92HucPR_jPgPJN1z9BquO173BPZqVBEz_u-q9P2ysoGrVtaQIuyHB-Dy7yNrV2AZ_g-qjV2_JoGPMoWQcNxupuMy7xGPB2UuM2jzsBF3jo-ojBke3BHe72fyfODQMV9o3gsHMxfy7yNrV2AZ_g-qjV2_JoG8cz9uSBBusjF3uPj8jBkQfBizJ2pysoj6cgIPRxizpjpgjxdr77h6ACozJJ7gjxd8MzIH_xMz7N2Z3BRq3Ha_SgsQugM33NGPMep_Mh-qMY2_1o-r7BX_M2iH72D3Ao6QVByZM2xe7jfZ32zHjNAoACo8MWN_M2-P7O1qRPo8MHp_MBG6ZUDUMoDP9o7g9-wq3zwPsUi6sUNosy7bm-sy9zBgfYa8uYpP3PSg9o79fV7PI-2ySu7gZUE3aUp6Ae7UiFioAnF6mUDUsHN6AUibmUp6_K7UiFiHpjd6ZUDUsHN6Ayi9ZFirI-2yfuwyMBjUst7oA1Fbm-SQfVD9fBjUstabm-jg9g2yfuwq3ei6iURHAehoAJpoAy7o_JOH_JfoAyhUS7?src=search\u0026is_search=1\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Flenovoauthorizedjakbar%2Flenovo-loq-gaming-i7-13650hx-rtx4060-512gb-ssd-12gb-144hz-ips-win11-12gb-standar-tanpa-antigores-0f83c%3Fsrc%3Dtopads\u0026pub_id=0\u0026pub_domain=0\u0026product_id=12961442260\u0026page=1\u0026dv=mobile\u0026t=mobile\u0026pub_unit=0\u0026ob=23\u0026uid=48030143\u0026management_type=2\u0026keywords=laptop",
+                                "tag": 111,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 12961442259,
+                                "parentID": "12961442259",
+                                "oldWarehouseID": 14342389,
+                                "warehouseID": "14342389",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 15562749718,
+                            "id": "15562749718",
+                            "ttsProductID": "1729863109032641748",
+                            "name": "Laptop Lenovo IdeaPad Slim 3i i3-1215U 256GB SSD 8GB WIN11+OHS",
+                            "url": "https://www.tokopedia.com/lenovo-tangerang/laptop-lenovo-ideapad-slim-3i-i3-1215u-256gb-ssd-8gb-win11-ohs-abyss-blue-8gb-standar-ff4b9?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/15562749718?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/VqbcmM/2025/2/26/b19e854f-5464-4d70-a0bc-544280332f62.jpg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2025/2/26/b19e854f-5464-4d70-a0bc-544280332f62.jpg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 11534215,
+                                "id": "11534215",
+                                "ttsSellerID": "7495817831526533332",
+                                "name": "Lenovo Authorized Tangerang",
+                                "url": "https://www.tokopedia.com/lenovo-tangerang",
+                                "city": "",
+                                "tier": 2,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1730312158274356436",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 4,
+                                "title": "Lenovo Authorized Tangerang",
+                                "url": "https://images.tokopedia.net/img/official_store_badge.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp5.849.000",
+                                "number": 5849000,
+                                "range": "",
+                                "original": "Rp7.999.000",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "2rb+ terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 501,
+                                    "position": "ri_ribbon",
+                                    "title": "27%",
+                                    "type": "red",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/laptop-2-in-1",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/laptop-2-in-1/laptop/lenovo-tangerang/laptop-lenovo-ideapad-slim-3i-i3-1215u-256gb-ssd-8gb-win11-ohs-abyss-blue-8gb-standar-ff4b9",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "5.0",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "162806993",
+                                "productClickURL": "https://ta.tokopedia.com/promo/v1/clicks/8a-xgVY2gmUEH_ya6Anf6_jpbm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUEHsyOHmFircYpq9z2Qfdi6seDUMWB89P5rMzwq3ei6srao_UFoAyfopyDUMVDgaUEUMW79f-aQfVj9RzWUiFiQSuWyMua9fYM9fVjraUEoiFiQSuWyMua9fVjrOYag9Ji6syDUMoxPVY2gIHi6BDa6_rDHpK7omFp6_KN9ZFiQBYsy3Njq3zxPcuwy3zpUstaop1DUMVi9RzBrRei6i-6UiFircYpPVYxQcri6i-srcowrfx5rVYOQSJibm-fg9-pq3YXUstiPsUibm-xgVYpyfYagZUEo_y7bsUhH_JOHsjNHsJhopyDUSHp9fh5gaUEUMuNZM2jZJ2M33NGPMep_Mh-qMY2_1o-r7BW_sCsQABE3BPc8ujagfBvq1BE_c2ooJY1gR2ozVuR_7zzH7NJu_o6q1BpZ3O7QcuygIgsQu-Myp-6PMoWu3Bvq1BR_c2-8jO1gpo6zcDO_Oz0o1Y1qpuvucDpZ3BRq3-W69ugHBu2_fBGQVB1qpuouO-039jhq7NJqpuHuVVN_32oPJYJe_Cqq_nh_uzGQV21qchqz7gk_uz0q1hAZSgsQ3hXyurOgB2IuSPyHMh0Z325q1OAZ9o-Q_BNyuPjrc-D69PsQ_B0gVP6HVKaQcW-qMY2_1o-r7BW69BxufzFyMFN8MVI69PyHMh0Z325q1OAZ9o-Qjyh3BxGouKp1MxqH7O2_fBGHc-y8AxxHO-M33NGPBB913BHe72E3_UN8u2363BsQ_jpyp-uq1Y2Z9P-q9P2yp-6PMoWuMgsHBgtyfO6Q7BkQfB6zVjh_c2ooJYJZ_V6ucrp_BzC8jNE192-QsnYUiFiyfV7g3P5rSBwrRuSgfupPVYxPIzaq3-OPc1i6BDiHpK7omUDUseFHAKibmUp6_KaUiFiHpjdomUDUsHN6AjibmUp6_KfUB7DUS-BQcufy3NsguYpyfYagZUEHmddHprdHp1f6Ae7HsyFH_KObm-FrMBsguYiq3ei6sUfo_nDUMP5y3hwq3ei6sUDUMg2QMVD9R-BQI-xQMWwy3zpyfYagZUEopeabs1d6_Kao_JdoseR6mFir9uBrSBwrMuDrMVXqOYpyfYagZUEHmd76_Hdo_UNHs1hoAydH_rOoiFirfuxrMot9fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUS-Br9uBrRzwq3ei6iUaHAUOHAeaHsnRHAU7HABJepKNzjJa6_gJopucH_oJz7uuUiFigcufq3oB9fBjUstiopn7H_ehHpefoA1ho_JhosefHZ-Y?pub_id=0\u0026pub_domain=0\u0026ob=23\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026src=search\u0026is_search=1\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Flenovo-tangerang%2Flaptop-lenovo-ideapad-slim-3i-i3-1215u-256gb-ssd-8gb-win11-ohs-abyss-blue-8gb-standar-ff4b9%3Fsrc%3Dtopads\u0026pub_unit=0\u0026t=mobile\u0026keywords=laptop\u0026page=1\u0026management_type=2\u0026dv=mobile",
+                                "productViewURL": "https://ta.tokopedia.com/promo/v1/views/8a-2rOYDQfPwgcV7yZUEHZFiy3zwq3ei6sJfHsKFosjNHaFiy3zwPIBFgZUEHZFirfuprfB5QBY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJibm-Orfua9fBjUstioAKFHpnhoAHibm-7q3OBUsthopeOHpnOHpyFbm-Fy9ztUstiq3OxgfupbSz5qfYFg3z2yZNXg9e5q3OSbfoxyfxBbpUFHmOpr9uxrM15uSViyfOobpUFHs15Hi4aoiYiH_BB6A17gi7OoAy7b_zjopnWy_Ciya7OoAea6AnpHp-MosUXqSCSUiFircYpq9z2Qfdi6seDUMWB89P5rMzwq3ei6srao_UFoAyfopyDUMVDgaUEUMW79f-aQfVj9RzWUiFiQSuWyMua9fYM9fVjraUEoiFiQSuWyMua9fVjrOYag9Ji6syDUMNwyfVXgcBjy9zB9fVjraUEHsrObm-xyBY7g9o7Usti_iUDUSC5rRzwy3hSUs2QUMoFyOYpqcYF9RuXrZ-Pbm-fg9-pq3YXUstiPsUibm-xgVYpyfYagZUEo_y7bsUhH_JOHsjNHsJhopyDUSHp9fh5gaUEUMuNZM2jZJ2M33NGPMep_Mh-qMY2_1o-r7BW_sCsQABE3BPc8ujagfBvq1BE_c2ooJY1gR2ozVuR_7zzH7NJu_o6q1BpZ3O7QcuygIgsQu-Myp-6PMoWu3Bvq1BR_c2-8jO1gpo6zcDO_Oz0o1Y1qpuvucDpZ3BRq3-W69ugHBu2_fBGQVB1qpuouO-039jhq7NJqpuHuVVN_32oPJYJe_Cqq_nh_uzGQV21qchqz7gk_uz0q1hAZSgsQ3hXyurOgB2IuSPyHMh0Z325q1OAZ9o-Q_BNyuPjrc-D69PsQ_B0gVP6HVKaQcW-qMY2_1o-r7BW69BxufzFyMFN8MVI69PyHMh0Z325q1OAZ9o-Qjyh3BxGouKp1MxqH7O2_fBGHc-y8AxxHO-M33NGPBB913BHe72E3_UN8u2363BsQ_jpyp-uq1Y2Z9P-q9P2yp-6PMoWuMgsHBgtyfO6Q7BkQfB6zVjh_c2ooJYJZ_V6ucrp_BzC8jNE192-QsnYUiFiyfV7g3P5rSBwrRuSgfupPVYxPIzaq3-OPc1i6BDiHpK7omUDUseFHAKibmUp6_KaUiFiHpjdomUDUsHN6AjibmUp6_KfUB7DUS-BQcufy3NsguYpyfYagZUEHmddHprdHp1f6Ae7HsyFH_KObm-FrMBsguYiq3ei6sUfo_nDUMP5y3hwq3ei6sUDUMg2QMVD9R-BQI-xQMWwy3zpyfYagZUEopeabs1d6_Kao_JdoseR6mFir9uBrSBwrMuDrMVXqOYpyfYagZUEHmd76_Hdo_UNHs1hoAydH_rOoiFirfuxrMot9fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUS-Br9uBrRzwq3ei6iUaHAUOHAeaHsnRHAU7HABJepKNzjJa6_gJopucH_oJz7uuUiFigcufq3oB9fBjUstiopn7H_ehHpefoA1ho_JhosefHZ-Y?src=search\u0026keywords=laptop\u0026page=1\u0026ob=23\u0026t=mobile\u0026management_type=2\u0026is_search=1\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026pub_domain=0\u0026pub_unit=0\u0026dv=mobile\u0026pub_id=0",
+                                "productWishlistURL": "https://ta.tokopedia.com/promo/v1/wishlists/8a-xgVY2gmUEH_ya6Anf6_jpbm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUEHsyOHmFircYpq9z2Qfdi6seDUMWB89P5rMzwq3ei6srao_UFoAyfopyDUMVDgaUEUMW79f-aQfVj9RzWUiFiQSuWyMua9fYM9fVjraUEoiFiQSuWyMua9fVjrOYag9Ji6syDUMoxPVY2gIHi6BDa6_rDHpK7omFp6_KN9ZFiQBYsy3Njq3zxPcuwy3zpUstaop1DUMVi9RzBrRei6i-6UiFircYpPVYxQcri6i-srcowrfx5rVYOQSJibm-fg9-pq3YXUstiPsUibm-xgVYpyfYagZUEo_y7bsUhH_JOHsjNHsJhopyDUSHp9fh5gaUEUMuNZM2jZJ2M33NGPMep_Mh-qMY2_1o-r7BW_sCsQABE3BPc8ujagfBvq1BE_c2ooJY1gR2ozVuR_7zzH7NJu_o6q1BpZ3O7QcuygIgsQu-Myp-6PMoWu3Bvq1BR_c2-8jO1gpo6zcDO_Oz0o1Y1qpuvucDpZ3BRq3-W69ugHBu2_fBGQVB1qpuouO-039jhq7NJqpuHuVVN_32oPJYJe_Cqq_nh_uzGQV21qchqz7gk_uz0q1hAZSgsQ3hXyurOgB2IuSPyHMh0Z325q1OAZ9o-Q_BNyuPjrc-D69PsQ_B0gVP6HVKaQcW-qMY2_1o-r7BW69BxufzFyMFN8MVI69PyHMh0Z325q1OAZ9o-Qjyh3BxGouKp1MxqH7O2_fBGHc-y8AxxHO-M33NGPBB913BHe72E3_UN8u2363BsQ_jpyp-uq1Y2Z9P-q9P2yp-6PMoWuMgsHBgtyfO6Q7BkQfBoe7tNUiFiyfV7g3P5rSBwrRuSgfupPVYxPIzaq3-OPc1i6BDiHpK7omUDUseFHAKibmUp6_KaUiFiHpjdomUDUsHN6AjibmUp6_KfUB7DUS-BQcufy3NsguYpyfYagZUEHmddHprdHp1f6Ae7HsyFH_KObm-FrMBsguYiq3ei6sUfo_nDUMP5y3hwq3ei6sUDUMzBPMBsguY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJiwe?page=1\u0026t=mobile\u0026uid=48030143\u0026is_search=1\u0026pub_id=0\u0026pub_domain=0\u0026ob=23\u0026src=search\u0026product_id=15562749718\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Flenovo-tangerang%2Flaptop-lenovo-ideapad-slim-3i-i3-1215u-256gb-ssd-8gb-win11-ohs-abyss-blue-8gb-standar-ff4b9%3Fsrc%3Dtopads\u0026pub_unit=0\u0026keywords=laptop\u0026dv=mobile\u0026management_type=2",
+                                "tag": 206,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 5322689650,
+                                "parentID": "5322689650",
+                                "oldWarehouseID": 11508870,
+                                "warehouseID": "11508870",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 16489992407,
+                            "id": "16489992407",
+                            "ttsProductID": "1731226990972143402",
+                            "name": "ASUS Vivobook Go 14 E410KA-FHD4822M - Rose Pink [Intel Celeron N4500 / Intel UHD Graphics / 8GB / 256GB / 14inch / WIN11 / OHS24 / M365]",
+                            "url": "https://www.tokopedia.com/asus/asus-vivobook-go-14-e410ka-fhd4822m-rose-pink-intel-celeron-n4500-intel-uhd-graphics-8gb-256gb-14inch-win11-ohs24-m365-1731051884066605047?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/16489992407?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/VqbcmM/2025/3/21/1d0a311d-ff92-4edd-8dd4-efab0952c703.jpg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2025/3/21/1d0a311d-ff92-4edd-8dd4-efab0952c703.jpg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 2972075,
+                                "id": "2972075",
+                                "ttsSellerID": "7496079379764185898",
+                                "name": "Asus Official Store",
+                                "url": "https://www.tokopedia.com/asus",
+                                "city": "",
+                                "tier": 2,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1731226990972208938",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 4,
+                                "title": "Asus Official Store",
+                                "url": "https://images.tokopedia.net/img/official_store_badge.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp4.869.000",
+                                "number": 4869000,
+                                "range": "",
+                                "original": "Rp5.199.000",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "4 terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 501,
+                                    "position": "ri_ribbon",
+                                    "title": "6%",
+                                    "type": "red",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/ultrabook",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/ultrabook/laptop/asus/asus-vivobook-go-14-e410ka-fhd4822m-rose-pink-intel-celeron-n4500-intel-uhd-graphics-8gb-256gb-14inch-win11-ohs24-m365-1731051884066605047",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "5.0",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "",
+                                "productClickURL": "",
+                                "productViewURL": "",
+                                "productWishlistURL": "",
+                                "tag": 0,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 0,
+                                "parentID": "0",
+                                "oldWarehouseID": 2383689,
+                                "warehouseID": "2383689",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 100261722411,
+                            "id": "100261722411",
+                            "ttsProductID": "1730881800298202767",
+                            "name": "Laptop HP Core i5 / i7 Ram 8GB Ssd 256GB Original Bergaransi",
+                            "url": "https://www.tokopedia.com/gitechlaptop/laptop-hp-core-i5-i7-ram-8gb-ssd-256gb-original-bergaransi?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/100261722411?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/aphluv/1997/1/1/c66271786c714a4bb0192a931a3a719e~.jpeg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/aphluv/1997/1/1/c66271786c714a4bb0192a931a3a719e~.jpeg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 12845236,
+                                "id": "12845236",
+                                "ttsSellerID": "7495615895078210191",
+                                "name": "Gitech Laptop",
+                                "url": "https://www.tokopedia.com/gitechlaptop",
+                                "city": "Bandung",
+                                "tier": 3,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1731114526765581967",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 3,
+                                "title": "Bandung",
+                                "url": "https://images.tokopedia.net/img/goldmerchant/pm_activation/badge/PM%20Pro%20Small.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp1.200.000",
+                                "number": 1200000,
+                                "range": "",
+                                "original": "",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "100+ terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/laptop-consumer",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/laptop-consumer/laptop/gitechlaptop/laptop-hp-core-i5-i7-ram-8gb-ssd-256gb-original-bergaransi",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "4.8",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "",
+                                "productClickURL": "",
+                                "productViewURL": "",
+                                "productWishlistURL": "",
+                                "tag": 0,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 6971267753,
+                                "parentID": "6971267753",
+                                "oldWarehouseID": 12765844,
+                                "warehouseID": "12765844",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 12616454170,
+                            "id": "12616454170",
+                            "ttsProductID": "1729839383366896138",
+                            "name": "Lenovo Ideapad Slim 3 Ryzen 5 7530U 512GB SSD 8GB IPS Win11+OHS",
+                            "url": "https://www.tokopedia.com/lenovoauthorizedjakbar/lenovo-ideapad-slim-3-ryzen-5-7530u-512gb-ssd-8gb-ips-win11-ohs-abyss-blue-non-antigores-30b3e?extParam=ivf%3Dtrue%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/12616454170?extParam=ivf%3Dtrue%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/aphluv/1997/1/1/2a644fec3a25481b85f08abc0695619f~.jpeg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/aphluv/1997/1/1/2a644fec3a25481b85f08abc0695619f~.jpeg",
+                                "videoCustom": "https://vod-stream.tokopedia.net/view/ttvideo?source=QeEaKL\u0026ttvid=v10c21g50000cqmnkffog65vuh462rig",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 14472406,
+                                "id": "14472406",
+                                "ttsSellerID": "7494970495048518154",
+                                "name": "LenovoIndonesia",
+                                "url": "https://www.tokopedia.com/lenovoauthorizedjakbar",
+                                "city": "",
+                                "tier": 2,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1731152681270806026",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 4,
+                                "title": "LenovoIndonesia",
+                                "url": "https://images.tokopedia.net/img/official_store_badge.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp7.999.000",
+                                "number": 7999000,
+                                "range": "",
+                                "original": "Rp9.899.000",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "14 terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 1401,
+                                    "position": "overlay_3",
+                                    "title": "Bonus",
+                                    "type": "",
+                                    "url": "https://images.tokopedia.net/img/bonus-cashback/bonus-overlay-3rd-slot.png",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 501,
+                                    "position": "ri_ribbon",
+                                    "title": "19%",
+                                    "type": "red",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/laptop-consumer",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/laptop-consumer/laptop/lenovoauthorizedjakbar/lenovo-ideapad-slim-3-ryzen-5-7530u-512gb-ssd-8gb-ips-win11-ohs-abyss-blue-non-antigores-30b3e",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "5.0",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "207216184",
+                                "productClickURL": "https://ta.tokopedia.com/promo/v1/clicks/8a-xgVY2gmUEHsnRHsJfH_K7bm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUEoA1FHmFircYpq9z2Qfdi6s1DUMVDgaUEUSo7QuYDHOYDHBYDHZUDUMNOQ3-BrBY5gBYxgIHi6syDUMNOQ3-BrBYxgIowrMuhUstfbm-sy9zwq3zpUs2QHsjRbAHdoAeDHpjdHB7DUMNwyfVXgcBjy9zB9fVjraUEHsrObm-xyBY7g9o7Usti_iUDUSC5rRzwy3hSUstiyRCs9RotQRCwP3NhUiFiPMuarfB5QiUEUSyaUiFiy3zwrfo5rM1i6s1pHZdhH_JO6_rfoA1R6Anhbm-pHOYDQfri6i-B812kgJxGgBBXZSgjH7NDZ325q1OAZ9o-Q1dFyfFN8B29zSBgHMP2_fB-HJhkypCouJ7p_Ozo8JOJ__C6zcPN_SB-r7BWPchB3czfyfOZgMHa_SgsQuu2_fB-P7B2PfBiQ_BO3_-uq1Y2ZMhgucDO_uPZqOBNH3W6zcDO_Vzz81Ok_9zvzJJF3MjFH1O1ZMhqucxD3jPcqjO1qfBHe72fyfODQMV9o3gqzOgR3A-Dq7BkQfBoe7BpZ37N83V9gICiQABRyf7Nqfz9_sCyHMh0Z325q1OAZ9o-Q_BNyuPjrc-D692xzpBR3A-Dq7BkQfBoe7BpZ3NcHu2yZsuyHO-t3sooq1Y2ZSooH_xE_OzS83gU8IooQ9xfgAod6c-JzSoiHfedgjPR8uxE__z6zVUdgjx6Hc-y8AxgHjB2_JoG8Bja69BqusB2yf7NHfHau3Bvq1BRZ3BRq3Ha_SgsQugMyp-3qcoW_MY-qMY2_jzooJhke_z6qj1a_jzs8JNJ__Co81tNUiFiyfhOrRzBrBY2gVYfHiUEHsUF6A1DUMoxPcuSQR-N9RoOgfPBrRzwy9z7rMBiP9zBUs2QUsHdoAeibmU7HAndUiFiHpjdHiUDUsHN6AeibmUp6_KNUiFiHpjdoi-Pbm-FrMBsguYiq3ei6seOHAnDUMP5y3hwq3ei6sUDUMg2QMVD9R-BQI-xQMWwy3zpyfYagZUEopedbs1NH_e7H_efHAK76_HDUSVOg9-N9R-BQI-xQMWwrfo5rM1i6snXHpJ76_HOHAnR6ArdHsjfoiFirfuxrMot9fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUS-Br9uBrRzwq3ei6iUaHAUOHAeaHsnRHAU7HABJepKNzjJa6_gJopucH_oJz7uuUiFigcufq3oB9fBjUstiopn7H_ehHpefoA1ho_JhosefHZ-Y?management_type=2\u0026is_search=1\u0026pub_unit=0\u0026keywords=laptop\u0026pub_id=0\u0026pub_domain=0\u0026ob=23\u0026src=search\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Flenovoauthorizedjakbar%2Flenovo-ideapad-slim-3-ryzen-5-7530u-512gb-ssd-8gb-ips-win11-ohs-artic-grey-non-antigores-f24f2%3Fsrc%3Dtopads\u0026t=mobile\u0026page=1\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026dv=mobile",
+                                "productViewURL": "https://ta.tokopedia.com/promo/v1/views/8a-2rOYDQfPwgcV7yZUEHZFiy3zwq3ei6sUFopUhosJdomFiy3zwPIBFgZUEHZFirfuprfB5QBY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJibm-Orfua9fBjUstioAKFHpnhoAHibm-7q3OBUsthopeOHpnOHpyFbm-Fy9ztUstiq3OxgfupbSz5qfYFg3z2yZNXg9e5q3OSbfoxyfxBbpUFHmOpr9uxrM15y9CtQIufbpJN6_r5HZ4hbp-xose7gMusHfJao_edH3Udo3yF6cViypnf6_1fH_BMwiNkrcuSUiFircYpq9z2Qfdi6s1DUMoDP9o7g9-wq3zwPsUi6sUaHAKObm-xQcri6i-pPcOwQAowQA-wQAJibm-XP3Oig9-wQfgwy3zpUstfbm-XP3Oig9-wy3zp9R-BrZUEoiFiQBYsy3Njq3zxPcuwy3zpUstaop1DUMVi9RzBrRei6i-6UiFircYpPVYxQcri6BDiyRCs9RotQRCwP3NhUB7DUSgBrSo2Qfdi6i-fHiUDUMVj9RosQR-BUstOHpJXH_Jho_jRoseOopKFHZFirpowQcYSUstig9BGqMzUZMggQj2fgAo6QJBkQfBoe7BpZ3O6HcoD692qu7gN3_-Sq1Y2Z_CHqMHF_uzoH7Y1_9xozJ7F_jzS81NNZ9o-Q9zDguxjPMoW1MgsHjNfyfOuq1Y2Z9P-q9P2yM7NPujau3Bvq12D3uz0o1O91MWg8_V0_jz0o1h119BoqjO7_7zCHV22HAVouJ2D3BztQV2IzM2oucW2_JoGPMoWQcNxupuM3jP3POKaQcW-qMY2_1o-r7BW69BxufzFyMFNPfoW63Wju7dF3A-Dq7BkQfBoe7BpZ37N83V9gICiQABEy1rNPOKaQcW-qMY2_1o-r7BXzsVq3JtO3AoZqVtp_3Bvq12p__Jd8jY1gRBMZIxp_3OdPMep8AxizJgpysoj6cgIPRBy8j77_jzZ6cgU_sCi3IKd3_--q1hAZS2gHsBN3ByNq3oW6_osHBu2_fB-P7B2PfBsHjNfyfO3gMHauMxsQ1N5Z325q1NJ__zHqjJ7_M2VHjNJyRx6zJ7F_9BG6ZUDUMoxPcuSQR-N9RoOgfPBrRzwy9z7rMBiP9zBUs2QUsHdoAeibmU7HAndUiFiHpjdHiUDUsHN6AeibmUp6_KNUiFiHpjdoi-Pbm-FrMBsguYiq3ei6seOHAnDUMP5y3hwq3ei6sUDUMg2QMVD9R-BQI-xQMWwy3zpyfYagZUEopedbs1NH_e7H_efHAK76_HDUSVOg9-N9R-BQI-xQMWwrfo5rM1i6snXHpJ76_HOHAnR6ArdHsjfoiFirfuxrMot9fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUS-Br9uBrRzwq3ei6iUaHAUOHAeaHsnRHAU7HABJepKNzjJa6_gJopucH_oJz7uuUiFigcufq3oB9fBjUstiopn7H_ehHpefoA1ho_JhosefHZ-Y?src=search\u0026keywords=laptop\u0026is_search=1\u0026pub_unit=0\u0026t=mobile\u0026dv=mobile\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026pub_id=0\u0026ob=23\u0026page=1\u0026pub_domain=0\u0026management_type=2",
+                                "productWishlistURL": "https://ta.tokopedia.com/promo/v1/wishlists/8a-xgVY2gmUEHsnRHsJfH_K7bm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUEoA1FHmFircYpq9z2Qfdi6s1DUMVDgaUEUSo7QuYDHOYDHBYDHZUDUMNOQ3-BrBY5gBYxgIHi6syDUMNOQ3-BrBYxgIowrMuhUstfbm-sy9zwq3zpUs2QHsjRbAHdoAeDHpjdHB7DUMNwyfVXgcBjy9zB9fVjraUEHsrObm-xyBY7g9o7Usti_iUDUSC5rRzwy3hSUstiyRCs9RotQRCwP3NhUiFiPMuarfB5QiUEUSyaUiFiy3zwrfo5rM1i6s1pHZdhH_JO6_rfoA1R6Anhbm-pHOYDQfri6i-B812kgJxGgBBXZSgjH7NDZ325q1OAZ9o-Q1dFyfFN8B29zSBgHMP2_fB-HJhkypCouJ7p_Ozo8JOJ__C6zcPN_SB-r7BWPchB3czfyfOZgMHa_SgsQuu2_fB-P7B2PfBiQ_BO3_-uq1Y2ZMhgucDO_uPZqOBNH3W6zcDO_Vzz81Ok_9zvzJJF3MjFH1O1ZMhqucxD3jPcqjO1qfBHe72fyfODQMV9o3gqzOgR3A-Dq7BkQfBoe7BpZ37N83V9gICiQABRyf7Nqfz9_sCyHMh0Z325q1OAZ9o-Q_BNyuPjrc-D692xzpBR3A-Dq7BkQfBoe7BpZ3NcHu2yZsuyHO-t3sooq1Y2ZSooH_xE_OzS83gU8IooQ9xfgAod6c-JzSoiHfedgjPR8uxE__z6zVUdgjx6Hc-y8AxgHjB2_JoG8Bja69BqusB2yf7NHfHau3Bvq1BRZ3BRq3Ha_SgsQugMyp-3qcoW_MY-qMY2_jzooJhke_z6qj1a_jzs8JNJ__Co81tNUiFiyfhOrRzBrBY2gVYfHiUEHsUF6A1DUMoxPcuSQR-N9RoOgfPBrRzwy9z7rMBiP9zBUs2QUsHdoAeibmU7HAndUiFiHpjdHiUDUsHN6AeibmUp6_KNUiFiHpjdoi-Pbm-FrMBsguYiq3ei6seOHAnDUMP5y3hwq3ei6sUDUMzBPMBsguY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJiwe?uid=48030143\u0026pub_domain=0\u0026is_search=1\u0026page=1\u0026management_type=2\u0026pub_unit=0\u0026pub_id=0\u0026src=search\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Flenovoauthorizedjakbar%2Flenovo-ideapad-slim-3-ryzen-5-7530u-512gb-ssd-8gb-ips-win11-ohs-artic-grey-non-antigores-f24f2%3Fsrc%3Dtopads\u0026ob=23\u0026dv=mobile\u0026product_id=12616454168\u0026keywords=laptop\u0026t=mobile",
+                                "tag": 111,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 11966179306,
+                                "parentID": "11966179306",
+                                "oldWarehouseID": 14342389,
+                                "warehouseID": "14342389",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 16487228768,
+                            "id": "16487228768",
+                            "ttsProductID": "1731048853559281444",
+                            "name": "Laptop Lenovo Thinkpad X1 Carbon G1 Core I7 | I5 RAM 8 SSD 256 Murah",
+                            "url": "https://www.tokopedia.com/oceanla/laptop-lenovo-thinkpad-x1-carbon-g1-core-i7-i5-ram-8-ssd-256-murah-1731048853559609124?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/16487228768?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/VqbcmM/2025/3/20/54e48ddc-b51b-4932-83fd-9e543994614e.jpg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2025/3/20/54e48ddc-b51b-4932-83fd-9e543994614e.jpg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 13851215,
+                                "id": "13851215",
+                                "ttsSellerID": "7495818498403437348",
+                                "name": "Ocean Laptop",
+                                "url": "https://www.tokopedia.com/oceanla",
+                                "city": "Jakarta Barat",
+                                "tier": 3,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1731048853559609124",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 3,
+                                "title": "Jakarta Barat",
+                                "url": "https://images.tokopedia.net/img/goldmerchant/pm_activation/badge/PM%20Pro%20Small.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp1.000.000",
+                                "number": 1000000,
+                                "range": "",
+                                "original": "",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "1 terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/laptop-consumer",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/laptop-consumer/laptop/oceanla/laptop-lenovo-thinkpad-x1-carbon-g1-core-i7-i5-ram-8-ssd-256-murah-1731048853559609124",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "239108994",
+                                "productClickURL": "https://ta.tokopedia.com/promo/v1/clicks/8a-xgVY2gmUEHsHNH_nd6_j7bm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUEHpHOHmFircYpq9z2Qfdi6syDUMWB89P5rMzwq3ei6srpHAHdo_HaopHDUMVDgaUEUMW79fudy3o79RzWUiFiQSuWyMua9fYM9fVjraUEoiFiQSuWyMua9fVjrOYag9Ji6syDUMoxPVY2gIHi6BDa6_rDHpK7omFp6_Ka9ZFiQBYsy3Njq3zxPcuwy3zpUstaop1DUMVi9RzBrRei6i-6UiFircYpPVYxQcri6i-srcowrfx5rVYOQSJibm-fg9-pq3YXUstiPsUibm-xgVYpyfYagZUEo_HfbsnaosUR6_UfHAUhHs1DUSHp9fh5gaUEUMuNZM2jZJ2M33NGPMep_Mh-qMY2_1o-r7BW_sCsQABE3BPc8ujagfBvq1jF_c2CH1Y1e_CozV1O_1zzP7N1qRP6e7BpZ3O7QcuygIgsQu-Myp-6PMoWu3Bvq1BR_c2oHJOEz9B617BpZ37OPM-W_Mh-qMY23BPVo1Y1zMWqz7O73jzzo1Y_HACoqjBE_VzSP7NI39z6uJuN3BPuoV291Mxg8j1OZ3BRq3UpZSCqHMhO3A-ZQcoc69Cqe7jfZ32Cq1hAZSgsQ3hXyurOgMoUZSgqZVgkgJyNrV2AZ_g-qjV2_JoGPMoWQcNxupuMyp-tPMoc69Cqe7jfZ32Cq1hAZSxjuOgNguyNHVB9gI2-qMY2gJrh6cgIPACyHBy73uP6HJB2PfBsHjNfyfO3gBBXZSgjH7NDZ325q1OAZ9o-QjNkysoGQVKp_Mhg3J2ky1o-ojBk1_Coq_zd_jzCP7OkgpCozJuR_1zC8jNAZsjibm-sy9zBgfYa8uYpP3PSg9o79fV7PI-2ySu7gZUE3aUp6Ae7UiFioAnF6mUDUsHN6AUibmUp6_K7UiFiHpjd6ZUDUsHN6Ayi9ZFirMuDg9gxQMoB9RosQR-BUstFbsrRosHOosnpH_yFHAHNHAJDUSCaq3oB9f-2gmUEHpHOHmFigfYxQVY2gmUEHiFigMBXy3hwrMuDrMVXqOYxgIosQR-BUstRHp1XHsjpH_JhH_Kho_nFHiFir9uBrSBwrMuDrMVXqOYpyfYagZUEHmdOosU76_ehopnRHsHFH_UDUSoBy9-sqVY2gmUEUsUFHs1FoAUaHArFHseF61zA6ABce_UNojeRo1yhH7zIzu1ibm-ag9VOg9o79fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUMzBPMBsguY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJiwe?request_id=202504220702409DC89FA296D75F13DGEU\u0026pub_unit=0\u0026pub_domain=0\u0026keywords=laptop\u0026t=mobile\u0026dv=mobile\u0026management_type=2\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Foceanla%2Flaptop-lenovo-thinkpad-x1-carbon-g1-core-i7-i5-ram-8-ssd-256-murah-1731048853559609124%3Fsrc%3Dtopads\u0026pub_id=0\u0026ob=23\u0026src=search\u0026is_search=1\u0026page=1",
+                                "productViewURL": "https://ta.tokopedia.com/promo/v1/views/8a-2rOYDQfPwgcV7yZUEHZFiy3zwq3ei6sUp6_JF6AjNomFiy3zwPIBFgZUEHZFirfuprfB5QBY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJibm-Orfua9fBjUstioAKFHpnhoAHibm-7q3OBUsthopeOHpnOHpyFbm-Fy9ztUstiq3OxgfupbSz5qfYFg3z2yZNXg9e5q3OSbfoxyfxBbpUFHmOpr9uxrM15uSViyfOobpUFHs15Ha4aHm4Ooc176czjyaOio_Vib_eNHpUW6AoMgm7Ng_17HpjNoAyhoc1XqSCSUiFircYpq9z2Qfdi6syDUMWB89P5rMzwq3ei6srpHAHdo_HaopHDUMVDgaUEUMW79fudy3o79RzWUiFiQSuWyMua9fYM9fVjraUEoiFiQSuWyMua9fVjrOYag9Ji6syDUMNwyfVXgcBjy9zB9fVjraUEHsrObm-xyBY7g9o7Usti_iUDUSC5rRzwy3hSUs2QUMoFyOYpqcYF9RuXrZ-Pbm-fg9-pq3YXUstiPsUibm-xgVYpyfYagZUEo_HfbsnaosUR6_UfHAUhHs1DUSHp9fh5gaUEUMuNZM2jZJ2M33NGPMep_Mh-qMY2_1o-r7BW_sCsQABE3BPc8ujagfBvq1jF_c2CH1Y1e_CozV1O_1zzP7N1qRP6e7BpZ3O7QcuygIgsQu-Myp-6PMoWu3Bvq1BR_c2oHJOEz9B617BpZ37OPM-W_Mh-qMY23BPVo1Y1zMWqz7O73jzzo1Y_HACoqjBE_VzSP7NI39z6uJuN3BPuoV291Mxg8j1OZ3BRq3UpZSCqHMhO3A-ZQcoc69Cqe7jfZ32Cq1hAZSgsQ3hXyurOgMoUZSgqZVgkgJyNrV2AZ_g-qjV2_JoGPMoWQcNxupuMyp-tPMoc69Cqe7jfZ32Cq1hAZSxjuOgNguyNHVB9gI2-qMY2gJrh6cgIPACyHBy73uP6HJB2PfBsHjNfyfO3gBBXZSgjH7NDZ325q1OAZ9o-QjNkysoGQVKp_Mhg3J2ky1o-ojBk1_Coq_zd_jzCP7OkgpCozJuR_1zC8jNAZsjibm-sy9zBgfYa8uYpP3PSg9o79fV7PI-2ySu7gZUE3aUp6Ae7UiFioAnF6mUDUsHN6AUibmUp6_K7UiFiHpjd6ZUDUsHN6Ayi9ZFirMuDg9gxQMoB9RosQR-BUstFbsrRosHOosnpH_yFHAHNHAJDUSCaq3oB9f-2gmUEHpHOHmFigfYxQVY2gmUEHiFigMBXy3hwrMuDrMVXqOYxgIosQR-BUstRHp1XHsjpH_JhH_Kho_nFHiFir9uBrSBwrMuDrMVXqOYpyfYagZUEHmdOosU76_ehopnRHsHFH_UDUSoBy9-sqVY2gmUEUsUFHs1FoAUaHArFHseF61zA6ABce_UNojeRo1yhH7zIzu1ibm-ag9VOg9o79fBjUstiHsnao_n7HsUFopnaoAnNzJHd61gCHsjfzArOzsJpzJPVuZUDUMzBPMBsguY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJiwe?pub_id=0\u0026pub_unit=0\u0026keywords=laptop\u0026ob=23\u0026t=mobile\u0026is_search=1\u0026management_type=2\u0026src=search\u0026request_id=202504220702409DC89FA296D75F13DGEU\u0026dv=mobile\u0026pub_domain=0\u0026page=1",
+                                "productWishlistURL": "https://ta.tokopedia.com/promo/v1/wishlists/8a-xgVY2gmUEHsHNH_nd6_j7bm-xgVY789CBUsthbm-Orfua9fBjUstioAKFHpnhoAHibm-pg9opq3YX9fBjUstiopn7H_ehHpefoA1ho_JhosefHZUDUSz2Q31i6sJRoA1pHA1posnDUMoFyaUEHpHOHmFircYpq9z2Qfdi6syDUMWB89P5rMzwq3ei6srpHAHdo_HaopHDUMVDgaUEUMW79fudy3o79RzWUiFiQSuWyMua9fYM9fVjraUEoiFiQSuWyMua9fVjrOYag9Ji6syDUMoxPVY2gIHi6BDa6_rDHpK7omFp6_Ka9ZFiQBYsy3Njq3zxPcuwy3zpUstaop1DUMVi9RzBrRei6i-6UiFircYpPVYxQcri6i-srcowrfx5rVYOQSJibm-fg9-pq3YXUstiPsUibm-xgVYpyfYagZUEo_HfbsnaosUR6_UfHAUhHs1DUSHp9fh5gaUEUMuNZM2jZJ2M33NGPMep_Mh-qMY2_1o-r7BW_sCsQABE3BPc8ujagfBvq1jF_c2CH1Y1e_CozV1O_1zzP7N1qRP6e7BpZ3O7QcuygIgsQu-Myp-6PMoWu3Bvq1BR_c2oHJOEz9B617BpZ37OPM-W_Mh-qMY23BPVo1Y1zMWqz7O73jzzo1Y_HACoqjBE_VzSP7NI39z6uJuN3BPuoV291Mxg8j1OZ3BRq3UpZSCqHMhO3A-ZQcoc69Cqe7jfZ32Cq1hAZSgsQ3hXyurOgMoUZSgqZVgkgJyNrV2AZ_g-qjV2_JoGPMoWQcNxupuMyp-tPMoc69Cqe7jfZ32Cq1hAZSxjuOgNguyNHVB9gI2-qMY2gJrh6cgIPACyHBy73uP6HJB2PfBsHjNfyfO3gBBXZSgjH7NDZ325q1OAZ9o-QjNkysoGQVKp_Mhg3J2ky1o-ojBke3BM1_7YUiFiyfV7g3P5rSBwrRuSgfupPVYxPIzaq3-OPc1i6BDiHpK7omUDUseFHAKibmUp6_KaUiFiHpjdomUDUsHN6AjibmUp6_KfUB7DUS-BQcufy3NsguYpyfYagZUEHmdRopypo_yFHpJfHAnp6_nhbm-FrMBsguYiq3ei6sHpo_nDUMP5y3hwq3ei6sUDUMzBPMBsguY2gmUEUsrFoAJ7H_H7oseOH_1hH_y7osJiwe?pub_id=0\u0026is_search=1\u0026pub_domain=0\u0026page=1\u0026product_id=16487228768\u0026dv=mobile\u0026src=search\u0026management_type=2\u0026t=mobile\u0026r=https%3A%2F%2Fwww.tokopedia.com%2Foceanla%2Flaptop-lenovo-thinkpad-x1-carbon-g1-core-i7-i5-ram-8-ssd-256-murah-1731048853559609124%3Fsrc%3Dtopads\u0026pub_unit=0\u0026keywords=laptop\u0026uid=48030143\u0026ob=23",
+                                "tag": 204,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 16487228763,
+                                "parentID": "16487228763",
+                                "oldWarehouseID": 13738086,
+                                "warehouseID": "13738086",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 16512133439,
+                            "id": "16512133439",
+                            "ttsProductID": "1729965644142446141",
+                            "name": "DELL LATITUDE 5410 I5 10TH RAM 32GB SSD 1TB BERGARANSI",
+                            "url": "https://www.tokopedia.com/juraganidn/dell-latitude-5410-i5-10th-ram-32gb-ssd-1tb-bergaransi-1731077558957803069?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/16512133439?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/VqbcmM/2024/3/8/b18a0bb7-a24e-44e7-b3a3-5df6bc89d862.jpg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2024/3/8/b18a0bb7-a24e-44e7-b3a3-5df6bc89d862.jpg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 15455746,
+                                "id": "15455746",
+                                "ttsSellerID": "7495818974564420157",
+                                "name": "JURAGAN IDN",
+                                "url": "https://www.tokopedia.com/juraganidn",
+                                "city": "Jakarta Pusat",
+                                "tier": 1,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1731077558957803069",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 2,
+                                "title": "Jakarta Pusat",
+                                "url": "",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp3.400.000",
+                                "number": 3400000,
+                                "range": "",
+                                "original": "",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "6 terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/ultrabook",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/ultrabook/laptop/juraganidn/dell-latitude-5410-i5-10th-ram-32gb-ssd-1tb-bergaransi-1731077558957803069",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "5.0",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "",
+                                "productClickURL": "",
+                                "productViewURL": "",
+                                "productWishlistURL": "",
+                                "tag": 0,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 12886612216,
+                                "parentID": "12886612216",
+                                "oldWarehouseID": 15304000,
+                                "warehouseID": "15304000",
+                                "isImageBlurred": false,
+                                "isPortrait": true,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 11090870663,
+                            "id": "11090870663",
+                            "ttsProductID": "1729858982054365159",
+                            "name": "Thinkpad T480 Core i7 16GB 512GB / ThinkPad T470 T480 L480 E480 L380",
+                            "url": "https://www.tokopedia.com/gugellaptop/thinkpad-t480-core-i7-16gb-512gb-thinkpad-t470-t480-l480-e480-l380-t480-i5-8th-16gb-512gb-1fbc6?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/11090870663?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/VqbcmM/2023/8/8/f5757044-47b6-4bef-9c91-e0d8bfeac6e5.jpg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2023/8/8/f5757044-47b6-4bef-9c91-e0d8bfeac6e5.jpg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 14968594,
+                                "id": "14968594",
+                                "ttsSellerID": "7495818854415895527",
+                                "name": "Gugel Laptop",
+                                "url": "https://www.tokopedia.com/gugellaptop",
+                                "city": "Jakarta Pusat",
+                                "tier": 3,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1729858982055217127",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 3,
+                                "title": "Jakarta Pusat",
+                                "url": "https://images.tokopedia.net/img/goldmerchant/pm_activation/badge/PM%20Pro%20Small.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp3.500.000",
+                                "number": 3500000,
+                                "range": "",
+                                "original": "",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "1rb+ terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/ultrabook",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/ultrabook/laptop/gugellaptop/thinkpad-t480-core-i7-16gb-512gb-thinkpad-t470-t480-l480-e480-l380-t480-i5-8th-16gb-512gb-1fbc6",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "4.9",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "",
+                                "productClickURL": "",
+                                "productViewURL": "",
+                                "productWishlistURL": "",
+                                "tag": 0,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 11090870637,
+                                "parentID": "11090870637",
+                                "oldWarehouseID": 14827444,
+                                "warehouseID": "14827444",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        },
+                        {
+                            "oldId": 100071105999,
+                            "id": "100071105999",
+                            "ttsProductID": "1730690680640144533",
+                            "name": "Lenovo Ideapad Slim 1 14 N4020 8GB 512GB Win 11 +Office 14.0",
+                            "url": "https://www.tokopedia.com/agresiddepok/lenovo-ideapad-slim-1-14-n4020-8gb-512gb-win-11-office-14-0-1730690663334118549?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "applink": "tokopedia://product/100071105999?extParam=ivf%3Dfalse%26keyword%3Dlaptop%26search_id%3D202504220702409DC89FA296D75F13DGEU%26src%3Dsearch",
+                            "mediaURL": {
+                                "image": "https://images.tokopedia.net/img/cache/250-square/aphluv/1997/1/1/5b9455cbfce64d7e9a8683f04fe084db~.jpeg",
+                                "image300": "https://images.tokopedia.net/img/cache/300-square/aphluv/1997/1/1/5b9455cbfce64d7e9a8683f04fe084db~.jpeg",
+                                "videoCustom": "",
+                                "__typename": "SearchProductV5MediaURL"
+                            },
+                            "shop": {
+                                "oldId": 13262265,
+                                "id": "13262265",
+                                "ttsSellerID": "7495492594981439637",
+                                "name": "Agres ID Depok",
+                                "url": "https://www.tokopedia.com/agresiddepok",
+                                "city": "",
+                                "tier": 2,
+                                "__typename": "SearchProductV5Shop"
+                            },
+                            "stock": {
+                                "ttsSKUID": "1730690663334118549",
+                                "__typename": "SearchProductV5Stock"
+                            },
+                            "badge": {
+                                "id": 4,
+                                "title": "Agres ID Depok",
+                                "url": "https://images.tokopedia.net/img/official_store_badge.png",
+                                "__typename": "SearchProductV5Badge"
+                            },
+                            "price": {
+                                "text": "Rp4.389.000",
+                                "number": 4389000,
+                                "range": "",
+                                "original": "",
+                                "discountPercentage": 0,
+                                "__typename": "SearchProductV5Price"
+                            },
+                            "freeShipping": {
+                                "url": "",
+                                "__typename": "SearchProductV5FreeShipping"
+                            },
+                            "labelGroups": [
+                                {
+                                    "id": 301,
+                                    "position": "ri_product_credibility",
+                                    "title": "90+ terjual",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 1401,
+                                    "position": "overlay_3",
+                                    "title": "Bonus",
+                                    "type": "",
+                                    "url": "https://images.tokopedia.net/img/bonus-cashback/bonus-overlay-3rd-slot.png",
+                                    "styles": [],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                },
+                                {
+                                    "id": 801,
+                                    "position": "ri_product_offer",
+                                    "title": "Hemat s.d. 5% Pakai Bonus",
+                                    "type": "",
+                                    "url": "",
+                                    "styles": [
+                                        {
+                                            "key": "text-color",
+                                            "value": "#FF7F17",
+                                            "__typename": "SearchProductV5LabelGroupsStyle"
+                                        }
+                                    ],
+                                    "__typename": "SearchProductV5LabelGroups"
+                                }
+                            ],
+                            "labelGroupsVariant": [],
+                            "category": {
+                                "oldId": 297,
+                                "id": "297",
+                                "name": "Komputer \u0026 Laptop",
+                                "breadcrumb": "komputer-laptop/laptop/laptop-consumer",
+                                "gaKey": "/searchproduct/komputer-laptop/laptop/laptop-consumer/laptop/agresiddepok/lenovo-ideapad-slim-1-14-n4020-8gb-512gb-win-11-office-14-0-1730690663334118549",
+                                "__typename": "SearchProductV5Category"
+                            },
+                            "rating": "5.0",
+                            "wishlist": false,
+                            "ads": {
+                                "id": "",
+                                "productClickURL": "",
+                                "productViewURL": "",
+                                "productWishlistURL": "",
+                                "tag": 0,
+                                "__typename": "SearchProductV5Ads"
+                            },
+                            "meta": {
+                                "oldParentID": 9548181150,
+                                "parentID": "9548181150",
+                                "oldWarehouseID": 13170605,
+                                "warehouseID": "13170605",
+                                "isImageBlurred": false,
+                                "isPortrait": false,
+                                "__typename": "SearchProductV5ProductMeta"
+                            },
+                            "__typename": "searchProductV5Product"
+                        }
+                    ],
+                    "__typename": "SearchProductV5Data"
+                },
+                "__typename": "SearchProductV5Response"
+            }
+        }
+    }
+]
