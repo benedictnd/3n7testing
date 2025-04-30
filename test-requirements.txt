@@ -1,0 +1,13 @@
+# API testing requirements
+requests==2.31.0
+bandit==1.7.5
+pytest==7.4.0
+python-dotenv==1.0.0
+locust==2.16.1
+
+# Security scanning tools
+bandit==1.7.5
+safety==2.3.5
+
+# Performance testing
+locust==2.16.1 

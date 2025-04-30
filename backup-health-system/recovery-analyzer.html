@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athlete Recovery and Health Analyzer</title>
+    <style>
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #3b82f6;
+            --light-bg: #f0f9ff;
+            --dark-bg: #1e293b;
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+            --success: #16a34a;
+            --warning: #ea580c;
+            --danger: #dc2626;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f5f9;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        header p {
+            margin: 0.5rem 0 0;
+            opacity: 0.9;
+        }
+        
+        .search-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin: 1.5rem 0;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .results-section {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .results-panel {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+        }
+        
+        .panel-heading {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .panel-heading h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .badge-secondary {
+            background-color: #e2e8f0;
+            color: var(--text-dark);
+        }
+        
+        .badge-warning {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        
+        .results-card {
+            background-color: #f8fafc;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .results-card h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .results-card p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .label {
+            font-weight: 600;
+            color: #475569;
+        }
+        
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        
+        .tag {
+            background-color: #e2e8f0;
+            color: #475569;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+        }
+        
+        .keyword-match {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #64748b;
+        }
+        
+        .strategy-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .strategy-card {
+            background-color: #f0f9ff;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .strategy-card h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0369a1;
+        }
+        
+        .recommendation-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0.75rem 0 0;
+        }
+        
+        .recommendation-list li {
+            padding: 0.25rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+        
+        .recommendation-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0.5rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-top: 4px solid var(--secondary-color);
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .results-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Athlete Recovery and Health Analyzer</h1>
+            <p>Enter keywords describing athlete discomfort to get analysis on potential fatigue or injury</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="search-section">
+            <div class="input-group">
+                <input type="text" id="keyword-input" placeholder="Enter keywords (e.g., 'shoulder pain', 'always tired', 'knee pain when jumping')">
+                <button id="analyze-btn">Analyze</button>
+            </div>
+            
+            <div id="sample-keywords">
+                <p><strong>Example keywords:</strong> 
+                    <span class="tag" data-keywords="shoulder pain can't lift arm">shoulder pain</span>
+                    <span class="tag" data-keywords="always tired no energy">always tired</span>
+                    <span class="tag" data-keywords="knee pain when jumping">jumper's knee</span>
+                    <span class="tag" data-keywords="stress anxiety pressure">mental pressure</span>
+                    <span class="tag" data-keywords="twisted ankle swollen">twisted ankle</span>
+                </p>
+            </div>
+        </section>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Analyzing...</p>
+        </div>
+        
+        <div class="results-section" id="results-container" style="display: none;">
+            <div class="results-panel" id="fatigue-results">
+                <div class="panel-heading">
+                    <h2>Fatigue Analysis</h2>
+                    <span class="badge badge-primary" id="fatigue-count">0 Results</span>
+                </div>
+                <div id="fatigue-content">
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
+            
+            <div class="results-panel" id="injury-results">
+                <div class="panel-heading">
+                    <h2>Injury Analysis</h2>
+                    <span class="badge badge-primary" id="injury-count">0 Results</span>
+                </div>
+                <div id="injury-content">
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="results-panel strategy-section" id="management-section" style="display: none;">
+            <div class="panel-heading">
+                <h2>Management Strategies</h2>
+            </div>
+            <div id="strategy-content">
+                <!-- Strategies will be populated here -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="health_analyzer.js"></script>
+    <script>
+        // Global variables
+        let healthAnalyzer;
+        let healthSystemData;
+        
+        // DOM elements
+        const keywordInput = document.getElementById('keyword-input');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const loadingEl = document.getElementById('loading');
+        const resultsContainer = document.getElementById('results-container');
+        const fatigueContent = document.getElementById('fatigue-content');
+        const injuryContent = document.getElementById('injury-content');
+        const fatigueCount = document.getElementById('fatigue-count');
+        const injuryCount = document.getElementById('injury-count');
+        const managementSection = document.getElementById('management-section');
+        const strategyContent = document.getElementById('strategy-content');
+        const sampleKeywordTags = document.querySelectorAll('#sample-keywords .tag');
+        
+        // Initialize health analyzer
+        async function initializeHealthAnalyzer() {
+            try {
+                // Fetch the health system data
+                const response = await fetch('health_system.json');
+                healthSystemData = await response.json();
+                
+                // Initialize the analyzer
+                healthAnalyzer = new HealthAnalyzer(healthSystemData);
+                await healthAnalyzer.initialize();
+                
+                console.log('Health analyzer initialized successfully');
+                
+                // Add event listeners after initialization
+                analyzeBtn.addEventListener('click', analyzeKeywords);
+                keywordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        analyzeKeywords();
+                    }
+                });
+                
+                // Add sample keyword event listeners
+                sampleKeywordTags.forEach(tag => {
+                    tag.addEventListener('click', () => {
+                        const keywords = tag.getAttribute('data-keywords') || tag.textContent;
+                        keywordInput.value = keywords;
+                        analyzeKeywords();
+                    });
+                });
+                
+            } catch (error) {
+                console.error('Failed to initialize health analyzer:', error);
+                alert('Failed to load health system data. Please try again later.');
+            }
+        }
+        
+        // Analyze keywords
+        async function analyzeKeywords() {
+            const keywords = keywordInput.value.trim();
+            if (!keywords) {
+                alert('Please enter keywords to analyze');
+                return;
+            }
+            
+            // Show loading
+            loadingEl.style.display = 'block';
+            resultsContainer.style.display = 'none';
+            managementSection.style.display = 'none';
+            
+            try {
+                // Analyze the keywords
+                const analysis = healthAnalyzer.analyze(keywords);
+                
+                // Process results
+                displayResults(analysis);
+                
+                // Hide loading and show results
+                loadingEl.style.display = 'none';
+                resultsContainer.style.display = 'flex';
+                
+                // Show management strategies if there are fatigue results
+                if (analysis.fatigueAnalysis.results.length > 0) {
+                    displayManagementStrategies(analysis.fatigueAnalysis.managementStrategies);
+                    managementSection.style.display = 'block';
+                } else {
+                    managementSection.style.display = 'none';
+                }
+                
+            } catch (error) {
+                console.error('Analysis failed:', error);
+                loadingEl.style.display = 'none';
+                alert('Failed to analyze keywords: ' + error.message);
+            }
+        }
+        
+        // Display analysis results
+        function displayResults(analysis) {
+            // Update counts
+            fatigueCount.textContent = `${analysis.fatigueAnalysis.results.length} Results`;
+            injuryCount.textContent = `${analysis.injuryAnalysis.results.length} Results`;
+            
+            // Display fatigue results
+            if (analysis.fatigueAnalysis.results.length > 0) {
+                fatigueContent.innerHTML = analysis.fatigueAnalysis.results.map(fatigue => `
+                    <div class="results-card">
+                        <h3>${fatigue.name} (Type ${fatigue.id})</h3>
+                        <p>${fatigue.description}</p>
+                        
+                        <p><span class="label">Causes:</span></p>
+                        <div class="tag-list">
+                            ${fatigue.causes.map(cause => `<span class="tag">${cause}</span>`).join('')}
+                        </div>
+                        
+                        <p><span class="label">Symptoms:</span></p>
+                        <div class="tag-list">
+                            ${fatigue.symptoms.map(symptom => `<span class="tag">${symptom}</span>`).join('')}
+                        </div>
+                        
+                        <p class="keyword-match">
+                            Matched keywords: ${fatigue.matchedKeywords.join(', ')}
+                        </p>
+                    </div>
+                `).join('');
+            } else {
+                fatigueContent.innerHTML = `
+                    <div class="no-results">
+                        <p>No fatigue issues detected based on the provided keywords.</p>
+                    </div>
+                `;
+            }
+            
+            // Display injury results
+            if (analysis.injuryAnalysis.results.length > 0) {
+                injuryContent.innerHTML = analysis.injuryAnalysis.results.map(injury => `
+                    <div class="results-card">
+                        <h3>${injury.injury} (${injury.location})</h3>
+                        <p>${injury.description}</p>
+                        
+                        <p><span class="label">Symptoms:</span></p>
+                        <div class="tag-list">
+                            ${injury.symptoms.map(symptom => `<span class="tag">${symptom}</span>`).join('')}
+                        </div>
+                        
+                        <p class="keyword-match">
+                            Matched keywords: ${injury.matchedKeywords.join(', ')}
+                        </p>
+                    </div>
+                `).join('');
+            } else {
+                injuryContent.innerHTML = `
+                    <div class="no-results">
+                        <p>No specific injuries detected based on the provided keywords.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Display management strategies
+        function displayManagementStrategies(strategies) {
+            if (strategies.length > 0) {
+                strategyContent.innerHTML = strategies.map(strategy => `
+                    <div class="strategy-card">
+                        <h3>${strategy.name}</h3>
+                        <p>${strategy.description}</p>
+                        
+                        <ul class="recommendation-list">
+                            ${strategy.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                        </ul>
+                    </div>
+                `).join('');
+            } else {
+                strategyContent.innerHTML = `
+                    <div class="no-results">
+                        <p>No specific management strategies available.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Initialize when the page loads
+        document.addEventListener('DOMContentLoaded', initializeHealthAnalyzer);
+    </script>
+</body>
+</html>

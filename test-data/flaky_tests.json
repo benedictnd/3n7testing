@@ -1,0 +1,35 @@
+{
+  "flaky_tests": [
+    "test_file_upload",
+    "test_cache_invalidation",
+    "test_user_profile"
+  ],
+  "test_details": {
+    "test_file_upload": {
+      "name": "test_file_upload",
+      "flakiness_score": 0.8,
+      "failures": 3,
+      "total_runs": 15,
+      "last_failed": "2025-04-10T11:51:38.456508"
+    },
+    "test_cache_invalidation": {
+      "name": "test_cache_invalidation",
+      "flakiness_score": 0.89,
+      "failures": 4,
+      "total_runs": 14,
+      "last_failed": "2025-04-09T21:51:38.456508"
+    },
+    "test_user_profile": {
+      "name": "test_user_profile",
+      "flakiness_score": 0.4,
+      "failures": 1,
+      "total_runs": 13,
+      "last_failed": "2025-04-10T05:51:38.456508"
+    }
+  },
+  "retry_stats": {
+    "total_retries": 5,
+    "successful_retries": 4,
+    "avg_retries_per_test": 1.4
+  }
+}

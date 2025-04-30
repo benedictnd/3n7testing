@@ -1,0 +1,29 @@
+{
+  "feedback": [
+    {
+      "id": "feedback-001",
+      "training_id": "training-001",
+      "date": "2023-10-25",
+      "submitted_by": "coach-001",
+      "quality_rating": 8,
+      "notes": "Good energy overall. Team worked well on the interval training.",
+      "health_observations": [
+        {
+          "athlete_id": "athlete-001",
+          "athlete_name": "Jordan Smith",
+          "observation_type": "Minor injury",
+          "details": "Athlete reported ankle pain during cool down",
+          "timestamp": "2023-10-25T09:35:00Z"
+        },
+        {
+          "athlete_id": "athlete-003",
+          "athlete_name": "Morgan Kim",
+          "observation_type": "Fatigue observed",
+          "details": "Athlete showing signs of fatigue during final sprint set",
+          "timestamp": "2023-10-25T09:15:00Z"
+        }
+      ],
+      "timestamp": "2023-10-25T09:45:00Z"
+    }
+  ]
+}

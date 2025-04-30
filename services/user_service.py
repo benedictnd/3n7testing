@@ -3,173 +3,168 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, update, delete
 from sqlalchemy.sql import and_
 from fastapi import HTTPException, status
+from sqlalchemy.future import select
+from pydantic import BaseModel
 
-from models.user import UserUpdate, UserResponse, UserDetail
+from models.user import UserUpdate, UserResponse, UserDetail, User
 from models.database import User
 
 
 class UserService:
-    """Service for managing users"""
+    """Service for user-related operations with security controls"""
     
     def __init__(self, db_session: AsyncSession):
         self.db_session = db_session
+        
+        # Define role hierarchy for permission checks
+        self.role_hierarchy = {
+            "superadmin": 1000,
+            "admin": 100,
+            "coach": 50,
+            "athlete": 10,
+            "guest": 1
+        }
     
-    async def get_users(
-        self,
-        role: Optional[str] = None,
-        limit: int = 10,
-        offset: int = 0
-    ) -> Dict[str, Any]:
-        """
-        Get a list of users with optional role filtering and pagination
-        """
-        # Build base query
+    async def get_users(self, role: Optional[str] = None, limit: int = 10, offset: int = 0) -> Dict[str, Any]:
+        """Get list of users with optional role filtering"""
         query = select(User)
         
-        # Apply role filter if specified
+        # Apply role filter if provided
         if role:
             query = query.where(User.role == role)
+        
+        # Apply pagination
+        query = query.limit(limit).offset(offset)
         
         # Get total count for pagination
         count_query = select(User)
         if role:
             count_query = count_query.where(User.role == role)
         
+        # Execute queries
+        result = await self.db_session.execute(query)
         count_result = await self.db_session.execute(count_query)
+        
+        users = result.scalars().all()
         total = len(count_result.scalars().all())
         
-        # Apply pagination
-        query = query.offset(offset).limit(limit)
-        
-        # Execute query
-        result = await self.db_session.execute(query)
-        users = result.scalars().all()
-        
-        # Format response
-        user_list = []
-        for user in users:
-            user_list.append(
-                UserResponse(
-                    id=user.id,
-                    email=user.email,
-                    name=user.name,
-                    role=user.role
-                )
-            )
-        
-        # Calculate page number
-        page = offset // limit + 1 if offset > 0 else 1
-        
         return {
-            "users": user_list,
+            "users": users,
             "total": total,
-            "page": page,
-            "size": limit
+            "limit": limit,
+            "offset": offset
         }
     
-    async def get_user(self, user_id: str) -> UserDetail:
-        """
-        Get detailed information about a specific user
-        """
-        query = select(User).where(User.id == user_id)
-        result = await self.db_session.execute(query)
-        user = result.scalars().first()
-        
-        if not user:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"User with ID {user_id} not found"
-            )
-        
-        # Get user profile data based on role
-        profile_data = await self._get_user_profile_data(user)
-        
-        # Combine base user data with profile data
-        user_detail = UserDetail(
-            id=user.id,
-            email=user.email,
-            name=user.name,
-            role=user.role,
-            **profile_data
+    async def get_user(self, user_id: str) -> Optional[User]:
+        """Get a user by ID"""
+        result = await self.db_session.execute(
+            select(User).where(User.id == user_id)
         )
-        
-        return user_detail
+        return result.scalars().first()
     
-    async def update_user(self, user_id: str, user_data: UserUpdate) -> UserDetail:
-        """
-        Update a user's information
-        """
-        # Check if user exists
-        query = select(User).where(User.id == user_id)
-        result = await self.db_session.execute(query)
-        user = result.scalars().first()
-        
+    async def update_user(self, user_id: str, user_data: UserUpdate) -> User:
+        """Update a user's profile information"""
+        # Get user from database
+        user = await self.get_user(user_id)
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail=f"User with ID {user_id} not found"
             )
         
-        # Convert user data to dict and remove None values
-        update_data = user_data.dict(exclude_unset=True)
+        # Update user fields
+        for key, value in user_data.dict(exclude_unset=True).items():
+            setattr(user, key, value)
         
-        if not update_data:
-            # No fields to update
-            return await self.get_user(user_id)
-        
-        # Extract base user fields
-        base_fields = {k: v for k, v in update_data.items() 
-                      if k in ['name', 'email']}
-        
-        # Extract profile-specific fields
-        profile_fields = {k: v for k, v in update_data.items() 
-                         if k not in ['name', 'email']}
-        
-        # Update basic user information
-        if base_fields:
-            update_query = (
-                update(User)
-                .where(User.id == user_id)
-                .values(**base_fields)
-            )
-            await self.db_session.execute(update_query)
-        
-        # Update profile information based on role
-        if profile_fields:
-            await self._update_user_profile_data(user, profile_fields)
-        
-        # Commit changes
+        # Save changes
+        self.db_session.add(user)
         await self.db_session.commit()
+        await self.db_session.refresh(user)
         
-        # Return updated user
-        return await self.get_user(user_id)
+        return user
     
-    async def delete_user(self, user_id: str) -> Dict[str, Any]:
+    async def update_user_roles(self, user_id: str, roles: List[str], current_user_role: str) -> User:
         """
-        Delete a user
-        """
-        # Check if user exists
-        query = select(User).where(User.id == user_id)
-        result = await self.db_session.execute(query)
-        user = result.scalars().first()
+        Update a user's roles with security validation
         
+        Args:
+            user_id: ID of user to update
+            roles: New roles to assign
+            current_user_role: Role of the user making the change
+            
+        Returns:
+            Updated user object
+            
+        Raises:
+            HTTPException: If role change is invalid or user not found
+        """
+        # Get user from database
+        user = await self.get_user(user_id)
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail=f"User with ID {user_id} not found"
             )
         
-        # Delete profile data based on role
-        await self._delete_user_profile_data(user)
+        # Security check: validate role change
+        if not self._validate_role_change(user.role, roles, current_user_role):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Insufficient privileges for requested role change"
+            )
         
-        # Delete user
-        delete_query = delete(User).where(User.id == user_id)
-        await self.db_session.execute(delete_query)
+        # Update user roles (support both single and multiple roles)
+        if hasattr(user, 'roles'):
+            # If model supports multiple roles
+            user.roles = roles
+        else:
+            # If model supports only one role
+            if roles and len(roles) > 0:
+                user.role = roles[0]
         
-        # Commit changes
+        # Save changes
+        self.db_session.add(user)
+        await self.db_session.commit()
+        await self.db_session.refresh(user)
+        
+        return user
+    
+    async def delete_user(self, user_id: str) -> Dict[str, str]:
+        """Delete a user"""
+        user = await self.get_user(user_id)
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"User with ID {user_id} not found"
+            )
+        
+        await self.db_session.delete(user)
         await self.db_session.commit()
         
-        return {"message": f"User with ID {user_id} successfully deleted"}
+        return {"message": f"User {user_id} deleted successfully"}
+    
+    def _validate_role_change(self, current_role: str, new_roles: List[str], admin_role: str) -> bool:
+        """
+        Validate if a role change is permitted based on role hierarchy
+        
+        Args:
+            current_role: Current role of the user being modified
+            new_roles: New roles to be assigned
+            admin_role: Role of the admin making the change
+            
+        Returns:
+            True if the change is valid, False otherwise
+        """
+        # Get privilege levels
+        admin_level = self.role_hierarchy.get(admin_role, 0)
+        
+        # Admins can only assign roles at or below their own level
+        for role in new_roles:
+            role_level = self.role_hierarchy.get(role, 0)
+            if role_level > admin_level:
+                return False
+        
+        return True
     
     # Helper methods for role-specific profile data
     

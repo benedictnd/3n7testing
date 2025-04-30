@@ -1,0 +1,22 @@
+{
+  "total_tests": 115,
+  "passed": 87,
+  "failed": 28,
+  "success_rate": 75.7,
+  "environment": "development",
+  "api_version": "1.5.3",
+  "duration": 39,
+  "covered_endpoints": 34,
+  "total_endpoints": 35,
+  "status_distribution": {
+    "200": 79,
+    "201": 8,
+    "400": 6,
+    "401": 3,
+    "404": 2,
+    "500": 2
+  },
+  "validation_errors": 8,
+  "server_errors": 0,
+  "network_errors": 2
+}

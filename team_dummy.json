@@ -1,0 +1,13 @@
+{
+  "id": "team-001",
+  "name": "The FastAPI Falcons",
+  "coaches": [
+    { "id": "coach-001", "name": "Coach Carter" },
+    { "id": "coach-002", "name": "Coach Taylor" }
+  ],
+  "athletes": [
+    { "id": "athlete-001", "name": "Jordan Smith" },
+    { "id": "athlete-002", "name": "Alex Lee" },
+    { "id": "athlete-003", "name": "Morgan Kim" }
+  ]
+}

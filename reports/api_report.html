@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Report - 2025-04-10 14:51:38</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: #fff; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .chart-container { height: 300px; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .summary-item { text-align: center; padding: 1rem; background: #f8f9fa; border-radius: 4px; }
+        .metric-value { font-size: 1.5rem; font-weight: bold; color: #2c3e50; }
+        .metric-label { color: #7f8c8d; }
+    </style>
+</head>
+<body>
+    <h1>API Test Report</h1>
+    <p>Generated at: 2025-04-10 14:51:38</p>
+    
+    <div class="summary-grid">
+        <div class="summary-item">
+            <div class="metric-value">115</div>
+            <div class="metric-label">Total Tests</div>
+        </div>
+        <div class="summary-item">
+            <div class="metric-value">75.7%</div>
+            <div class="metric-label">Success Rate</div>
+        </div>
+        <div class="summary-item">
+            <div class="metric-value">254ms</div>
+            <div class="metric-label">Avg Response Time</div>
+        </div>
+        <div class="summary-item">
+            <div class="metric-value">5</div>
+            <div class="metric-label">Security Issues</div>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="card">
+            <h2>Test Results Overview</h2>
+            <div class="chart-container">
+                <canvas id="successChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Performance Trends</h2>
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Failure Breakdown</h2>
+            <div class="chart-container">
+                <canvas id="failureChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Success Rate Chart
+        new Chart(document.getElementById('successChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ["Passed", "Failed"],
+                datasets: [{
+                    data: [87, 28],
+                    backgroundColor: ['#4CAF50', '#F44336']
+                }]
+            }
+        });
+
+        // Performance Trend Chart
+        new Chart(document.getElementById('performanceChart'), {
+            type: 'line',
+            data: {
+                labels: ["Test 1", "Test 2", "Test 3", "Test 4", "Test 5", "Test 6", "Test 7", "Test 8", "Test 9", "Test 10", "Test 11", "Test 12", "Test 13", "Test 14", "Test 15", "Test 16", "Test 17", "Test 18", "Test 19", "Test 20", "Test 21", "Test 22", "Test 23", "Test 24", "Test 25", "Test 26", "Test 27"],
+                datasets: [{
+                    label: 'Response Time (ms)',
+                    data: [254, 739, 686, 81, 483, 148, 225, 183, 222, 69, 97, 125, 262, 127, 158, 110, 58, 172, 123, 98, 201, 299, 651, 223, 784, 58, 210],
+                    borderColor: '#2196F3',
+                    tension: 0.4
+                }]
+            }
+        });
+
+        // Failure Breakdown Chart
+        new Chart(document.getElementById('failureChart'), {
+            type: 'bar',
+            data: {
+                labels: ["Validation Errors", "Server Errors", "Network Issues"],
+                datasets: [{
+                    label: 'Failure Count',
+                    data: [8, 0, 2],
+                    backgroundColor: '#FF9800'
+                }]
+            }
+        });
+    </script>
+</body>
+</html> 

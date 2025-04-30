@@ -1,0 +1,718 @@
+{
+  "teams": [
+    {
+      "id": "team-bulls",
+      "name": "Chicago Bulls",
+      "location": "Chicago, IL",
+      "sport": "Basketball",
+      "division": "Professional",
+      "established": 1966,
+      "home_venue": "United Center",
+      "team_colors": ["red", "black", "white"],
+      "coaches": [
+        {
+          "id": "coach-jackson",
+          "name": "Phil Jackson",
+          "role": "Head Coach",
+          "team_id": "team-bulls",
+          "experience_years": 20,
+          "specializations": ["Triangle Offense", "Team Psychology", "Championship Mentality"],
+          "certifications": ["NBA Coach of the Year", "Hall of Fame Inductee"],
+          "contact": {
+            "email": "phil.jackson@bulls.example.com",
+            "phone": "+1-312-555-0101"
+          },
+          "hire_date": "1989-06-15"
+        },
+        {
+          "id": "coach-winter",
+          "name": "Tex Winter",
+          "role": "Assistant Coach",
+          "team_id": "team-bulls",
+          "experience_years": 30,
+          "specializations": ["Triangle Offense", "Defensive Strategies", "Player Development"],
+          "certifications": ["Basketball Hall of Fame", "NABC Assistant Coach of the Year"],
+          "contact": {
+            "email": "tex.winter@bulls.example.com",
+            "phone": "+1-312-555-0102"
+          },
+          "hire_date": "1985-09-01"
+        }
+      ],
+      "athletes": [
+        {
+          "id": "athlete-jordan",
+          "name": "Michael Jordan",
+          "number": 23,
+          "position": "Shooting Guard",
+          "team_id": "team-bulls",
+          "height_cm": 198,
+          "weight_kg": 98,
+          "date_of_birth": "1963-02-17",
+          "years_of_experience": 15,
+          "achievements": [
+            "6x NBA Champion",
+            "5x NBA MVP",
+            "14x NBA All-Star",
+            "10x Scoring Champion"
+          ],
+          "contact": {
+            "email": "michael.jordan@bulls.example.com",
+            "phone": "+1-312-555-2323"
+          },
+          "injury_history": [
+            {
+              "type": "Broken Foot",
+              "side": "right",
+              "severity": "severe",
+              "date": "1985-10-29",
+              "recovery_time_days": 64,
+              "treatment": "Cast and rest"
+            }
+          ],
+          "performance_metrics": {
+            "vertical_jump_cm": 122,
+            "sprint_40m_seconds": 4.2,
+            "endurance_score": 95,
+            "strength_index": 92
+          }
+        },
+        {
+          "id": "athlete-pippen",
+          "name": "Scottie Pippen",
+          "number": 33,
+          "position": "Small Forward",
+          "team_id": "team-bulls",
+          "height_cm": 203,
+          "weight_kg": 95,
+          "date_of_birth": "1965-09-25",
+          "years_of_experience": 17,
+          "achievements": [
+            "6x NBA Champion",
+            "7x NBA All-Star",
+            "8x NBA All-Defensive First Team"
+          ],
+          "contact": {
+            "email": "scottie.pippen@bulls.example.com",
+            "phone": "+1-312-555-3333"
+          },
+          "injury_history": [
+            {
+              "type": "Back Strain",
+              "side": "lower",
+              "severity": "moderate",
+              "date": "1998-01-23",
+              "recovery_time_days": 12,
+              "treatment": "Physical therapy and rest"
+            }
+          ],
+          "performance_metrics": {
+            "vertical_jump_cm": 112,
+            "sprint_40m_seconds": 4.3,
+            "endurance_score": 96,
+            "strength_index": 89
+          }
+        },
+        {
+          "id": "athlete-rodman",
+          "name": "Dennis Rodman",
+          "number": 91,
+          "position": "Power Forward",
+          "team_id": "team-bulls",
+          "height_cm": 201,
+          "weight_kg": 100,
+          "date_of_birth": "1961-05-13",
+          "years_of_experience": 14,
+          "achievements": [
+            "5x NBA Champion",
+            "2x NBA All-Star",
+            "7x Rebounding Champion"
+          ],
+          "contact": {
+            "email": "dennis.rodman@bulls.example.com",
+            "phone": "+1-312-555-9191"
+          },
+          "injury_history": [
+            {
+              "type": "Ankle Sprain",
+              "side": "left",
+              "severity": "mild",
+              "date": "1996-12-10",
+              "recovery_time_days": 7,
+              "treatment": "RICE protocol"
+            }
+          ],
+          "performance_metrics": {
+            "vertical_jump_cm": 105,
+            "sprint_40m_seconds": 4.5,
+            "endurance_score": 93,
+            "strength_index": 95
+          }
+        },
+        {
+          "id": "athlete-kerr",
+          "name": "Steve Kerr",
+          "number": 25,
+          "position": "Point Guard",
+          "team_id": "team-bulls",
+          "height_cm": 188,
+          "weight_kg": 82,
+          "date_of_birth": "1965-09-27",
+          "years_of_experience": 15,
+          "achievements": [
+            "5x NBA Champion",
+            "NBA 3-Point Contest Champion"
+          ],
+          "contact": {
+            "email": "steve.kerr@bulls.example.com",
+            "phone": "+1-312-555-2525"
+          },
+          "injury_history": [],
+          "performance_metrics": {
+            "vertical_jump_cm": 85,
+            "sprint_40m_seconds": 4.8,
+            "endurance_score": 88,
+            "strength_index": 75
+          }
+        }
+      ]
+    },
+    {
+      "id": "team-warriors",
+      "name": "Golden State Warriors",
+      "location": "San Francisco, CA",
+      "sport": "Basketball",
+      "division": "Professional",
+      "established": 1946,
+      "home_venue": "Chase Center",
+      "team_colors": ["blue", "yellow", "white"],
+      "coaches": [
+        {
+          "id": "coach-kerr",
+          "name": "Steve Kerr",
+          "role": "Head Coach",
+          "team_id": "team-warriors",
+          "experience_years": 10,
+          "specializations": ["Offensive Systems", "Player Development", "Team Chemistry"],
+          "certifications": ["NBA Coach of the Year"],
+          "contact": {
+            "email": "steve.kerr@warriors.example.com",
+            "phone": "+1-415-555-0101"
+          },
+          "hire_date": "2014-05-14"
+        },
+        {
+          "id": "coach-adams",
+          "name": "Ron Adams",
+          "role": "Assistant Coach",
+          "team_id": "team-warriors",
+          "experience_years": 25,
+          "specializations": ["Defensive Strategies", "Individual Skill Development"],
+          "certifications": ["NABC Assistant Coach Award"],
+          "contact": {
+            "email": "ron.adams@warriors.example.com",
+            "phone": "+1-415-555-0102"
+          },
+          "hire_date": "2014-06-22"
+        }
+      ],
+      "athletes": [
+        {
+          "id": "athlete-curry",
+          "name": "Stephen Curry",
+          "number": 30,
+          "position": "Point Guard",
+          "team_id": "team-warriors",
+          "height_cm": 191,
+          "weight_kg": 84,
+          "date_of_birth": "1988-03-14",
+          "years_of_experience": 13,
+          "achievements": [
+            "4x NBA Champion",
+            "2x NBA MVP",
+            "8x NBA All-Star",
+            "2x NBA Scoring Champion"
+          ],
+          "contact": {
+            "email": "stephen.curry@warriors.example.com",
+            "phone": "+1-415-555-3030"
+          },
+          "injury_history": [
+            {
+              "type": "Ankle Sprain",
+              "side": "right",
+              "severity": "moderate",
+              "date": "2020-03-05",
+              "recovery_time_days": 21,
+              "treatment": "Physical therapy and rest"
+            }
+          ],
+          "performance_metrics": {
+            "vertical_jump_cm": 90,
+            "sprint_40m_seconds": 4.5,
+            "endurance_score": 92,
+            "strength_index": 85
+          }
+        },
+        {
+          "id": "athlete-thompson",
+          "name": "Klay Thompson",
+          "number": 11,
+          "position": "Shooting Guard",
+          "team_id": "team-warriors",
+          "height_cm": 198,
+          "weight_kg": 98,
+          "date_of_birth": "1990-02-08",
+          "years_of_experience": 11,
+          "achievements": [
+            "4x NBA Champion",
+            "5x NBA All-Star",
+            "2x All-NBA Team"
+          ],
+          "contact": {
+            "email": "klay.thompson@warriors.example.com",
+            "phone": "+1-415-555-1111"
+          },
+          "injury_history": [
+            {
+              "type": "ACL Tear",
+              "side": "left",
+              "severity": "severe",
+              "date": "2019-06-13",
+              "recovery_time_days": 365,
+              "treatment": "Surgery and rehabilitation"
+            },
+            {
+              "type": "Achilles Tear",
+              "side": "right",
+              "severity": "severe",
+              "date": "2020-11-18",
+              "recovery_time_days": 548,
+              "treatment": "Surgery and extensive rehabilitation"
+            }
+          ],
+          "performance_metrics": {
+            "vertical_jump_cm": 95,
+            "sprint_40m_seconds": 4.6,
+            "endurance_score": 90,
+            "strength_index": 87
+          }
+        }
+      ]
+    }
+  ],
+  "training_sessions": [
+    {
+      "id": "session-bulls-001",
+      "team_id": "team-bulls",
+      "title": "Triangle Offense Implementation",
+      "coach_id": "coach-jackson",
+      "date": "1995-11-15",
+      "start_time": "10:00:00",
+      "end_time": "12:30:00",
+      "location": "United Center Practice Facility",
+      "description": "Focused training session on implementing the Triangle Offense with specific player movements and timing.",
+      "objectives": [
+        "Improve player positioning in Triangle sets",
+        "Practice timing of cuts and passes",
+        "Review counter options against different defensive schemes"
+      ],
+      "athlete_ids": ["athlete-jordan", "athlete-pippen", "athlete-rodman", "athlete-kerr"],
+      "drills": [
+        {
+          "id": "drill-001",
+          "name": "Triangle Entry",
+          "duration_minutes": 25,
+          "description": "Practice the initial formation and entry passes for the Triangle Offense.",
+          "focus_areas": ["Timing", "Spacing", "Decision Making"]
+        },
+        {
+          "id": "drill-002",
+          "name": "Weak Side Options",
+          "duration_minutes": 30,
+          "description": "Work on movement and options when the ball is on the weak side of the Triangle.",
+          "focus_areas": ["Off-ball Movement", "Screening", "Cutting"]
+        },
+        {
+          "id": "drill-003",
+          "name": "Post Entry and Split Actions",
+          "duration_minutes": 35,
+          "description": "Practice post entry passes and subsequent split action movements.",
+          "focus_areas": ["Post Play", "Guard Movement", "Passing Angles"]
+        }
+      ],
+      "attendance": [
+        {"athlete_id": "athlete-jordan", "status": "present", "notes": "Fully participated"},
+        {"athlete_id": "athlete-pippen", "status": "present", "notes": "Fully participated"},
+        {"athlete_id": "athlete-rodman", "status": "present", "notes": "Left early - team approved appointment"},
+        {"athlete_id": "athlete-kerr", "status": "present", "notes": "Fully participated"}
+      ],
+      "notes": "Excellent session overall. Team is showing strong understanding of the Triangle principles. Dennis needs more work on weak side positioning."
+    },
+    {
+      "id": "session-warriors-001",
+      "team_id": "team-warriors",
+      "title": "3-Point Shooting and Spacing",
+      "coach_id": "coach-kerr",
+      "date": "2022-09-28",
+      "start_time": "09:00:00",
+      "end_time": "11:30:00",
+      "location": "Chase Center Practice Court",
+      "description": "Focus on 3-point shooting patterns and floor spacing in transition and half-court sets.",
+      "objectives": [
+        "Improve 3-point shooting efficiency from the corners",
+        "Practice proper spacing in transition",
+        "Work on drive and kick situations"
+      ],
+      "athlete_ids": ["athlete-curry", "athlete-thompson"],
+      "drills": [
+        {
+          "id": "drill-101",
+          "name": "Corner 3 Circuit",
+          "duration_minutes": 20,
+          "description": "Rapid fire 3-point shooting from both corners with movement.",
+          "focus_areas": ["Shooting", "Footwork", "Conditioning"]
+        },
+        {
+          "id": "drill-102",
+          "name": "Transition Spacing",
+          "duration_minutes": 25,
+          "description": "3-on-2 and 4-on-3 transition drills with focus on proper spacing and finding open shooters.",
+          "focus_areas": ["Transition Offense", "Decision Making", "Spacing"]
+        },
+        {
+          "id": "drill-103",
+          "name": "Drive and Kick",
+          "duration_minutes": 30,
+          "description": "Penetration and kick-out drills for open 3-point shooters.",
+          "focus_areas": ["Penetration", "Passing", "Catch and Shoot"]
+        }
+      ],
+      "attendance": [
+        {"athlete_id": "athlete-curry", "status": "present", "notes": "Fully participated"},
+        {"athlete_id": "athlete-thompson", "status": "limited", "notes": "Participated in shooting drills only, still in late stages of Achilles rehab"}
+      ],
+      "notes": "Steph was locked in today, hitting 85% of corner threes in the circuit. Klay showing good progress in his shooting form despite limited mobility."
+    }
+  ],
+  "performance_assessments": [
+    {
+      "id": "assessment-001",
+      "athlete_id": "athlete-jordan",
+      "date": "1995-11-20",
+      "assessor_id": "coach-jackson",
+      "metrics": {
+        "shooting": {
+          "free_throw_percentage": 85,
+          "field_goal_percentage": 52,
+          "three_point_percentage": 43
+        },
+        "physical": {
+          "vertical_jump_cm": 122,
+          "sprint_40m_seconds": 4.2,
+          "agility_test_seconds": 8.5,
+          "bench_press_kg": 95
+        },
+        "game_awareness": {
+          "decision_making": 95,
+          "court_vision": 92,
+          "defensive_positioning": 94
+        }
+      },
+      "strengths": [
+        "Elite scoring ability from all areas",
+        "Superior athleticism and body control",
+        "Exceptional competitive drive"
+      ],
+      "areas_for_improvement": [
+        "Trust in teammates during double-team situations",
+        "Conservation of energy during less critical game moments"
+      ],
+      "goals": [
+        {
+          "description": "Improve three-point shooting to 45%",
+          "timeline": "3 months",
+          "progress": "In progress"
+        },
+        {
+          "description": "Refine post-up game with new footwork patterns",
+          "timeline": "2 months",
+          "progress": "Completed"
+        }
+      ],
+      "notes": "Michael continues to show unparalleled work ethic and improvement in all areas. His dedication to mastering the Triangle Offense is evident."
+    },
+    {
+      "id": "assessment-002",
+      "athlete_id": "athlete-curry",
+      "date": "2022-10-05",
+      "assessor_id": "coach-kerr",
+      "metrics": {
+        "shooting": {
+          "free_throw_percentage": 92,
+          "field_goal_percentage": 47,
+          "three_point_percentage": 43
+        },
+        "physical": {
+          "vertical_jump_cm": 90,
+          "sprint_40m_seconds": 4.5,
+          "agility_test_seconds": 8.8,
+          "bench_press_kg": 80
+        },
+        "game_awareness": {
+          "decision_making": 96,
+          "court_vision": 94,
+          "defensive_positioning": 86
+        }
+      },
+      "strengths": [
+        "Unmatched shooting range and accuracy",
+        "Elite ball handling and creation ability",
+        "High basketball IQ and leadership"
+      ],
+      "areas_for_improvement": [
+        "On-ball defense against bigger guards",
+        "Turnover reduction in high-pressure situations"
+      ],
+      "goals": [
+        {
+          "description": "Maintain shooting efficiency while increasing volume",
+          "timeline": "Season-long",
+          "progress": "In progress"
+        },
+        {
+          "description": "Improve defensive rating by 5 points",
+          "timeline": "4 months",
+          "progress": "In progress"
+        }
+      ],
+      "notes": "Steph's shooting form is as pure as ever. His conditioning is elite, and he's showing more comfort in defensive schemes this season."
+    }
+  ],
+  "injury_reports": [
+    {
+      "id": "injury-001",
+      "athlete_id": "athlete-thompson",
+      "date_reported": "2019-06-13",
+      "injury_type": "ACL Tear",
+      "location": "Left Knee",
+      "severity": "Severe",
+      "mechanism_of_injury": "Landing awkwardly after jump shot in NBA Finals Game 6",
+      "diagnostic_tests": [
+        {
+          "type": "MRI",
+          "date": "2019-06-14",
+          "results": "Complete tear of the left anterior cruciate ligament"
+        }
+      ],
+      "treatment_plan": [
+        {
+          "type": "Surgery",
+          "description": "ACL reconstruction",
+          "date": "2019-07-02",
+          "provider": "Dr. Neal ElAttrache"
+        },
+        {
+          "type": "Rehabilitation",
+          "description": "Phase 1: Reduce swelling and restore range of motion",
+          "start_date": "2019-07-15",
+          "end_date": "2019-09-01"
+        },
+        {
+          "type": "Rehabilitation",
+          "description": "Phase 2: Strength training and gait normalization",
+          "start_date": "2019-09-02",
+          "end_date": "2019-12-01"
+        },
+        {
+          "type": "Rehabilitation",
+          "description": "Phase 3: Advanced strengthening and sport-specific training",
+          "start_date": "2019-12-02",
+          "end_date": "2020-05-01"
+        }
+      ],
+      "return_to_play": {
+        "estimated_date": "2020-10-01",
+        "actual_date": null,
+        "status": "Inactive - subsequent Achilles injury"
+      },
+      "notes": "Klay's rehabilitation was progressing well until subsequent Achilles injury during training in November 2020"
+    },
+    {
+      "id": "injury-002",
+      "athlete_id": "athlete-thompson",
+      "date_reported": "2020-11-18",
+      "injury_type": "Achilles Tear",
+      "location": "Right Ankle/Heel",
+      "severity": "Severe",
+      "mechanism_of_injury": "During workout in Los Angeles, non-contact injury",
+      "diagnostic_tests": [
+        {
+          "type": "MRI",
+          "date": "2020-11-19",
+          "results": "Complete tear of the right Achilles tendon"
+        }
+      ],
+      "treatment_plan": [
+        {
+          "type": "Surgery",
+          "description": "Achilles tendon repair",
+          "date": "2020-11-25",
+          "provider": "Dr. Richard Ferkel"
+        },
+        {
+          "type": "Rehabilitation",
+          "description": "Phase 1: Immobilization and protection",
+          "start_date": "2020-12-01",
+          "end_date": "2021-02-15"
+        },
+        {
+          "type": "Rehabilitation",
+          "description": "Phase 2: Early range of motion and strengthening",
+          "start_date": "2021-02-16",
+          "end_date": "2021-05-01"
+        },
+        {
+          "type": "Rehabilitation",
+          "description": "Phase 3: Progressive loading and functional training",
+          "start_date": "2021-05-02",
+          "end_date": "2021-09-01"
+        },
+        {
+          "type": "Rehabilitation",
+          "description": "Phase 4: Return to basketball activities",
+          "start_date": "2021-09-02",
+          "end_date": "2022-01-01"
+        }
+      ],
+      "return_to_play": {
+        "estimated_date": "2022-01-09",
+        "actual_date": "2022-01-09",
+        "status": "Returned to competition"
+      },
+      "notes": "Klay had an extensive, carefully managed rehabilitation process. His return was a milestone moment for the team."
+    }
+  ],
+  "recovery_data": [
+    {
+      "id": "recovery-001",
+      "athlete_id": "athlete-jordan",
+      "date": "1995-11-15",
+      "sleep_data": {
+        "hours": 8.5,
+        "quality": "excellent",
+        "deep_sleep_percentage": 28
+      },
+      "nutrition_log": {
+        "meals": 5,
+        "calorie_intake": 3200,
+        "protein_intake_g": 180,
+        "hydration_liters": 4.2
+      },
+      "recovery_activities": [
+        {
+          "type": "Ice Bath",
+          "duration_minutes": 15,
+          "time": "13:00:00"
+        },
+        {
+          "type": "Massage",
+          "duration_minutes": 60,
+          "time": "16:30:00"
+        },
+        {
+          "type": "Stretching",
+          "duration_minutes": 30,
+          "time": "20:00:00"
+        }
+      ],
+      "subjective_feedback": {
+        "energy_level": 9,
+        "muscle_soreness": 3,
+        "stress_level": 2,
+        "readiness_to_train": 9
+      },
+      "notes": "Michael reported feeling extremely refreshed after implementing new sleep hygiene protocols. Recovery routine is working well."
+    },
+    {
+      "id": "recovery-002",
+      "athlete_id": "athlete-curry",
+      "date": "2022-09-28",
+      "sleep_data": {
+        "hours": 9.2,
+        "quality": "excellent",
+        "deep_sleep_percentage": 32
+      },
+      "nutrition_log": {
+        "meals": 6,
+        "calorie_intake": 2900,
+        "protein_intake_g": 165,
+        "hydration_liters": 3.8
+      },
+      "recovery_activities": [
+        {
+          "type": "Contrast Bath",
+          "duration_minutes": 20,
+          "time": "12:30:00"
+        },
+        {
+          "type": "Compression Boots",
+          "duration_minutes": 45,
+          "time": "15:00:00"
+        },
+        {
+          "type": "Yoga",
+          "duration_minutes": 45,
+          "time": "19:00:00"
+        }
+      ],
+      "subjective_feedback": {
+        "energy_level": 10,
+        "muscle_soreness": 2,
+        "stress_level": 1,
+        "readiness_to_train": 10
+      },
+      "notes": "Steph's recovery protocol is showing excellent results. His consistent sleep patterns and recovery routine are contributing to his elite performance level."
+    },
+    {
+      "id": "recovery-003",
+      "athlete_id": "athlete-thompson",
+      "date": "2022-09-28",
+      "sleep_data": {
+        "hours": 8.8,
+        "quality": "good",
+        "deep_sleep_percentage": 25
+      },
+      "nutrition_log": {
+        "meals": 5,
+        "calorie_intake": 3100,
+        "protein_intake_g": 170,
+        "hydration_liters": 4.0
+      },
+      "recovery_activities": [
+        {
+          "type": "Hydrotherapy",
+          "duration_minutes": 30,
+          "time": "12:00:00"
+        },
+        {
+          "type": "Physical Therapy",
+          "duration_minutes": 90,
+          "time": "14:30:00"
+        },
+        {
+          "type": "Meditation",
+          "duration_minutes": 20,
+          "time": "20:00:00"
+        }
+      ],
+      "subjective_feedback": {
+        "energy_level": 7,
+        "muscle_soreness": 4,
+        "stress_level": 3,
+        "readiness_to_train": 7
+      },
+      "notes": "Klay continues to follow his post-Achilles rehab protocol. Focus on managing workload and ensuring proper recovery between shooting sessions."
+    }
+  ]
+}

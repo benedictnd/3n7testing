@@ -10,16 +10,111 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f8fd;
+            color: #333;
+        }
+        
+        .shadow-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .shadow-hover:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .calendar-day {
+            transition: all 0.2s ease;
+        }
+        
+        .calendar-day:hover {
+            background-color: #f0f5ff;
+        }
+        
+        .chart-container {
+            transition: all 0.3s ease;
+        }
+        
+        .chart-container:hover {
+            transform: scale(1.01);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+        
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .animate-slideDown {
+            animation: slideDown 0.3s ease forwards;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 font-poppins">
     <header class="bg-white shadow-sm fixed top-0 w-full z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <img src="/static/image/Logo Black.png" alt="3&7 Logo" class="h-10">
             <nav class="hidden md:flex space-x-6">
-                <a href="/dashboard" class="text-gray-600 hover:text-blue-600">Dashboard</a>
-                <a href="/training" class="text-gray-600 hover:text-blue-600">Training</a>
-                <a href="/history" class="text-blue-600 font-medium">History</a>
-                <a href="/profile" class="text-gray-600 hover:text-blue-600">Profile</a>
+                <a href="/dashboard" class="nav-link text-gray-600 hover:text-blue-600">Dashboard</a>
+                <a href="/training" class="nav-link text-gray-600 hover:text-blue-600">Training</a>
+                <a href="/history" class="nav-link active-nav text-blue-600 font-medium">History</a>
+                <a href="/profile" class="nav-link text-gray-600 hover:text-blue-600">Profile</a>
             </nav>
             <button id="mobileMenuBtn" class="md:hidden text-gray-600">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,7 +123,7 @@
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg absolute w-full animate-slideDown">
             <div class="container mx-auto px-4 py-3">
                 <nav class="flex flex-col space-y-3">
                     <a href="/dashboard" class="text-gray-600 hover:text-blue-600 py-2">Dashboard</a>
@@ -42,15 +137,15 @@
 
     <main class="container mx-auto px-4 pt-24 pb-12">
         <div class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-semibold text-gray-800">Training History</h1>
+            <h1 class="text-3xl font-semibold text-gray-800 animate-fadeIn">Training History</h1>
             <div class="flex space-x-4">
-                <button id="viewToggleCalendar" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Calendar View</button>
-                <button id="viewToggleList" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg">List View</button>
+                <button id="viewToggleCalendar" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-hover">Calendar View</button>
+                <button id="viewToggleList" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg shadow-hover">List View</button>
             </div>
         </div>
 
         <!-- Filters -->
-        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6 shadow-hover">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div>
                     <label class="block text-gray-600 mb-2 text-sm">Date Range</label>
@@ -85,22 +180,22 @@
                     </select>
                 </div>
                 <div class="md:col-span-1 flex items-end">
-                    <button id="applyFilters" class="bg-blue-600 text-white px-4 py-2 rounded-lg w-full">Apply Filters</button>
+                    <button id="applyFilters" class="bg-blue-600 text-white px-4 py-2 rounded-lg w-full shadow-hover">Apply Filters</button>
                 </div>
             </div>
         </div>
 
         <!-- Calendar View -->
         <div id="calendarView" class="mb-8">
-            <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow-sm p-6 shadow-hover">
                 <div class="flex justify-between items-center mb-6">
-                    <button id="prevMonth" class="text-blue-600">
+                    <button id="prevMonth" class="text-blue-600 hover:bg-blue-50 p-2 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
                     <h2 id="currentMonthYear" class="text-xl font-medium text-gray-700">September 2023</h2>
-                    <button id="nextMonth" class="text-blue-600">
+                    <button id="nextMonth" class="text-blue-600 hover:bg-blue-50 p-2 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
@@ -142,15 +237,15 @@
 
         <!-- Performance Charts -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow-sm p-6 shadow-hover">
                 <h2 class="text-xl font-medium text-gray-700 mb-4">Training Quality</h2>
-                <div class="h-64">
+                <div class="h-64 chart-container">
                     <canvas id="qualityChart"></canvas>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow-sm p-6 shadow-hover">
                 <h2 class="text-xl font-medium text-gray-700 mb-4">Training Intensity</h2>
-                <div class="h-64">
+                <div class="h-64 chart-container">
                     <canvas id="intensityChart"></canvas>
                 </div>
             </div>
@@ -158,21 +253,21 @@
 
         <!-- Additional Metrics -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow-sm p-6 shadow-hover">
                 <h2 class="text-xl font-medium text-gray-700 mb-4">Body Condition</h2>
-                <div class="h-48">
+                <div class="h-48 chart-container">
                     <canvas id="conditionChart"></canvas>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow-sm p-6 shadow-hover">
                 <h2 class="text-xl font-medium text-gray-700 mb-4">Attendance Rate</h2>
-                <div class="h-48">
+                <div class="h-48 chart-container">
                     <canvas id="attendanceChart"></canvas>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow-sm p-6 shadow-hover">
                 <h2 class="text-xl font-medium text-gray-700 mb-4">Session Distribution</h2>
-                <div class="h-48">
+                <div class="h-48 chart-container">
                     <canvas id="distributionChart"></canvas>
                 </div>
             </div>
@@ -341,11 +436,20 @@
             // Create cells for each day in the month
             for (let day = 1; day <= daysInMonth; day++) {
                 const cell = document.createElement('div');
-                cell.className = 'h-24 bg-white border rounded-lg p-1 overflow-hidden relative';
+                cell.className = 'h-24 bg-white border rounded-lg p-1 overflow-hidden relative calendar-day';
                 
                 // Date number
                 const dateNumber = document.createElement('div');
-                dateNumber.className = 'text-sm font-medium mb-1';
+                dateNumber.className = 'text-sm font-medium mb-1 text-gray-700 p-1 rounded-full w-6 h-6 flex items-center justify-center';
+                
+                // Highlight today's date
+                const today = new Date();
+                if (date.getFullYear() === today.getFullYear() && 
+                    date.getMonth() === today.getMonth() && 
+                    day === today.getDate()) {
+                    dateNumber.className += ' bg-blue-600 text-white';
+                }
+                
                 dateNumber.textContent = day;
                 cell.appendChild(dateNumber);
                 
@@ -355,8 +459,17 @@
                 // Example sessions (these would come from the API)
                 if (day % 3 === 0) {
                     const session = document.createElement('div');
-                    session.className = 'text-xs p-1 mb-1 rounded bg-blue-500 text-white truncate';
-                    session.textContent = 'Core Training 9:00 AM';
+                    session.className = 'text-xs p-1 mb-1 rounded-lg bg-blue-500 text-white truncate shadow-sm hover:shadow-md transition-shadow flex items-center';
+                    
+                    const sessionIcon = document.createElement('span');
+                    sessionIcon.className = 'mr-1 inline-flex items-center justify-center';
+                    sessionIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>';
+                    
+                    const sessionText = document.createElement('span');
+                    sessionText.textContent = 'Core 9:00 AM';
+                    
+                    session.appendChild(sessionIcon);
+                    session.appendChild(sessionText);
                     session.setAttribute('data-session-id', '123'); // Example session ID
                     session.addEventListener('click', function() {
                         window.location.href = `/reports/session/${this.getAttribute('data-session-id')}`;
@@ -364,8 +477,17 @@
                     cell.appendChild(session);
                 } else if (day % 5 === 0) {
                     const session = document.createElement('div');
-                    session.className = 'text-xs p-1 mb-1 rounded bg-green-500 text-white truncate';
-                    session.textContent = 'Endurance Training 2:00 PM';
+                    session.className = 'text-xs p-1 mb-1 rounded-lg bg-green-500 text-white truncate shadow-sm hover:shadow-md transition-shadow flex items-center';
+                    
+                    const sessionIcon = document.createElement('span');
+                    sessionIcon.className = 'mr-1 inline-flex items-center justify-center';
+                    sessionIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" /></svg>';
+                    
+                    const sessionText = document.createElement('span');
+                    sessionText.textContent = 'Endurance 2:00 PM';
+                    
+                    session.appendChild(sessionIcon);
+                    session.appendChild(sessionText);
                     session.setAttribute('data-session-id', '456'); // Example session ID
                     session.addEventListener('click', function() {
                         window.location.href = `/reports/session/${this.getAttribute('data-session-id')}`;
@@ -426,8 +548,13 @@
                         data: [4.2, 3.8, 4.5, 4.7],
                         backgroundColor: 'rgba(59, 130, 246, 0.2)',
                         borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 2,
-                        tension: 0.3
+                        borderWidth: 3,
+                        tension: 0.4,
+                        pointBackgroundColor: 'white',
+                        pointBorderColor: 'rgba(59, 130, 246, 1)',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
                     }]
                 },
                 options: {
@@ -436,7 +563,52 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 5
+                            max: 5,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: '#333',
+                            bodyColor: '#333',
+                            titleFont: {
+                                family: 'Poppins',
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                family: 'Poppins'
+                            },
+                            borderColor: '#ddd',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: true,
+                            boxWidth: 10,
+                            boxHeight: 10
                         }
                     }
                 }
@@ -453,8 +625,13 @@
                         data: [7.5, 8.2, 6.9, 8.7],
                         backgroundColor: 'rgba(16, 185, 129, 0.2)',
                         borderColor: 'rgba(16, 185, 129, 1)',
-                        borderWidth: 2,
-                        tension: 0.3
+                        borderWidth: 3,
+                        tension: 0.4,
+                        pointBackgroundColor: 'white',
+                        pointBorderColor: 'rgba(16, 185, 129, 1)',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
                     }]
                 },
                 options: {
@@ -463,7 +640,52 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 10
+                            max: 10,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: '#333',
+                            bodyColor: '#333',
+                            titleFont: {
+                                family: 'Poppins',
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                family: 'Poppins'
+                            },
+                            borderColor: '#ddd',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: true,
+                            boxWidth: 10,
+                            boxHeight: 10
                         }
                     }
                 }
@@ -480,8 +702,13 @@
                         data: [6.8, 7.2, 7.5, 8.1],
                         backgroundColor: 'rgba(245, 158, 11, 0.2)',
                         borderColor: 'rgba(245, 158, 11, 1)',
-                        borderWidth: 2,
-                        tension: 0.3
+                        borderWidth: 3,
+                        tension: 0.4,
+                        pointBackgroundColor: 'white',
+                        pointBorderColor: 'rgba(245, 158, 11, 1)',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
                     }]
                 },
                 options: {
@@ -490,7 +717,34 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 10
+                            max: 10,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
                         }
                     }
                 }

@@ -1,0 +1,166 @@
+{
+  "feedback": [
+    {
+      "id": "feedback-001",
+      "training_id": "training-001",
+      "date": "2023-10-25",
+      "submitted_by": "coach-001",
+      "reporter_name": "Coach Carter",
+      "overall_rating": 8,
+      "intensity_rating": 7,
+      "quality_rating": 8,
+      "notes": "Good energy overall. Team worked well on the interval training.",
+      "post_training_summary": "The team showed improved endurance compared to last week's session.",
+      "health_observation": {
+        "session_date": "2023-10-25T08:00:00Z",
+        "reported_by": "coach-001",
+        "reporter_name": "Coach Carter",
+        "timestamp": "2023-10-25T09:45:00Z",
+        "fatigue": [
+          {
+            "type": "Overtraining",
+            "severity": 4,
+            "notes": "Several athletes showed signs of muscle fatigue and cramps",
+            "contributors": [
+              "Inadequate endurance preparation",
+              "Skipped cooling-down session"
+            ]
+          },
+          {
+            "type": "Environmental Conditions",
+            "severity": 3,
+            "notes": "Training conducted in 30°C heat",
+            "contributors": [
+              "Extreme heat",
+              "High humidity"
+            ]
+          }
+        ],
+        "injuries": [
+          {
+            "location": "Ankle",
+            "type": "Sprain",
+            "athlete_id": "athlete-001",
+            "athlete_name": "Jordan Smith",
+            "severity": 3,
+            "notes": "Occurred during the final sprint drill"
+          },
+          {
+            "location": "Leg Muscles",
+            "type": "Hamstring strain",
+            "athlete_id": "athlete-003",
+            "athlete_name": "Morgan Kim",
+            "severity": 2,
+            "notes": "Minor strain reported during cool down"
+          }
+        ],
+        "management": [
+          "Active Recovery",
+          "Nutrition/Hydration Plan"
+        ]
+      },
+      "timestamp": "2023-10-25T09:45:00Z",
+      "is_retroactive": false
+    },
+    {
+      "id": "feedback-002",
+      "training_id": "training-002",
+      "date": "2023-10-27",
+      "submitted_by": "coach-002",
+      "reporter_name": "Coach Taylor",
+      "overall_rating": 6,
+      "intensity_rating": 8,
+      "quality_rating": 6,
+      "notes": "High-intensity session with focus on strength and conditioning.",
+      "post_training_summary": "Several athletes struggled with the intensity level.",
+      "health_observation": {
+        "session_date": "2023-10-27T15:00:00Z",
+        "reported_by": "coach-002",
+        "reporter_name": "Coach Taylor",
+        "timestamp": "2023-10-27T16:45:00Z",
+        "fatigue": [
+          {
+            "type": "Lack of Recovery",
+            "severity": 4,
+            "notes": "Multiple athletes showed prolonged soreness from previous training",
+            "contributors": [
+              "Insufficient sleep",
+              "Poor recovery environment"
+            ]
+          },
+          {
+            "type": "Poor Nutrition",
+            "severity": 3,
+            "notes": "Some athletes reported not eating properly before training",
+            "contributors": [
+              "Lack of balanced meals"
+            ]
+          }
+        ],
+        "injuries": [
+          {
+            "location": "Shoulder",
+            "type": "Rotator cuff strain",
+            "athlete_id": "athlete-002",
+            "athlete_name": "Alex Lee",
+            "severity": 4,
+            "notes": "Occurred during weight training portion"
+          }
+        ],
+        "management": [
+          "Active Recovery",
+          "Adequate Sleep",
+          "Nutrition/Hydration Plan"
+        ]
+      },
+      "timestamp": "2023-10-27T16:45:00Z",
+      "is_retroactive": false
+    },
+    {
+      "id": "feedback-003",
+      "training_id": "training-historical",
+      "date": "2023-10-15",
+      "submitted_by": "coach-001",
+      "reporter_name": "Coach Carter",
+      "overall_rating": 7,
+      "intensity_rating": 6,
+      "quality_rating": 7,
+      "notes": "Recovery-focused session following the weekend game.",
+      "post_training_summary": "Good recovery activities, though some athletes still showed fatigue from the game.",
+      "health_observation": {
+        "session_date": "2023-10-15T10:00:00Z",
+        "reported_by": "coach-001",
+        "reporter_name": "Coach Carter",
+        "timestamp": "2023-10-18T14:30:00Z",
+        "fatigue": [
+          {
+            "type": "Monotony in Training",
+            "severity": 3,
+            "notes": "Some athletes showing signs of mental fatigue",
+            "contributors": [
+              "Repetitive drills",
+              "Lack of innovation in routines"
+            ]
+          }
+        ],
+        "injuries": [
+          {
+            "location": "Knee",
+            "type": "ACL strain",
+            "athlete_id": "athlete-001",
+            "athlete_name": "Jordan Smith",
+            "severity": 5,
+            "notes": "Occurred during the game on 10/14, still affecting training"
+          }
+        ],
+        "management": [
+          "Active Recovery",
+          "Mental Training",
+          "Periodization"
+        ]
+      },
+      "timestamp": "2023-10-18T14:30:00Z",
+      "is_retroactive": true
+    }
+  ]
+}

@@ -1,87 +1,74 @@
-# 3&7 Training Platform
+# Integrated Training System - Mock Test
 
-A comprehensive sports training management system designed for Southeast Asia, with special considerations for Indonesian athletes and coaches.
+## Overview
 
-## Features
+This project contains a mock implementation of an Integrated Training System for basketball teams, with comprehensive testing to validate the functionality. The example data is based on the Jaya Jakarta Basketball team.
 
-- **Integrated Training System**
-  - Real-time session tracking
-  - Performance analytics
-  - Mobile-responsive calendar
-  - Multi-language support (English, Bahasa Indonesia)
+## Structure
 
-- **Independent Training Module**
-  - Self-paced training programs
-  - Progress tracking
-  - Feedback submission
-  - Equipment management
+The project is organized into the following components:
 
-- **Regional Optimizations**
-  - Bandwidth-optimized data flow
-  - Heat-resistant touch handling
-  - Data sovereignty compliance
-  - Cultural adaptations (e.g., Ramadan timing)
+### Models
 
-## Technical Stack
+- `Team`: Represents a basketball team with coaches and athletes
+- `Coach`: Represents a coaching staff member
+- `Athlete`: Represents a basketball player with positions
+- `TrainingSession`: Represents a training session with activities and feedback
+- `TrainingActivity`: Represents a specific activity during a training session
+- `Feedback`: Contains ratings and notes for a training session
+- `Attendance`: Tracks athlete attendance at training sessions
 
-- Frontend: Next.js, TypeScript, TailwindCSS
-- Backend: Python (FastAPI), Go
-- Database: Supabase
-- Authentication: Firebase Auth
-- Deployment: Vercel
+### Services
 
-## Getting Started
+- `TeamService`: Manages team, coach, and athlete data
+- `TrainingService`: Manages training sessions and activities
+- `FeedbackService`: Manages feedback for training sessions
+- `AttendanceService`: Tracks and reports on athlete attendance
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-org/3n7-training-platform.git
-   cd 3n7-training-platform
-   ```
+### Tests
 
-2. Install dependencies:
-   ```bash
-   npm install
-   pip install -r requirements.txt
-   ```
+- `test_integrated_training_system.py`: Comprehensive tests for the training system using mock data for Jaya Jakarta Basketball
 
-3. Set up environment variables:
-   ```bash
-   cp .env.example .env.local
-   ```
+## Test Coverage
 
-4. Run development server:
-   ```bash
-   npm run dev
-   ```
+The mock tests cover the following aspects of the system:
 
-## Development Guidelines
+1. **Team Composition**: Validates coach and athlete data, including positions
+2. **Training Schedule**: Tests the training schedule for specific time periods
+3. **Coach Attendance**: Verifies which coaches attended which sessions
+4. **Athlete Attendance**: Tests tracking of athlete attendance, including absences
+5. **Training Ratings**: Validates recording and retrieval of training ratings
+6. **Athlete Issues**: Tests tracking of issues like injuries and soreness
+7. **Position Updates**: Validates recording of athlete position changes
+8. **Training Activities**: Tests duration and content of training activities
+9. **Reporting**: Tests generation of weekly training reports and statistics
 
-- Follow TypeScript best practices
-- Use functional components with hooks
-- Implement proper error handling
-- Write unit tests for critical components
-- Follow the established code style guide
+## Sample Data
 
-## Security
+The system is pre-loaded with mock data for the Jaya Jakarta Basketball team, including:
 
-- All commits are signed
-- Regular security audits
-- PDPA compliance
-- Data residency requirements met
-- Regular penetration testing
+- 4 coaches with different roles
+- 11 athletes with various positions
+- 10 training sessions for January Week 1
+- Detailed attendance records for all sessions
+- Comprehensive feedback and notes for each session
 
-## Contributing
+## Running the Tests
 
-1. Create a feature branch
-2. Make your changes
-3. Submit a pull request
-4. Ensure all tests pass
-5. Get code review approval
+To run the tests, execute the following command:
 
-## License
+```
+python -m pytest tests/test_integrated_training_system.py -v
+```
 
-Proprietary - All rights reserved
+## Adding Real Implementation
 
-## Support
+This project currently uses mock services with predefined data. To implement a real system:
 
-For support, please contact the development team or raise an issue in the repository. 
+1. Replace the mock services with actual database-backed implementations
+2. Implement the database models and migrations
+3. Create API endpoints for interacting with the system
+4. Develop a frontend user interface
+5. Add authentication and authorization
+
+The tests can then be updated to use the real services instead of mocks, while maintaining the same functionality. 

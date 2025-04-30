@@ -1,0 +1,248 @@
+{
+    "metadata": {
+        "generated_at": "2023-09-15 14:30:45",
+        "environment": "Development",
+        "api_version": "v1.2.3"
+    },
+    "test_results": [
+        {
+            "test_number": "001",
+            "endpoint": "/api/v1/users",
+            "method": "GET",
+            "status": "pass",
+            "response_time": 85,
+            "timestamp": "2023-09-15T14:30:10",
+            "category": "functionality"
+        },
+        {
+            "test_number": "002",
+            "endpoint": "/api/v1/users/1",
+            "method": "GET",
+            "status": "pass",
+            "response_time": 92,
+            "timestamp": "2023-09-15T14:30:12",
+            "category": "functionality"
+        },
+        {
+            "test_number": "003",
+            "endpoint": "/api/v1/users/create",
+            "method": "POST",
+            "status": "pass",
+            "response_time": 145,
+            "timestamp": "2023-09-15T14:30:15",
+            "category": "functionality"
+        },
+        {
+            "test_number": "004",
+            "endpoint": "/api/v1/users/1/update",
+            "method": "PUT",
+            "status": "pass",
+            "response_time": 120,
+            "timestamp": "2023-09-15T14:30:18",
+            "category": "functionality"
+        },
+        {
+            "test_number": "005",
+            "endpoint": "/api/v1/users/1/delete",
+            "method": "DELETE",
+            "status": "pass",
+            "response_time": 110,
+            "timestamp": "2023-09-15T14:30:21",
+            "category": "functionality"
+        },
+        {
+            "test_number": "006",
+            "endpoint": "/api/v1/products",
+            "method": "GET",
+            "status": "pass",
+            "response_time": 210,
+            "timestamp": "2023-09-15T14:30:24",
+            "category": "functionality"
+        },
+        {
+            "test_number": "007",
+            "endpoint": "/api/v1/products/1",
+            "method": "GET",
+            "status": "pass",
+            "response_time": 195,
+            "timestamp": "2023-09-15T14:30:27",
+            "category": "functionality"
+        },
+        {
+            "test_number": "008",
+            "endpoint": "/api/v1/products/create",
+            "method": "POST",
+            "status": "fail",
+            "response_time": 350,
+            "timestamp": "2023-09-15T14:30:30",
+            "category": "functionality",
+            "error_type": "validation",
+            "error_message": "Required field 'price' is missing"
+        },
+        {
+            "test_number": "009",
+            "endpoint": "/api/v1/products/1/update",
+            "method": "PUT",
+            "status": "pass",
+            "response_time": 180,
+            "timestamp": "2023-09-15T14:30:33",
+            "category": "functionality"
+        },
+        {
+            "test_number": "010",
+            "endpoint": "/api/v1/products/1/delete",
+            "method": "DELETE",
+            "status": "pass",
+            "response_time": 130,
+            "timestamp": "2023-09-15T14:30:36",
+            "category": "functionality"
+        },
+        {
+            "test_number": "011",
+            "endpoint": "/api/v1/orders",
+            "method": "GET",
+            "status": "pass",
+            "response_time": 320,
+            "timestamp": "2023-09-15T14:30:39",
+            "category": "functionality"
+        },
+        {
+            "test_number": "012",
+            "endpoint": "/api/v1/orders/1",
+            "method": "GET",
+            "status": "pass",
+            "response_time": 280,
+            "timestamp": "2023-09-15T14:30:42",
+            "category": "functionality"
+        },
+        {
+            "test_number": "013",
+            "endpoint": "/api/v1/orders/create",
+            "method": "POST",
+            "status": "fail",
+            "response_time": 580,
+            "timestamp": "2023-09-15T14:30:45",
+            "category": "functionality",
+            "error_type": "server",
+            "error_message": "Internal server error: Database connection timeout"
+        },
+        {
+            "test_number": "014",
+            "endpoint": "/api/v1/orders/1/update",
+            "method": "PUT",
+            "status": "pass",
+            "response_time": 250,
+            "timestamp": "2023-09-15T14:30:48",
+            "category": "functionality"
+        },
+        {
+            "test_number": "015",
+            "endpoint": "/api/v1/orders/1/delete",
+            "method": "DELETE",
+            "status": "pass",
+            "response_time": 140,
+            "timestamp": "2023-09-15T14:30:51",
+            "category": "functionality"
+        },
+        {
+            "test_number": "016",
+            "endpoint": "/api/v1/auth/login",
+            "method": "POST",
+            "status": "pass",
+            "response_time": 230,
+            "timestamp": "2023-09-15T14:30:54",
+            "category": "security"
+        },
+        {
+            "test_number": "017",
+            "endpoint": "/api/v1/auth/register",
+            "method": "POST",
+            "status": "pass",
+            "response_time": 290,
+            "timestamp": "2023-09-15T14:30:57",
+            "category": "security"
+        },
+        {
+            "test_number": "018",
+            "endpoint": "/api/v1/auth/reset-password",
+            "method": "POST",
+            "status": "pass",
+            "response_time": 310,
+            "timestamp": "2023-09-15T14:31:00",
+            "category": "security"
+        },
+        {
+            "test_number": "019",
+            "endpoint": "/api/v1/auth/logout",
+            "method": "POST",
+            "status": "pass",
+            "response_time": 150,
+            "timestamp": "2023-09-15T14:31:03",
+            "category": "security"
+        },
+        {
+            "test_number": "020",
+            "endpoint": "/api/v1/users/sensitive-data",
+            "method": "GET",
+            "status": "fail",
+            "response_time": 180,
+            "timestamp": "2023-09-15T14:31:06",
+            "category": "security",
+            "error_type": "security",
+            "error_message": "Missing CSRF token"
+        },
+        {
+            "test_number": "021",
+            "endpoint": "/api/v1/admin/dashboard",
+            "method": "GET",
+            "status": "fail",
+            "response_time": 120,
+            "timestamp": "2023-09-15T14:31:09",
+            "category": "security",
+            "error_type": "security",
+            "error_message": "Insecure authorization header"
+        },
+        {
+            "test_number": "022",
+            "endpoint": "/api/v1/webhooks/receive",
+            "method": "POST",
+            "status": "fail",
+            "response_time": 450,
+            "timestamp": "2023-09-15T14:31:12",
+            "category": "integration",
+            "error_type": "network",
+            "error_message": "Connection timeout to external service"
+        },
+        {
+            "test_number": "023",
+            "endpoint": "/api/v1/analytics/report",
+            "method": "GET",
+            "status": "fail",
+            "response_time": 750,
+            "timestamp": "2023-09-15T14:31:15",
+            "category": "performance",
+            "error_type": "timeout",
+            "error_message": "Response time exceeded performance threshold"
+        },
+        {
+            "test_number": "024",
+            "endpoint": "/api/v1/search",
+            "method": "GET",
+            "status": "pass",
+            "response_time": 420,
+            "timestamp": "2023-09-15T14:31:18",
+            "category": "functionality"
+        },
+        {
+            "test_number": "025",
+            "endpoint": "/api/v1/uploads/image",
+            "method": "POST",
+            "status": "fail",
+            "response_time": 680,
+            "timestamp": "2023-09-15T14:31:21",
+            "category": "functionality",
+            "error_type": "validation",
+            "error_message": "File size exceeds limit"
+        }
+    ]
+} 

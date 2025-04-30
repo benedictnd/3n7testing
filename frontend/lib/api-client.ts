@@ -60,6 +60,20 @@ export interface AuthResponse {
   };
 }
 
+// Define Email request data interface
+export interface EmailRequestData {
+  to_email: string;
+  subject: string;
+  html_content: string;
+  cc?: string[];
+  bcc?: string[];
+}
+
+// Define Test Email request data interface
+export interface TestEmailRequestData {
+  to_email?: string;
+}
+
 class ApiClient {
   private readonly baseURL: string;
   private readonly client: AxiosInstance;
@@ -483,6 +497,22 @@ class ApiClient {
     return this.request({
       method: 'DELETE',
       url: `/equipment/release/${sessionId}`,
+    });
+  }
+
+  async sendEmail(emailData: EmailRequestData): Promise<ApiResponse<{ message_id: string }>> {
+    return this.request<{ message_id: string }>({
+      method: 'POST',
+      url: '/email/send',
+      data: emailData,
+    });
+  }
+
+  async sendTestEmail(testData?: TestEmailRequestData): Promise<ApiResponse<{ message_id: string }>> {
+    return this.request<{ message_id: string }>({
+      method: 'POST',
+      url: '/email/send-test',
+      data: testData || {},
     });
   }
 }

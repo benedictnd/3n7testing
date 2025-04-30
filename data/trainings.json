@@ -1,0 +1,30 @@
+{
+  "trainings": [
+    {
+      "id": "training-001",
+      "date": "2023-10-25",
+      "session_type": "Morning",
+      "coaches_assigned": [
+        {
+          "coach_id": "coach-001",
+          "name": "Coach Carter",
+          "role": "Head Coach"
+        },
+        {
+          "coach_id": "coach-002",
+          "name": "Coach Taylor",
+          "role": "Assistant"
+        }
+      ],
+      "drills": {
+        "warm_up": {"drills": "Dynamic stretches", "time": "15 mins"},
+        "main": {"drills": "Interval sprints", "time": "45 mins"},
+        "cool_down": {"drills": "Light jogging and stretching", "time": "10 mins"}
+      },
+      "team_id": "team-001",
+      "location": "Main Field",
+      "start_time": "08:00",
+      "end_time": "09:30"
+    }
+  ]
+}

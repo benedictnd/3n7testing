@@ -1,17 +1,41 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status, Body
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
+from pydantic import BaseModel, EmailStr
 
-from dependencies.auth import get_current_user, get_user_role, has_role
+from dependencies.auth import get_current_user, get_user_role, has_role, is_admin, validate_role_change
 from dependencies.database import get_db_session
-from models.user import UserResponse, UserDetail, UserUpdate, UserList
+from models.user import UserResponse, UserDetail, UserUpdate, UserList, User as UserModel
 from services.user_service import UserService
+from sqlalchemy.future import select
 
 router = APIRouter(
     prefix="/users",
     tags=["users"],
     responses={404: {"description": "Not found"}},
 )
+
+class UserBase(BaseModel):
+    email: EmailStr
+    name: str
+    
+class UserCreate(UserBase):
+    password: str
+    role: str = "athlete"
+    
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    
+class RoleUpdate(BaseModel):
+    roles: List[str]
+    
+class User(UserBase):
+    id: str
+    role: str
+    
+    class Config:
+        orm_mode = True
 
 
 @router.get("/", response_model=UserList)
@@ -140,4 +164,102 @@ async def delete_user(
     user_service = UserService(db_session)
     result = await user_service.delete_user(user_id)
     
-    return result 
+    return result
+
+
+@router.patch("/{user_id}/roles")
+async def update_user_roles(
+    user_id: str,
+    role_data: RoleUpdate,
+    db_session: AsyncSession = Depends(get_db_session),
+    current_user: dict = Depends(get_current_user),
+    has_admin_role: bool = Depends(has_role("admin")),
+):
+    """
+    Update a user's roles
+    
+    This endpoint is protected against privilege escalation:
+    1. Only admins can change roles
+    2. Users cannot assign roles with higher privilege than their own
+    3. Users cannot elevate their own privileges
+    
+    Args:
+        user_id: ID of the user to update
+        role_data: New roles data
+        db_session: Database session
+        current_user: Current authenticated user
+        has_admin_role: Verified admin role check
+        
+    Returns:
+        Updated user with new roles
+    """
+    user_service = UserService(db_session)
+    
+    # Get user to update
+    user_to_update = await user_service.get_user(user_id)
+    if not user_to_update:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"User with ID {user_id} not found"
+        )
+    
+    # Prevent self-promotion - block any attempt to modify own roles
+    if user_id == current_user["id"]:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Users cannot modify their own roles"
+        )
+    
+    # Validate role elevation
+    current_role_value = get_role_value(user_to_update.role)
+    requested_role_value = max(get_role_value(role) for role in role_data.roles)
+    admin_role_value = get_role_value(current_user["role"])
+    
+    # Admins can only assign roles with equal or lower privileges than their own
+    if requested_role_value > admin_role_value:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Cannot assign a role with higher privileges than your own"
+        )
+    
+    # Update the user's roles
+    updated_user = await user_service.update_user_roles(user_id, role_data.roles, current_user["role"])
+    
+    return updated_user
+
+def get_role_value(role: str) -> int:
+    """Get numeric value for role hierarchy"""
+    role_values = {
+        "superadmin": 1000,
+        "admin": 100,
+        "coach": 50,
+        "athlete": 10,
+        "guest": 1
+    }
+    return role_values.get(role, 0)
+
+@router.patch("/me/roles")
+async def update_self_roles(
+    role_data: RoleUpdate,
+    db_session: AsyncSession = Depends(get_db_session),
+    current_user: Dict = Depends(get_current_user)
+):
+    """
+    Update the current user's roles
+    
+    This endpoint prevents privilege escalation by:
+    1. Blocking all self-role updates (users cannot change their own roles)
+    
+    Args:
+        role_data: New roles data
+        db_session: Database session
+        current_user: Current authenticated user
+        
+    Returns:
+        Error response - self role updates are not allowed
+    """
+    # Block all self-role updates to prevent privilege escalation
+    raise HTTPException(
+        status_code=status.HTTP_403_FORBIDDEN,
+        detail="Users cannot change their own roles"
+    ) 

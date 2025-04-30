@@ -33,6 +33,20 @@
         .border-morning { border-color: #4C8BF1; }
         .border-afternoon { border-color: #353BDF; }
         .border-night { border-color: #09104E; }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        .animate-slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
         @media print {
             body {
                 background-color: white;
@@ -54,32 +68,49 @@
 <body class="p-4 md:p-8">
     <!-- Print Controls -->
     <div class="no-print fixed top-4 right-4 z-50 flex space-x-2">
-        <button onclick="window.print()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        <button onclick="window.print()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-md flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
             Print Report
         </button>
-        <button onclick="window.history.back()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300">
+        <button onclick="window.history.back()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors shadow-md flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
             Back
         </button>
     </div>
 
     <!-- Cover Page -->
-    <div class="page mx-auto max-w-4xl p-8 md:p-16 rounded-lg mb-8">
+    <div class="page mx-auto max-w-4xl p-8 md:p-16 rounded-xl mb-8 shadow-lg animate-fade-in">
         <div class="flex flex-col items-center justify-center min-h-[70vh]">
-            <img src="/static/image/Logo Black.png" alt="3&7 Logo" class="h-24 mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-center mb-6">Monthly Training Report</h1>
-            <p class="text-2xl md:text-3xl font-medium text-gray-600 mb-8">{{ .Month }} {{ .Year }}</p>
-            <div class="w-20 h-1 bg-blue-600 mb-8"></div>
-            <p class="text-xl text-gray-500">Prepared for: {{ .Team }}</p>
-            <p class="text-lg text-gray-400 mt-2">Generated on {{ .GeneratedDate }}</p>
+            <div class="bg-blue-50 p-6 rounded-full mb-10">
+                <img src="/static/image/Logo Black.png" alt="3&7 Logo" class="h-28 mb-2">
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-center mb-6 text-gray-800 animate-slide-up">Monthly Training Report</h1>
+            <p class="text-2xl md:text-3xl font-medium text-blue-600 mb-8 animate-slide-up">{{ .Month }} {{ .Year }}</p>
+            <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mb-10 rounded-full"></div>
+            <p class="text-xl text-gray-700 font-medium animate-slide-up">Prepared for: {{ .Team }}</p>
+            <p class="text-lg text-gray-500 mt-3 font-light animate-slide-up">Generated on {{ .GeneratedDate }}</p>
+            
+            <div class="mt-16 border-t border-gray-200 pt-6 w-full max-w-md text-center">
+                <p class="text-sm text-gray-500">This report is confidential and intended for the use of {{ .Team }} only.</p>
+            </div>
         </div>
     </div>
 
     <!-- Executive Summary -->
-    <div class="page mx-auto max-w-4xl p-8 md:p-12 rounded-lg mb-8">
-        <h2 class="text-2xl md:text-3xl font-semibold mb-8 pb-2 border-b-2 border-gray-200">Executive Summary</h2>
+    <div class="page mx-auto max-w-4xl p-8 md:p-12 rounded-xl mb-8 shadow-lg">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-8 pb-3 border-b-2 border-gray-200 text-gray-800 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Executive Summary
+        </h2>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div class="flex flex-col items-center">
+            <div class="flex flex-col items-center bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div class="relative w-32 h-32 mb-4">
                     <svg width="100%" height="100%" viewBox="0 0 120 120">
                         <circle class="text-gray-200" stroke-width="12" stroke="currentColor" fill="transparent" r="50" cx="60" cy="60"/>
@@ -90,54 +121,66 @@
                         <span class="text-2xl font-bold">{{ .Stats.CompletionRate }}%</span>
                     </div>
                 </div>
-                <p class="text-center text-gray-600">Training Completion</p>
+                <p class="text-center text-gray-700 font-medium">Training Completion</p>
             </div>
             
-            <div class="flex flex-col items-center">
+            <div class="flex flex-col items-center bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div class="mb-3 text-5xl font-bold text-blue-600">{{ .Stats.TotalSessions }}</div>
-                <p class="text-center text-gray-600">Total Sessions</p>
+                <p class="text-center text-gray-700 font-medium">Total Sessions</p>
                 <div class="flex justify-center space-x-4 mt-4">
                     <div class="text-center">
                         <span class="block text-3xl font-bold text-morning">{{ .Stats.MorningSessions }}</span>
-                        <span class="text-sm text-gray-500">Morning</span>
+                        <span class="text-sm text-gray-600">Morning</span>
                     </div>
                     <div class="text-center">
                         <span class="block text-3xl font-bold text-afternoon">{{ .Stats.AfternoonSessions }}</span>
-                        <span class="text-sm text-gray-500">Afternoon</span>
+                        <span class="text-sm text-gray-600">Afternoon</span>
                     </div>
                     <div class="text-center">
                         <span class="block text-3xl font-bold text-night">{{ .Stats.NightSessions }}</span>
-                        <span class="text-sm text-gray-500">Night</span>
+                        <span class="text-sm text-gray-600">Night</span>
                     </div>
                 </div>
             </div>
             
-            <div class="flex flex-col items-center">
+            <div class="flex flex-col items-center bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div class="mb-3 text-5xl font-bold text-blue-600">{{ .Stats.AverageAttendance }}%</div>
-                <p class="text-center text-gray-600">Average Attendance</p>
+                <p class="text-center text-gray-700 font-medium">Average Attendance</p>
                 <div class="mt-4 text-center">
-                    <span class="text-sm text-gray-500">Monthly change</span>
-                    <span class="ml-2 {{ if ge .Stats.AttendanceChange 0 }}text-green-500{{ else }}text-red-500{{ end }}">
+                    <span class="text-sm text-gray-600">Monthly change</span>
+                    <span class="ml-2 {{ if ge .Stats.AttendanceChange 0 }}text-green-500{{ else }}text-red-500{{ end }} font-medium">
                         {{ if ge .Stats.AttendanceChange 0 }}+{{ end }}{{ .Stats.AttendanceChange }}%
                     </span>
                 </div>
             </div>
         </div>
         
-        <div class="mb-8">
-            <h3 class="text-xl font-medium mb-4">Monthly Progress</h3>
+        <div class="mb-8 bg-white p-6 rounded-xl shadow-sm">
+            <h3 class="text-xl font-medium mb-4 text-gray-800 border-b pb-2">Monthly Progress</h3>
             <div class="chart-container">
                 <canvas id="progressChart"></canvas>
             </div>
         </div>
         
-        <div class="mb-8">
-            <h3 class="text-xl font-medium mb-4">Key Highlights</h3>
-            <ul class="list-disc list-inside space-y-2 text-gray-700">
-                <li>Completed {{ .Stats.TotalSessions }} training sessions ({{ .Stats.CompletionRate }}% of planned sessions)</li>
-                <li>Average session duration: {{ .Stats.AvgDuration }} minutes</li>
-                <li>Most attended session: {{ .Stats.MostAttendedSession.Type }} on {{ .Stats.MostAttendedSession.Date }}</li>
-                <li>{{ .Stats.NotablePerformance }}</li>
+        <div class="mb-8 bg-white p-6 rounded-xl shadow-sm">
+            <h3 class="text-xl font-medium mb-4 text-gray-800 border-b pb-2">Key Highlights</h3>
+            <ul class="list-disc list-inside space-y-3 text-gray-700">
+                <li class="flex items-start">
+                    <span class="inline-block h-5 w-5 rounded-full bg-blue-100 text-blue-600 mr-2 flex-shrink-0 flex items-center justify-center">✓</span>
+                    <span>Completed {{ .Stats.TotalSessions }} training sessions ({{ .Stats.CompletionRate }}% of planned sessions)</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="inline-block h-5 w-5 rounded-full bg-blue-100 text-blue-600 mr-2 flex-shrink-0 flex items-center justify-center">✓</span>
+                    <span>Average session duration: {{ .Stats.AvgDuration }} minutes</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="inline-block h-5 w-5 rounded-full bg-blue-100 text-blue-600 mr-2 flex-shrink-0 flex items-center justify-center">✓</span>
+                    <span>Most attended session: {{ .Stats.MostAttendedSession.Type }} on {{ .Stats.MostAttendedSession.Date }}</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="inline-block h-5 w-5 rounded-full bg-blue-100 text-blue-600 mr-2 flex-shrink-0 flex items-center justify-center">✓</span>
+                    <span>{{ .Stats.NotablePerformance }}</span>
+                </li>
             </ul>
         </div>
     </div>

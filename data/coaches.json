@@ -1,0 +1,52 @@
+{
+  "coaches": [
+    {
+      "id": "coach-001",
+      "name": "Coach Carter",
+      "specializations": ["Strength Training", "Team Coordination"],
+      "availability": {
+        "Monday": ["08:00-12:00", "14:00-16:00"],
+        "Tuesday": ["09:00-13:00", "15:00-17:00"],
+        "Wednesday": ["08:00-12:00", "14:00-16:00"],
+        "Thursday": ["09:00-13:00", "15:00-17:00"],
+        "Friday": ["08:00-12:00", "14:00-16:00"]
+      },
+      "contact": {
+        "email": "coach.carter@example.com",
+        "phone": "555-0100"
+      }
+    },
+    {
+      "id": "coach-002",
+      "name": "Coach Taylor",
+      "specializations": ["Tactical Training", "Recovery"],
+      "availability": {
+        "Monday": ["08:30-12:30", "13:30-16:30"],
+        "Tuesday": ["08:30-12:30", "13:30-16:30"],
+        "Wednesday": ["10:00-14:00", "15:00-18:00"],
+        "Thursday": ["08:30-12:30", "13:30-16:30"],
+        "Friday": ["08:30-12:30", "13:30-16:30"]
+      },
+      "contact": {
+        "email": "coach.taylor@example.com",
+        "phone": "555-0101"
+      }
+    },
+    {
+      "id": "coach-003",
+      "name": "Coach Johnson",
+      "specializations": ["Speed Training", "Agility"],
+      "availability": {
+        "Monday": ["07:00-11:00", "15:00-19:00"],
+        "Tuesday": ["07:00-11:00", "15:00-19:00"],
+        "Wednesday": ["07:00-11:00", "15:00-19:00"],
+        "Thursday": ["07:00-11:00", "15:00-19:00"],
+        "Friday": ["07:00-11:00", "15:00-19:00"]
+      },
+      "contact": {
+        "email": "coach.johnson@example.com",
+        "phone": "555-0102"
+      }
+    }
+  ]
+}

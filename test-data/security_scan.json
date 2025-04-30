@@ -1,0 +1,70 @@
+{
+  "vulnerabilities": [
+    {
+      "type": "Information Disclosure",
+      "severity": "High",
+      "location": "/api/auth",
+      "description": "Potential security issue detected"
+    },
+    {
+      "type": "Insecure Cookies",
+      "severity": "Medium",
+      "location": "/api/products",
+      "description": "Potential security issue detected"
+    },
+    {
+      "type": "SQL Injection",
+      "severity": "Medium",
+      "location": "/api/orders",
+      "description": "Potential security issue detected"
+    },
+    {
+      "type": "Information Disclosure",
+      "severity": "High",
+      "location": "/api/products",
+      "description": "Potential security issue detected"
+    },
+    {
+      "type": "Information Disclosure",
+      "severity": "High",
+      "location": "/api/orders",
+      "description": "Potential security issue detected"
+    }
+  ],
+  "issues": [
+    {
+      "type": "Information Disclosure",
+      "severity": "High",
+      "location": "/api/auth",
+      "description": "Potential security issue detected"
+    },
+    {
+      "type": "Insecure Cookies",
+      "severity": "Medium",
+      "location": "/api/products",
+      "description": "Potential security issue detected"
+    },
+    {
+      "type": "SQL Injection",
+      "severity": "Medium",
+      "location": "/api/orders",
+      "description": "Potential security issue detected"
+    },
+    {
+      "type": "Information Disclosure",
+      "severity": "High",
+      "location": "/api/products",
+      "description": "Potential security issue detected"
+    },
+    {
+      "type": "Information Disclosure",
+      "severity": "High",
+      "location": "/api/orders",
+      "description": "Potential security issue detected"
+    }
+  ],
+  "csp_implemented": false,
+  "hsts_implemented": false,
+  "x_content_type_implemented": true,
+  "owasp_coverage": 95
+}

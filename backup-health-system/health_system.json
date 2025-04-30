@@ -1,0 +1,422 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-04-26",
+  "fatigueTypes": {
+    "overtraining": {
+      "id": "A",
+      "name": "Overtraining",
+      "description": "Excessive physical activity without adequate rest leads to both physical and mental fatigue.",
+      "causes": [
+        "Unprepared endurance and muscle",
+        "Lack of cooling down session",
+        "Mismanagement by coaching team"
+      ],
+      "symptoms": [
+        "Muscle fatigue", 
+        "Cramps", 
+        "Soreness", 
+        "Mild temperature"
+      ],
+      "keywords": [
+        "overtrain", "excessive training", "no rest", "train too much", 
+        "constant fatigue", "performance decline", "persistent muscle soreness",
+        "elevated heart rate", "insomnia", "training plateau"
+      ]
+    },
+    "lackOfRecovery": {
+      "id": "B",
+      "name": "Lack of Recovery",
+      "description": "Insufficient recovery times increase the risk of both physical injury and mental exhaustion.",
+      "causes": [
+        "Insufficient sleeping time (especially after 22:00)",
+        "Poor quality of recovery sites",
+        "Mistreatment"
+      ],
+      "symptoms": [
+        "Longing soreness", 
+        "Loss of concentration", 
+        "Muscle fatigue"
+      ],
+      "keywords": [
+        "poor sleep", "insomnia", "always tired", "can't recover", 
+        "fatigue persists", "constant soreness", "no energy",
+        "late night training", "poor sleep quality", "restless"
+      ]
+    },
+    "poorNutrition": {
+      "id": "C",
+      "name": "Poor Nutrition",
+      "description": "Inadequate nutrition can result in fatigue, poor performance, and greater susceptibility to injury.",
+      "causes": [
+        "Junk food consumption",
+        "Lack of nutritional foods",
+        "Insufficient vitamins and supplements"
+      ],
+      "symptoms": [
+        "Thinner body", 
+        "Obesity", 
+        "Over/lost weight", 
+        "Soreness", 
+        "Fatigue"
+      ],
+      "keywords": [
+        "weight loss", "weight gain", "poor diet", "hunger", 
+        "malnutrition", "slow recovery", "dehydration", "weakness",
+        "lack of energy", "dizzy", "hunger pangs", "junk food"
+      ]
+    },
+    "improperTechnique": {
+      "id": "D",
+      "name": "Improper Technique",
+      "description": "Incorrect form during training or competition can lead to injury and exhaustion.",
+      "causes": [
+        "X factors (improper landing, movement not aligned with rhythm)",
+        "Physical contact",
+        "Training method by uncertified or non-professionals"
+      ],
+      "symptoms": [
+        "Injury", 
+        "Sprain", 
+        "Broken bones", 
+        "Swelling"
+      ],
+      "keywords": [
+        "bad form", "improper technique", "wrong posture", "incorrect stance",
+        "bad landing", "poor alignment", "technique issues", "technical error",
+        "form breakdown", "mechanical issues"
+      ]
+    },
+    "externalPressures": {
+      "id": "E",
+      "name": "External Pressures",
+      "description": "Expectations from coaches, family, stakeholders, and fans can create mental stress.",
+      "causes": [
+        "Environment",
+        "Mistreatment",
+        "Lack of psychological support"
+      ],
+      "symptoms": [
+        "Loss of concentration", 
+        "Excessive emotion", 
+        "Unmotivated", 
+        "Uncompetent"
+      ],
+      "keywords": [
+        "pressure", "stress", "anxiety", "expectation", "fear", "worry",
+        "mental fatigue", "burnout", "emotional exhaustion", "tension",
+        "family pressure", "coach pressure", "performance anxiety"
+      ]
+    },
+    "environmentalConditions": {
+      "id": "F",
+      "name": "Environmental Conditions",
+      "description": "Exercising in extreme temperatures can accelerate physical fatigue, with potential heat exhaustion or heat stroke.",
+      "causes": [
+        "Humidity, heavy rain, extreme heat, winter",
+        "Dehydration"
+      ],
+      "symptoms": [
+        "Fainting", 
+        "Fatigue", 
+        "Dehydration"
+      ],
+      "keywords": [
+        "too hot", "too cold", "humid", "dehydrated", "heat exhaustion", 
+        "weather impact", "environmental stress", "rain impact",
+        "climate issues", "heat adaptation", "cold exposure"
+      ]
+    },
+    "monotonyInTraining": {
+      "id": "G",
+      "name": "Monotony in Training",
+      "description": "Repetitive drills or the same training routine can lead to both physical and mental fatigue due to lack of variety and motivation.",
+      "causes": [
+        "Stagnant training (unmotivated and zero innovation)",
+        "More training, lesser recovery and athlete treatment"
+      ],
+      "symptoms": [
+        "Unmotivated", 
+        "Mental fatigue"
+      ],
+      "keywords": [
+        "bored", "routine", "repetitive", "same drills", "monotonous", 
+        "uninspired", "lack of variety", "plateaued", "stagnant progress",
+        "training boredom", "lack of challenge"
+      ]
+    }
+  },
+  "managementStrategies": {
+    "activeRecovery": {
+      "name": "Active Recovery",
+      "description": "Engaging in low-intensity exercise post-training (like stretching or swimming) can help muscles recover faster.",
+      "recommendations": [
+        "Light cardio activities like swimming or cycling",
+        "Stretching routines focusing on worked muscles",
+        "Light yoga sessions",
+        "Walking or easy jogging",
+        "Foam rolling and mobility work"
+      ]
+    },
+    "adequateSleep": {
+      "name": "Adequate Sleep",
+      "description": "Ensuring 7-9 hours of restful sleep is crucial for muscle repair, mental recovery, and overall performance.",
+      "recommendations": [
+        "Establish consistent sleep schedule",
+        "Create optimal sleep environment (dark, cool, quiet)",
+        "Limit screen time before bed",
+        "Avoid caffeine and heavy meals before sleep",
+        "Consider naps (20-30 minutes) when needed"
+      ]
+    },
+    "nutritionAndHydration": {
+      "name": "Nutrition and Hydration",
+      "description": "A balanced diet rich in proteins, carbs, fats, vitamins, and minerals, along with proper hydration, is essential for energy replenishment.",
+      "recommendations": [
+        "Balanced macronutrient intake (carbs, proteins, fats)",
+        "Proper timing of pre and post-workout nutrition",
+        "Adequate hydration throughout the day",
+        "Electrolyte replacement during extended sessions",
+        "Individualized nutrition plans based on training load"
+      ]
+    },
+    "mentalTraining": {
+      "name": "Mental Training",
+      "description": "Incorporating mindfulness, meditation, and mental relaxation techniques can help athletes manage stress and prevent burnout.",
+      "recommendations": [
+        "Regular mindfulness practice",
+        "Breathing exercises",
+        "Visualization techniques",
+        "Positive self-talk training",
+        "Goal-setting and progress monitoring"
+      ]
+    },
+    "periodization": {
+      "name": "Periodization",
+      "description": "Structuring training to include rest periods and lower-intensity phases to avoid overtraining and allow for physical and mental recovery.",
+      "recommendations": [
+        "Structured training cycles with built-in recovery periods",
+        "Varied intensity levels throughout training phases",
+        "Planned deload weeks",
+        "Alternating focus between different fitness components",
+        "Individual periodization plans based on response to training"
+      ]
+    },
+    "psychologicalSupport": {
+      "name": "Psychological Support",
+      "description": "Working with sports psychologists can help athletes manage anxiety, stress, and emotional fatigue, while improving mental resilience.",
+      "recommendations": [
+        "Regular sessions with sports psychologist",
+        "Stress management techniques",
+        "Coping strategies for competition pressure",
+        "Team-building activities to improve support network",
+        "Mental health monitoring systems"
+      ]
+    }
+  },
+  "injuryTypes": {
+    "achillesTendon": {
+      "name": "Achilles Tendon",
+      "description": "Your Achilles tendon is the thick cord that connects your calf muscles to your heel bone.",
+      "commonInjuries": [
+        {
+          "name": "Achilles Tendinitis",
+          "symptoms": ["Pain and stiffness along the tendon", "Worse pain in the morning", "Severe pain after exercising", "Thickening of the tendon"],
+          "keywords": ["heel pain", "achilles pain", "calf pain", "heel cord", "morning stiffness", "back of ankle pain"]
+        },
+        {
+          "name": "Achilles Tendon Rupture",
+          "symptoms": ["Sudden, sharp pain in the back of the ankle", "Popping or snapping sensation", "Swelling", "Difficulty walking"],
+          "keywords": ["snapped achilles", "popped heel", "torn achilles", "can't walk on toes", "sudden ankle pain"]
+        }
+      ]
+    },
+    "ankleJoint": {
+      "name": "Ankle Joint",
+      "description": "Your ankle contains three joints, as well as other bones, cartilage, ligaments, muscles and tendons.",
+      "commonInjuries": [
+        {
+          "name": "Ankle Sprain",
+          "symptoms": ["Pain", "Swelling", "Bruising", "Limited range of motion", "Instability"],
+          "keywords": ["twisted ankle", "rolled ankle", "ankle pain", "swollen ankle", "unstable ankle"]
+        },
+        {
+          "name": "Ankle Fracture",
+          "symptoms": ["Immediate and severe pain", "Significant swelling", "Bruising", "Tenderness", "Deformity", "Inability to walk"],
+          "keywords": ["broken ankle", "cracked ankle", "ankle fracture", "severe ankle pain", "deformed ankle"]
+        }
+      ]
+    },
+    "elbowJoint": {
+      "name": "Elbow Joint",
+      "description": "Your elbow joint is prone to overuse injuries from repetitive movements during sports.",
+      "commonInjuries": [
+        {
+          "name": "Tennis Elbow",
+          "symptoms": ["Pain on the outer side of the elbow", "Pain when lifting or bending arm", "Pain when gripping small objects", "Pain when twisting forearm"],
+          "keywords": ["lateral elbow pain", "outer elbow pain", "tennis elbow", "painful grip"]
+        },
+        {
+          "name": "Golfer's Elbow",
+          "symptoms": ["Pain and tenderness on the inner side of elbow", "Stiffness", "Weakness in hands and wrists", "Numbness or tingling"],
+          "keywords": ["inner elbow pain", "medial elbow pain", "golfer's elbow", "forearm pain"]
+        },
+        {
+          "name": "Elbow Bursitis",
+          "symptoms": ["Swelling at the tip of the elbow", "Pain with direct pressure", "Limited elbow motion"],
+          "keywords": ["swollen elbow", "elbow bump", "olecranon bursitis", "elbow fluid"]
+        }
+      ]
+    },
+    "head": {
+      "name": "Head",
+      "description": "Less than 2 in 10 sports injuries are head injuries, but they can include nosebleeds, tooth loss, and concussions.",
+      "commonInjuries": [
+        {
+          "name": "Concussion",
+          "symptoms": ["Headache", "Confusion", "Dizziness", "Nausea", "Temporary loss of consciousness", "Memory problems"],
+          "keywords": ["head trauma", "concussion", "dizziness", "head pain", "blurred vision", "confusion", "memory issues", "headache"]
+        },
+        {
+          "name": "Nosebleed",
+          "symptoms": ["Bleeding from nostrils", "Facial pain", "Nasal swelling"],
+          "keywords": ["bloody nose", "nasal bleeding", "nosebleed", "nasal trauma"]
+        }
+      ]
+    },
+    "kneeJoint": {
+      "name": "Knee Joint",
+      "description": "Your knee joint includes several ligaments that you can sprain.",
+      "commonInjuries": [
+        {
+          "name": "ACL Tear",
+          "symptoms": ["Popping sound during injury", "Severe pain", "Rapid swelling", "Loss of range of motion", "Instability when walking"],
+          "keywords": ["knee pop", "acl", "knee instability", "knee buckles", "can't pivot"]
+        },
+        {
+          "name": "PCL Tear",
+          "symptoms": ["Pain in the back of the knee", "Swelling", "Instability", "Difficulty walking"],
+          "keywords": ["pcl", "back of knee pain", "knee instability", "knee gives out"]
+        },
+        {
+          "name": "Jumper's Knee",
+          "symptoms": ["Pain below the kneecap", "Pain that worsens with activity", "Swelling", "Tenderness"],
+          "keywords": ["jumper's knee", "patellar tendinitis", "front knee pain", "kneecap pain", "pain when jumping"]
+        },
+        {
+          "name": "Meniscal Tear",
+          "symptoms": ["Popping sensation", "Swelling", "Pain when twisting or rotating knee", "Difficulty straightening knee"],
+          "keywords": ["torn meniscus", "cartilage tear", "locked knee", "knee catches", "can't straighten knee"]
+        }
+      ]
+    },
+    "legMuscles": {
+      "name": "Leg Muscles",
+      "description": "Leg muscle strains are common in various sports activities.",
+      "commonInjuries": [
+        {
+          "name": "Groin Pull",
+          "symptoms": ["Pain and tenderness in the groin and thigh area", "Swelling", "Bruising", "Restricted movement"],
+          "keywords": ["groin pain", "inner thigh pain", "pulled groin", "adductor strain"]
+        },
+        {
+          "name": "Hamstring Strain",
+          "symptoms": ["Sudden sharp pain in the back of the thigh", "Swelling", "Bruising", "Weakness", "Inability to put weight on leg"],
+          "keywords": ["hamstring pull", "back of thigh pain", "pulled hammy", "hamstring tear"]
+        },
+        {
+          "name": "Shin Splint",
+          "symptoms": ["Pain along the inner edge of the shinbone", "Tenderness", "Mild swelling", "Pain during exercise"],
+          "keywords": ["shin pain", "shin splints", "lower leg pain", "pain when running"]
+        }
+      ]
+    },
+    "shoulderJoint": {
+      "name": "Shoulder Joint",
+      "description": "Injuries to your shoulder's rotator cuff and other structures.",
+      "commonInjuries": [
+        {
+          "name": "Rotator Cuff Tear",
+          "symptoms": ["Dull ache deep in the shoulder", "Disturbed sleep", "Arm weakness", "Limited range of motion"],
+          "keywords": ["rotator cuff", "shoulder pain", "can't raise arm", "shoulder weakness", "deep shoulder ache"]
+        },
+        {
+          "name": "Shoulder Tendinitis",
+          "symptoms": ["Pain and tenderness", "Pain that increases with overhead activities", "Mild swelling"],
+          "keywords": ["shoulder tendinitis", "painful shoulder", "overhead pain", "throwing pain"]
+        },
+        {
+          "name": "Shoulder Dislocation",
+          "symptoms": ["Visible deformity", "Intense pain", "Inability to move the joint", "Swelling", "Numbness"],
+          "keywords": ["dislocated shoulder", "shoulder out of socket", "shoulder deformity", "can't move shoulder"]
+        },
+        {
+          "name": "Swimmer's Shoulder",
+          "symptoms": ["Pain when arm is raised overhead", "Shoulder tenderness", "Pain that interferes with sleep"],
+          "keywords": ["swimmer's shoulder", "overhead pain", "swimmer pain", "shoulder impingement"]
+        }
+      ]
+    },
+    "otherInjuries": {
+      "name": "Other Common Injuries",
+      "description": "Other common sports injuries that may occur in various body regions.",
+      "commonInjuries": [
+        {
+          "name": "Bone Fracture",
+          "symptoms": ["Intense pain", "Swelling", "Bruising", "Deformity", "Inability to bear weight or use the limb"],
+          "keywords": ["broken bone", "fracture", "crack", "bone pain", "can't bear weight"]
+        },
+        {
+          "name": "Bursitis",
+          "symptoms": ["Pain in affected area", "Tenderness", "Swelling", "Limited movement"],
+          "keywords": ["bursitis", "joint swelling", "joint inflammation", "painful joint movement"]
+        },
+        {
+          "name": "Contusion",
+          "symptoms": ["Bruising", "Pain", "Swelling", "Skin discoloration"],
+          "keywords": ["bruise", "contusion", "impact injury", "direct hit"]
+        }
+      ]
+    }
+  },
+  "keywords": {
+    "fatigue": [
+      {"keyword": "always tired", "type": "lackOfRecovery"},
+      {"keyword": "no energy", "type": "poorNutrition"},
+      {"keyword": "constantly sore", "type": "overtraining"},
+      {"keyword": "can't sleep", "type": "lackOfRecovery"},
+      {"keyword": "bored", "type": "monotonyInTraining"},
+      {"keyword": "unmotivated", "type": "monotonyInTraining"},
+      {"keyword": "dehydrated", "type": "environmentalConditions"},
+      {"keyword": "too hot", "type": "environmentalConditions"},
+      {"keyword": "anxiety", "type": "externalPressures"},
+      {"keyword": "stress", "type": "externalPressures"},
+      {"keyword": "bad technique", "type": "improperTechnique"},
+      {"keyword": "bad form", "type": "improperTechnique"},
+      {"keyword": "weight loss", "type": "poorNutrition"},
+      {"keyword": "weight gain", "type": "poorNutrition"},
+      {"keyword": "overtrained", "type": "overtraining"},
+      {"keyword": "too much training", "type": "overtraining"}
+    ],
+    "injuries": [
+      {"keyword": "ankle pain", "location": "ankleJoint"},
+      {"keyword": "twisted ankle", "location": "ankleJoint"},
+      {"keyword": "heel pain", "location": "achillesTendon"},
+      {"keyword": "elbow pain", "location": "elbowJoint"},
+      {"keyword": "tennis elbow", "location": "elbowJoint"},
+      {"keyword": "knee pain", "location": "kneeJoint"},
+      {"keyword": "acl", "location": "kneeJoint"},
+      {"keyword": "meniscus", "location": "kneeJoint"},
+      {"keyword": "hamstring", "location": "legMuscles"},
+      {"keyword": "groin pull", "location": "legMuscles"},
+      {"keyword": "shin splint", "location": "legMuscles"},
+      {"keyword": "shoulder pain", "location": "shoulderJoint"},
+      {"keyword": "rotator cuff", "location": "shoulderJoint"},
+      {"keyword": "concussion", "location": "head"},
+      {"keyword": "headache", "location": "head"},
+      {"keyword": "broken bone", "location": "otherInjuries"},
+      {"keyword": "fracture", "location": "otherInjuries"},
+      {"keyword": "bruise", "location": "otherInjuries"},
+      {"keyword": "swelling", "location": "otherInjuries"}
+    ]
+  }
+}
