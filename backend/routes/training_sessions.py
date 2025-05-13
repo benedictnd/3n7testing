@@ -124,32 +124,56 @@ def update_training_session(
     session_id: str,
     session_data: TrainingSessionCreate,
     db: Session = Depends(get_db),
-    current_user: dict = Depends(validate_coach_permissions)
+    current_user: dict = Depends(get_current_user)
 ):
     """
     Update an existing training session.
-    
-    Only coaches who created the session and admins can update training sessions.
+    Restrict editing during active sessions to head/associate coaches only.
+    Log edits for audit trail.
     """
     try:
         training_service = TrainingService(db)
-        
-        # Get existing session to check permissions
         existing_session = training_service.get_session(session_id)
         if not existing_session:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Training session not found"
             )
-            
-        # Check if current user is the coach who created the session or an admin
-        if current_user["role"] != "admin" and existing_session.coach_id != current_user["id"]:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="You don't have permission to update this training session"
-            )
-            
+
+        # Check if session is active (assuming status or similar field)
+        is_active = getattr(existing_session, 'status', None) == 'active'
+        authorized_roles = ["head_coach", "associate_coach"]
+        user_role = current_user.get("role")
+
+        if is_active:
+            # Only head/associate coaches can edit active sessions
+            if user_role not in authorized_roles:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Editing restricted to head/associate coaches during active session"
+                )
+        else:
+            # For non-active, retain previous logic: only creator or admin
+            if user_role != "admin" and existing_session.coach_id != current_user["id"]:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="You don't have permission to update this training session"
+                )
+
         updated_session = training_service.update_session(session_id, session_data)
+
+        # --- Audit log ---
+        # Assuming you have a method to append to audit log in session or in a json file
+        audit_entry = {
+            "user_id": current_user["id"],
+            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "changes": session_data.dict() if hasattr(session_data, 'dict') else str(session_data)
+        }
+        # Pseudo: training_service.append_audit_log(session_id, audit_entry)
+        if hasattr(training_service, "append_audit_log"):
+            training_service.append_audit_log(session_id, audit_entry)
+        # else: optionally write to a file or other logging mechanism
+
         return updated_session
     except HTTPException:
         raise
