@@ -20,6 +20,94 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
+import os
+import json
+from fastapi import Request
+
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+PROFILE_PATH = os.path.join(DATA_DIR, 'user_profile.json')
+DRILLS_PATH = os.path.join(DATA_DIR, 'user_drills.json')
+SESSIONS_PATH = os.path.join(DATA_DIR, 'active_sessions.json')
+
+# Helper to check premium status
+def is_premium():
+    try:
+        with open(PROFILE_PATH, 'r') as f:
+            profile = json.load(f)
+        return profile.get('tier', '') == 'premium'
+    except Exception:
+        return False
+
+# GET /api/drills - fetch saved drills (premium only)
+@router.get('/api/drills')
+def get_saved_drills():
+    if not is_premium():
+        raise HTTPException(status_code=403, detail='Premium feature')
+    try:
+        with open(DRILLS_PATH, 'r') as f:
+            drills = json.load(f)
+    except FileNotFoundError:
+        drills = {}
+    return drills
+
+# POST /api/drills - save/update drill (premium only)
+@router.post('/api/drills')
+def save_drill(drill: dict = Request.get_json()):
+    if not is_premium():
+        raise HTTPException(status_code=403, detail='Premium feature')
+    name = drill.get('name')
+    if not name:
+        raise HTTPException(status_code=400, detail='Drill name required')
+    try:
+        with open(DRILLS_PATH, 'r') as f:
+            drills = json.load(f)
+    except FileNotFoundError:
+        drills = {}
+    # Name conflict
+    orig_name = name
+    while any(d.get('name', '') == name for d in drills.values()):
+        if not name.endswith(' (Copy)'):
+            name += ' (Copy)'
+        else:
+            name += ' (Copy)'
+    if name != orig_name:
+        drill['name'] = name
+    drill_id = f"drill_{len(drills)+1:03d}"
+    drill['last_edited'] = datetime.now().strftime('%Y-%m-%d')
+    drills[drill_id] = drill
+    with open(DRILLS_PATH, 'w') as f:
+        json.dump(drills, f, indent=2)
+    return {'success': True, 'drill_id': drill_id, 'drill': drill}
+
+# PUT /api/session - increment edit count (max 2 edits)
+@router.put('/api/session')
+def edit_drill_session(session_id: str = Request.get_json().get('session_id'), drill_name: str = Request.get_json().get('drill_name')):
+    if not is_premium():
+        raise HTTPException(status_code=403, detail='Premium feature')
+    try:
+        with open(SESSIONS_PATH, 'r') as f:
+            sessions = json.load(f)
+    except FileNotFoundError:
+        sessions = {}
+    session = sessions.get(session_id, {'drills': [], 'edit_count': 0})
+    edit_count = session.get('edit_count', 0)
+    if edit_count >= 2:
+        return {'success': False, 'message': 'Max edits reached. Contact head coach for changes.'}
+    # Find or add drill in session
+    found = False
+    for d in session['drills']:
+        if d['name'] == drill_name:
+            d['edits'] = d.get('edits', 0) + 1
+            found = True
+            break
+    if not found:
+        session['drills'].append({'name': drill_name, 'source': '', 'edits': 1})
+    session['edit_count'] = edit_count + 1
+    sessions[session_id] = session
+    with open(SESSIONS_PATH, 'w') as f:
+        json.dump(sessions, f, indent=2)
+    return {'success': True, 'edits_left': 2 - session['edit_count']}
+
 # Helper function to validate user role for endpoints
 def validate_coach_permissions(current_user: dict = Depends(get_current_user)):
     if current_user["role"] != "coach" and current_user["role"] != "admin":

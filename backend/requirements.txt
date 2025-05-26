@@ -26,6 +26,10 @@ email-validator==2.1.0
 httpx==0.25.1
 python-dateutil==2.8.2
 
+# Real-time collaboration
+python-socketio[asgi]==5.11.2  # WebSocket for FastAPI
+# Yjs handled via external y-websocket server (see docker-compose)
+
 # Report generation
 reportlab==4.0.7
 python-pptx==0.6.21
